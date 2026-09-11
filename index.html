@@ -726,7 +726,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 23:03</span>
+        <span id="syncTime">已保存本地 23:10</span>
       </div>
       <div id="cloudStatus" class="cloud-status offline" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -1189,6 +1189,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           ✅ 云同步已连接！多设备打开工作台输入同一个密钥即可同步。<span class="en-sub">Cloud sync connected! Use same token on other devices.</span>
         </div>
         <button class="btn danger" onclick="disconnectCloud()" style="margin-top:8px;">🔌 断开云同步<span class="en-sub-inline">Disconnect</span></button>
+        <button class="btn" onclick="cleanCloudGists()" style="margin-top:8px; margin-left:8px;">🧹 清理云端重复数据<span class="en-sub-inline">Clean</span></button>
       </div>
     </div>
   </div>
@@ -2253,17 +2254,15 @@ function cloudSyncPush(showMsg) {
     });
   };
 
-  // If no local gistId, search for existing gist first
-  if (!_cloudConfig.gistId) {
-    return findExistingGist().then(function(gid) {
-      if (gid) {
-        _cloudConfig.gistId = gid;
-        saveCloudConfigRaw(_cloudConfig);
-      }
-      return doPush();
-    });
-  }
-  return doPush();
+  // Always search first, even if we have a cached gistId
+  // This ensures all devices converge on the same gist
+  return findExistingGist().then(function(gid) {
+    if (gid) {
+      _cloudConfig.gistId = gid;
+      saveCloudConfigRaw(_cloudConfig);
+    }
+    return doPush();
+  });
 }
 
 function findExistingGist() {
@@ -2337,19 +2336,15 @@ function cloudSyncPull(showMsg) {
     });
   };
 
-  if (_cloudConfig.gistId) {
-    return pullAction(_cloudConfig.gistId);
-  } else {
-    // Search for existing gist
-    if (showMsg) showToast('正在搜索云端数据...');
-    return findExistingGist().then(function(gid) {
-      if (gid) {
-        _cloudConfig.gistId = gid;
-        saveCloudConfigRaw(_cloudConfig);
-      }
-      return pullAction(gid);
-    });
-  }
+  // Always search first to ensure we're reading from the shared gist
+  if (showMsg) showToast('正在搜索云端数据...');
+  return findExistingGist().then(function(gid) {
+    if (gid) {
+      _cloudConfig.gistId = gid;
+      saveCloudConfigRaw(_cloudConfig);
+    }
+    return pullAction(gid);
+  });
 }
 
 function updateCloudSyncing(syncing) {
@@ -2372,6 +2367,59 @@ function scheduleCloudSync() {
   _syncTimer = setTimeout(function() {
     cloudSyncPush(false);
   }, 3000); // 3 second debounce
+}
+
+function cleanCloudGists() {
+  if (!_cloudConfig || !_cloudConfig.token) {
+    showToast('请先设置云同步');
+    return;
+  }
+  var msgEl = document.getElementById('cloudMsg');
+  msgEl.innerHTML = '<div class="ok">🧹 正在清理云端...<span class="en-sub">Cleaning cloud...</span></div>';
+
+  fetch('https://api.github.com/gists', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'token ' + _cloudConfig.token,
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  }).then(function(res) {
+    return res.json();
+  }).then(function(gists) {
+    // Find all workbench gists
+    var workbenchGists = [];
+    for (var i = 0; i < gists.length; i++) {
+      if (gists[i].description === 'workbench-sync-data' && gists[i].files && gists[i].files['workbench-data.json']) {
+        workbenchGists.push(gists[i]);
+      }
+    }
+
+    if (workbenchGists.length === 0) {
+      msgEl.innerHTML = '<div class="ok">云端没有数据需要清理。<span class="en-sub">No data to clean.</span></div>';
+      return;
+    }
+
+    // Delete all workbench gists
+    var deletePromises = workbenchGists.map(function(g) {
+      return fetch('https://api.github.com/gists/' + g.id, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'token ' + _cloudConfig.token,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+    });
+
+    Promise.all(deletePromises).then(function() {
+      // Clear local gistId
+      _cloudConfig.gistId = null;
+      saveCloudConfigRaw(_cloudConfig);
+      msgEl.innerHTML = '<div class="ok">✅ 已清理 ' + workbenchGists.length + ' 个云端数据。请重新上传数据。<span class="en-sub">Cleaned. Please re-upload.</span></div>';
+      showToast('云端已清理');
+    });
+  }).catch(function() {
+    msgEl.innerHTML = '<div class="err">清理失败<span class="en-sub">Clean failed</span></div>';
+  });
 }
 
 function disconnectCloud() {
