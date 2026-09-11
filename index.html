@@ -1575,7 +1575,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 16:39</span>
+        <span id="syncTime">已保存本地 22:45</span>
       </div>
       <div id="cloudStatus" class="cloud-status offline" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -1995,26 +1995,26 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <span class="modal-close" onclick="closeModal('cloudModal')">×</span>
     </div>
     <div class="modal-body">
-      <!-- Step 1: Get Pantry ID -->
+      <!-- Step 1: Get GitHub Token -->
       <div class="dt-section">
-        <div class="dt-section-title">第一步：获取云同步 ID<span class="en-sub">Step 1: Get Cloud ID</span></div>
+        <div class="dt-section-title">第一步：获取 GitHub 令牌<span class="en-sub">Step 1: Get GitHub Token</span></div>
         <div class="dt-section-desc">
-          点击下方按钮打开 Pantry（免费，无需注册），网站会自动生成你的专属 Pantry ID。<span class="en-sub">Click to open Pantry (free, no registration) to get your ID.</span>
+          你已有 GitHub 账号，只需生成一个个人令牌即可。<span class="en-sub">You already have a GitHub account, just generate a personal token.</span>
         </div>
-        <a href="https://getpantry.cloud/" target="_blank" class="btn primary" style="text-decoration:none; display:block; text-align:center;">
-          🔗 打开 Pantry<span class="en-sub-inline">Open Pantry</span>
+        <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=workbench-sync" target="_blank" class="btn primary" style="text-decoration:none; display:block; text-align:center;">
+          🔗 打开 GitHub 令牌页面<span class="en-sub-inline">Open GitHub</span>
         </a>
         <div class="dt-section-desc" style="margin-top:8px;">
-          打开后在网站输入一个名称（比如 myworkbench），点击 Create，网站会给你一串 Pantry ID（类似 <code style="background:#f5f5f5;padding:1px 4px;border-radius:3px;">a1b2c3d4-e5f6-...</code>），复制这个 ID 粘贴到下方。<span class="en-sub">Enter a name, click Create, copy the Pantry ID and paste below.</span>
+          打开后页面已自动勾选 <code style="background:#f5f5f5;padding:1px 4px;border-radius:3px;">gist</code> 权限。拉到页面底部点绿色 <strong>Generate token</strong> 按钮，然后复制生成的令牌（以 <code style="background:#f5f5f5;padding:1px 4px;border-radius:3px;">ghp_</code> 开头）粘贴到下方。<span class="en-sub">Click "Generate token" at the bottom, then copy the token (starts with ghp_) and paste below.</span>
         </div>
       </div>
 
-      <!-- Step 2: Enter Pantry ID -->
+      <!-- Step 2: Enter Token -->
       <div class="dt-section">
-        <div class="dt-section-title">第二步：输入 ID<span class="en-sub">Step 2: Enter ID</span></div>
+        <div class="dt-section-title">第二步：输入令牌<span class="en-sub">Step 2: Enter Token</span></div>
         <div class="form-group">
-          <label class="form-label">Pantry ID<span class="en-sub">Pantry ID</span></label>
-          <input type="text" class="form-input" id="cloudTokenInput" placeholder="a1b2c3d4-e5f6-7890-..." style="font-size:11px; font-family:monospace;">
+          <label class="form-label">GitHub 令牌<span class="en-sub">GitHub Token</span></label>
+          <input type="password" class="form-input" id="cloudTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="font-size:11px; font-family:monospace;">
         </div>
         <div class="form-group">
           <label class="form-label">同步密码（可选，保护数据）<span class="en-sub">Sync Password (optional)</span></label>
@@ -2974,7 +2974,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ============================================================
-   Cloud Sync Module (Pantry — no registration needed)
+   Cloud Sync Module (GitHub Gist — uses your GitHub account)
    ============================================================ */
 var _cloudConfig = null;
 var _syncTimer = null;
@@ -3021,13 +3021,11 @@ function saveCloudConfig() {
   var msgEl = document.getElementById('cloudMsg');
 
   if (!token) {
-    msgEl.innerHTML = '<div class="err">请先输入 Pantry ID<span class="en-sub">Please enter the Pantry ID</span></div>';
+    msgEl.innerHTML = '<div class="err">请先输入 GitHub 令牌<span class="en-sub">Please enter the GitHub token</span></div>';
     return;
   }
-  // Clean up: remove any URL prefix if user pasted full URL
-  token = token.replace(/^https?:\/\/[^/]+\//, '').replace(/\/+$/, '');
 
-  var cfg = { token: token, pwd: pwd };
+  var cfg = { token: token, pwd: pwd, gistId: _cloudConfig ? _cloudConfig.gistId : null };
   saveCloudConfigRaw(cfg);
   updateCloudUI(true);
   msgEl.innerHTML = '<div class="ok">✅ 保存成功！正在测试连接...<span class="en-sub">Saved! Testing connection...</span></div>';
@@ -3037,15 +3035,13 @@ function saveCloudConfig() {
     if (ok) {
       msgEl.innerHTML = '<div class="ok">✅ 云同步连接成功！<span class="en-sub">Cloud sync connected!</span></div>';
     } else {
-      msgEl.innerHTML = '<div class="err">❌ 连接失败，请检查 Pantry ID 是否正确<span class="en-sub">Connection failed, check the ID</span></div>';
+      msgEl.innerHTML = '<div class="err">❌ 连接失败，请检查令牌是否正确<span class="en-sub">Connection failed, check the token</span></div>';
     }
   });
 }
 
-function getCloudBasket() {
-  if (!_cloudConfig || !_cloudConfig.token) return null;
-  var basket = _cloudConfig.pwd ? _cloudConfig.pwd : 'default';
-  return 'https://pantry.cloud/apiv1/pantry/' + _cloudConfig.token + '/basket/' + basket;
+function getGistApiUrl(id) {
+  return 'https://api.github.com/gists' + (id ? '/' + id : '');
 }
 
 function cloudSyncPush(showMsg) {
@@ -3054,8 +3050,6 @@ function cloudSyncPush(showMsg) {
     return Promise.resolve(false);
   }
   updateCloudSyncing(true);
-  var url = getCloudBasket();
-  if (!url) return Promise.resolve(false);
 
   var payload = {
     words: words,
@@ -3064,19 +3058,43 @@ function cloudSyncPush(showMsg) {
     user: currentUser
   };
 
+  var body = {
+    description: 'workbench-sync-data',
+    public: false,
+    files: {
+      'workbench-data.json': {
+        content: JSON.stringify(payload)
+      }
+    }
+  };
+
+  var method = _cloudConfig.gistId ? 'PATCH' : 'POST';
+  var url = getGistApiUrl(_cloudConfig.gistId);
+
   return fetch(url, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    method: method,
+    headers: {
+      'Authorization': 'token ' + _cloudConfig.token,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json'
+    },
+    body: JSON.stringify(body)
   }).then(function(res) {
     updateCloudSyncing(false);
-    if (res.ok) {
+    if (!res.ok) {
+      if (showMsg) showToast('上传失败 (' + res.status + ')');
+      return false;
+    }
+    return res.json().then(function(data) {
+      // Save gist ID for future updates
+      if (data && data.id && !_cloudConfig.gistId) {
+        _cloudConfig.gistId = data.id;
+        saveCloudConfigRaw(_cloudConfig);
+      }
       if (showMsg) showToast('已上传云端');
       updateCloudUI(true);
       return true;
-    }
-    if (showMsg) showToast('上传失败');
-    return false;
+    });
   }).catch(function(e) {
     updateCloudSyncing(false);
     if (showMsg) showToast('上传失败：网络错误');
@@ -3089,26 +3107,34 @@ function cloudSyncPull(showMsg) {
     if (showMsg) showToast('请先设置云同步');
     return Promise.resolve(false);
   }
+  if (!_cloudConfig.gistId) {
+    if (showMsg) showToast('请先点击「立即上传」创建云端数据');
+    return Promise.resolve(false);
+  }
   updateCloudSyncing(true);
-  var url = getCloudBasket();
-  if (!url) return Promise.resolve(false);
+  var url = getGistApiUrl(_cloudConfig.gistId);
 
   return fetch(url, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Authorization': 'token ' + _cloudConfig.token,
+      'Accept': 'application/vnd.github.v3+json'
+    }
   }).then(function(res) {
     updateCloudSyncing(false);
     if (!res.ok) {
-      if (showMsg) showToast('拉取失败');
+      if (showMsg) showToast('拉取失败 (' + res.status + ')');
       return false;
     }
     return res.json().then(function(data) {
-      if (!data || (!data.words && !data.txs)) {
+      var file = data.files && data.files['workbench-data.json'];
+      if (!file || !file.content) {
         if (showMsg) showToast('云端暂无数据');
         return false;
       }
-      if (data.words) { words = data.words; DB.save(DB.wordsKey(currentUser), words); }
-      if (data.txs) { txs = data.txs; DB.save(DB.txsKey(currentUser), txs); }
+      var cloud = JSON.parse(file.content);
+      if (cloud.words) { words = cloud.words; DB.save(DB.wordsKey(currentUser), words); }
+      if (cloud.txs) { txs = cloud.txs; DB.save(DB.txsKey(currentUser), txs); }
       renderAll();
       updateSyncTime();
       if (showMsg) showToast('已从云端同步');
