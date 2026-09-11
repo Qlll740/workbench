@@ -1575,7 +1575,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 16:02</span>
+        <span id="syncTime">已保存本地 16:28</span>
       </div>
       <div id="cloudStatus" class="cloud-status offline" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -1995,26 +1995,26 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <span class="modal-close" onclick="closeModal('cloudModal')">×</span>
     </div>
     <div class="modal-body">
-      <!-- Step 1: Get Token -->
+      <!-- Step 1: Get Pantry ID -->
       <div class="dt-section">
-        <div class="dt-section-title">第一步：获取云同步密钥<span class="en-sub">Step 1: Get Cloud Token</span></div>
+        <div class="dt-section-title">第一步：获取云同步 ID<span class="en-sub">Step 1: Get Cloud ID</span></div>
         <div class="dt-section-desc">
-          点击下方按钮打开 jsonstore.io（免费，无需注册），网站会自动生成你的专属密钥。<span class="en-sub">Click to open jsonstore.io (free, no registration) to get your token.</span>
+          点击下方按钮打开 Pantry（免费，无需注册），网站会自动生成你的专属 Pantry ID。<span class="en-sub">Click to open Pantry (free, no registration) to get your ID.</span>
         </div>
-        <a href="https://www.jsonstore.io/" target="_blank" class="btn primary" style="text-decoration:none; display:block; text-align:center;">
-          🔗 打开 jsonstore.io<span class="en-sub-inline">Open</span>
+        <a href="https://getpantry.cloud/" target="_blank" class="btn primary" style="text-decoration:none; display:block; text-align:center;">
+          🔗 打开 Pantry<span class="en-sub-inline">Open Pantry</span>
         </a>
         <div class="dt-section-desc" style="margin-top:8px;">
-          打开后页面会显示一长串地址（类似 <code style="background:#f5f5f5;padding:1px 4px;border-radius:3px;">https://www.jsonstore.io/abc123...</code>），复制完整地址粘贴到下方。<span class="en-sub">Copy the full URL and paste below.</span>
+          打开后在网站输入一个名称（比如 myworkbench），点击 Create，网站会给你一串 Pantry ID（类似 <code style="background:#f5f5f5;padding:1px 4px;border-radius:3px;">a1b2c3d4-e5f6-...</code>），复制这个 ID 粘贴到下方。<span class="en-sub">Enter a name, click Create, copy the Pantry ID and paste below.</span>
         </div>
       </div>
 
-      <!-- Step 2: Enter Token -->
+      <!-- Step 2: Enter Pantry ID -->
       <div class="dt-section">
-        <div class="dt-section-title">第二步：输入密钥<span class="en-sub">Step 2: Enter Token</span></div>
+        <div class="dt-section-title">第二步：输入 ID<span class="en-sub">Step 2: Enter ID</span></div>
         <div class="form-group">
-          <label class="form-label">jsonstore.io 地址<span class="en-sub">jsonstore.io URL</span></label>
-          <input type="text" class="form-input" id="cloudTokenInput" placeholder="https://www.jsonstore.io/你的密钥..." style="font-size:11px; font-family:monospace;">
+          <label class="form-label">Pantry ID<span class="en-sub">Pantry ID</span></label>
+          <input type="text" class="form-input" id="cloudTokenInput" placeholder="a1b2c3d4-e5f6-7890-..." style="font-size:11px; font-family:monospace;">
         </div>
         <div class="form-group">
           <label class="form-label">同步密码（可选，保护数据）<span class="en-sub">Sync Password (optional)</span></label>
@@ -2974,7 +2974,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ============================================================
-   Cloud Sync Module (jsonstore.io — no registration needed)
+   Cloud Sync Module (Pantry — no registration needed)
    ============================================================ */
 var _cloudConfig = null;
 var _syncTimer = null;
@@ -3021,15 +3021,11 @@ function saveCloudConfig() {
   var msgEl = document.getElementById('cloudMsg');
 
   if (!token) {
-    msgEl.innerHTML = '<div class="err">请先输入 jsonstore.io 地址<span class="en-sub">Please enter the URL</span></div>';
+    msgEl.innerHTML = '<div class="err">请先输入 Pantry ID<span class="en-sub">Please enter the Pantry ID</span></div>';
     return;
   }
-  // Normalize: ensure it's a valid URL
-  if (!token.startsWith('http')) {
-    token = 'https://www.jsonstore.io/' + token;
-  }
-  // Remove trailing slash
-  token = token.replace(/\/+$/, '');
+  // Clean up: remove any URL prefix if user pasted full URL
+  token = token.replace(/^https?:\/\/[^/]+\//, '').replace(/\/+$/, '');
 
   var cfg = { token: token, pwd: pwd };
   saveCloudConfigRaw(cfg);
@@ -3041,17 +3037,15 @@ function saveCloudConfig() {
     if (ok) {
       msgEl.innerHTML = '<div class="ok">✅ 云同步连接成功！<span class="en-sub">Cloud sync connected!</span></div>';
     } else {
-      msgEl.innerHTML = '<div class="err">❌ 连接失败，请检查密钥地址是否正确<span class="en-sub">Connection failed, check the URL</span></div>';
+      msgEl.innerHTML = '<div class="err">❌ 连接失败，请检查 Pantry ID 是否正确<span class="en-sub">Connection failed, check the ID</span></div>';
     }
   });
 }
 
-function getCloudUrl(path) {
+function getCloudBasket() {
   if (!_cloudConfig || !_cloudConfig.token) return null;
-  var base = _cloudConfig.token;
-  var key = _cloudConfig.pwd ? _cloudConfig.pwd : 'default';
-  // Use password as part of the path for isolation
-  return base + '/' + key + '/' + path;
+  var basket = _cloudConfig.pwd ? _cloudConfig.pwd : 'default';
+  return 'https://pantry.cloud/apiv1/pantry/' + _cloudConfig.token + '/basket/' + basket;
 }
 
 function cloudSyncPush(showMsg) {
@@ -3060,7 +3054,7 @@ function cloudSyncPush(showMsg) {
     return Promise.resolve(false);
   }
   updateCloudSyncing(true);
-  var url = getCloudUrl('alldata');
+  var url = getCloudBasket();
   if (!url) return Promise.resolve(false);
 
   var payload = {
@@ -3096,7 +3090,7 @@ function cloudSyncPull(showMsg) {
     return Promise.resolve(false);
   }
   updateCloudSyncing(true);
-  var url = getCloudUrl('alldata');
+  var url = getCloudBasket();
   if (!url) return Promise.resolve(false);
 
   return fetch(url, {
@@ -3109,13 +3103,12 @@ function cloudSyncPull(showMsg) {
       return false;
     }
     return res.json().then(function(data) {
-      if (!data || !data.result) {
+      if (!data || (!data.words && !data.txs)) {
         if (showMsg) showToast('云端暂无数据');
         return false;
       }
-      var cloud = data.result;
-      if (cloud.words) { words = cloud.words; DB.save(DB.wordsKey(currentUser), words); }
-      if (cloud.txs) { txs = cloud.txs; DB.save(DB.txsKey(currentUser), txs); }
+      if (data.words) { words = data.words; DB.save(DB.wordsKey(currentUser), words); }
+      if (data.txs) { txs = data.txs; DB.save(DB.txsKey(currentUser), txs); }
       renderAll();
       updateSyncTime();
       if (showMsg) showToast('已从云端同步');
