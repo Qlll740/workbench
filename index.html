@@ -224,6 +224,281 @@ body {
 .tx-type-badge.expense { background: #FFF1F0; color: var(--alert); }
 .tx-type-badge.income { background: #F6FFED; color: var(--success); }
 
+/* Douyin Video Notes - 抖音收藏夹列表风格 */
+.dy-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.dyl-card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+.dyl-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.dyl-card.dyl-read { opacity: 0.7; }
+.dyl-card.dyl-expanded {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* 卡片主体：左图右文 */
+.dyl-card-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.dyl-thumb {
+  width: 120px;
+  height: 160px;
+  margin: 12px;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dyl-content {
+  flex: 1;
+  padding: 12px 14px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 缩略图 */
+.dyl-play-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.dyl-play-icon svg {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+}
+.dyl-duration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* 标题 */
+.dyl-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+  cursor: pointer;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dyl-title:hover {
+  color: var(--primary-dark);
+}
+.dyl-tags-inline {
+  color: #4e6ef2;
+  font-weight: 500;
+}
+
+/* 元信息行 */
+.dyl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.dyl-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.dyl-star-meta {
+  color: #faad14;
+}
+
+/* 数据统计行 */
+.dyl-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+.dyl-stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 500;
+}
+
+/* 底部操作按钮 */
+.dyl-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.dyl-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: all 0.15s;
+}
+.dyl-action-btn:hover {
+  background: var(--border-light);
+  color: var(--text-1);
+}
+.dyl-btn-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.dyl-note-action {
+  background: rgba(107, 142, 75, 0.1);
+  color: var(--primary-dark);
+}
+.dyl-note-action:hover {
+  background: rgba(107, 142, 75, 0.18);
+}
+
+.dyl-action-spacer {
+  flex: 1;
+}
+
+.dyl-icon-btn-small {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 13px;
+  border-radius: 6px;
+  color: var(--text-3);
+  transition: all 0.15s;
+}
+.dyl-icon-btn-small:hover {
+  background: var(--bg);
+  color: var(--text-1);
+}
+
+/* 展开的笔记面板 */
+.dyl-note-panel {
+  padding: 14px 16px;
+  background: var(--bg);
+  border-top: 1px solid var(--border-light);
+  animation: slideDownNote 0.25s ease;
+}
+@keyframes slideDownNote {
+  from { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; }
+  to { opacity: 1; max-height: 600px; padding-top: 14px; padding-bottom: 14px; }
+}
+
+.dyl-note-section {
+  margin-bottom: 12px;
+}
+.dyl-note-section:last-of-type {
+  margin-bottom: 8px;
+}
+
+.dyl-note-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+
+.dyl-note-content {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.dyl-note-points {
+  white-space: pre-wrap;
+}
+
+.dyl-note-quote {
+  font-style: italic;
+  color: var(--text-1);
+  border-left: 3px solid var(--primary);
+  padding-left: 10px;
+}
+
+.dyl-note-empty {
+  text-align: center;
+  padding: 16px 0;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.dyl-note-edit-row {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  text-align: center;
+}
+
+.dyl-edit-full-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.dyl-edit-full-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background: rgba(107, 142, 75, 0.05);
+}
+
+/* 响应式：移动端 */
+@media (max-width: 600px) {
+  .dyl-thumb {
+    width: 100px;
+    height: 140px;
+    margin: 10px;
+  }
+  .dyl-content {
+    padding: 10px 12px 10px 0;
+    gap: 6px;
+  }
+  .dyl-title { font-size: 14px; }
+  .dyl-stats { gap: 10px; font-size: 11px; }
+  .dyl-action-btn { padding: 4px 10px; font-size: 11px; }
+}
+
 .empty-state { text-align: center; padding: 60px 20px; color: var(--text-3); }
 .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
 .content-count { font-size: 13px; color: var(--text-2); margin-bottom: 12px; }
@@ -911,6 +1186,7 @@ body {
   .sm2-ratings { grid-template-columns: repeat(3, 1fr); }
   .sm2-rating-btn { flex-direction: row; justify-content: space-around; padding: 10px 8px; }
   .sm2-rating-btn .rating-num { margin-bottom: 0; }
+  .dy-grid { grid-template-columns: 1fr; }
 }
 </style>
 <style data-trae-edit-ui="true" id="trae-previewer-tools-styles">:root {
@@ -1781,6 +2057,56 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .tx-type-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
 .tx-type-badge.expense { background: rgb(255, 241, 240); color: var(--alert); }
 .tx-type-badge.income { background: rgb(246, 255, 237); color: var(--success); }
+.dy-grid { display: flex; flex-direction: column; gap: 12px; }
+.dyl-card { background: var(--surface); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: 0.2s; }
+.dyl-card:hover { box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 16px; }
+.dyl-card.dyl-read { opacity: 0.7; }
+.dyl-card.dyl-expanded { box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 20px; }
+.dyl-card-body { display: flex; flex-direction: row; }
+.dyl-thumb { width: 120px; height: 160px; margin: 12px; border-radius: 8px; position: relative; cursor: pointer; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.dyl-content { flex: 1 1 0%; padding: 12px 14px 12px 0px; display: flex; flex-direction: column; gap: 8px; min-width: 0px; }
+.dyl-play-icon { width: 36px; height: 36px; background: rgba(255, 255, 255, 0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgb(51, 51, 51); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; }
+.dyl-play-icon svg { width: 18px; height: 18px; margin-left: 2px; }
+.dyl-duration { position: absolute; bottom: 6px; right: 6px; background: rgba(0, 0, 0, 0.65); color: rgb(255, 255, 255); font-size: 10px; padding: 2px 6px; border-radius: 8px; font-weight: 500; }
+.dyl-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; cursor: pointer; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dyl-title:hover { color: var(--primary-dark); }
+.dyl-tags-inline { color: rgb(78, 110, 242); font-weight: 500; }
+.dyl-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-3); }
+.dyl-meta-item { display: inline-flex; align-items: center; gap: 2px; }
+.dyl-star-meta { color: rgb(250, 173, 20); }
+.dyl-stats { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--text-2); }
+.dyl-stat-item { display: inline-flex; align-items: center; gap: 3px; font-weight: 500; }
+.dyl-actions { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 4px; }
+.dyl-action-btn { display: flex; align-items: center; gap: 4px; background: var(--bg); border: none; cursor: pointer; padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 500; color: var(--text-2); transition: 0.15s; }
+.dyl-action-btn:hover { background: var(--border-light); color: var(--text-1); }
+.dyl-btn-icon { font-size: 13px; line-height: 1; }
+.dyl-note-action { background: rgba(107, 142, 75, 0.1); color: var(--primary-dark); }
+.dyl-note-action:hover { background: rgba(107, 142, 75, 0.18); }
+.dyl-action-spacer { flex: 1 1 0%; }
+.dyl-icon-btn-small { background: none; border: none; cursor: pointer; padding: 4px 6px; font-size: 13px; border-radius: 6px; color: var(--text-3); transition: 0.15s; }
+.dyl-icon-btn-small:hover { background: var(--bg); color: var(--text-1); }
+.dyl-note-panel { padding: 14px 16px; background: var(--bg); border-top: 1px solid var(--border-light); animation: 0.25s ease 0s 1 normal none running slideDownNote; }
+@keyframes slideDownNote { 
+  0% { opacity: 0; max-height: 0px; padding-top: 0px; padding-bottom: 0px; }
+  100% { opacity: 1; max-height: 600px; padding-top: 14px; padding-bottom: 14px; }
+}
+.dyl-note-section { margin-bottom: 12px; }
+.dyl-note-section:last-of-type { margin-bottom: 8px; }
+.dyl-note-label { font-size: 12px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+.dyl-note-content { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.dyl-note-points { white-space: pre-wrap; }
+.dyl-note-quote { font-style: italic; color: var(--text-1); border-left: 3px solid var(--primary); padding-left: 10px; }
+.dyl-note-empty { text-align: center; padding: 16px 0px; color: var(--text-3); font-size: 13px; }
+.dyl-note-edit-row { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); text-align: center; }
+.dyl-edit-full-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text-2); padding: 6px 18px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: 0.15s; }
+.dyl-edit-full-btn:hover { border-color: var(--primary); color: var(--primary-dark); background: rgba(107, 142, 75, 0.05); }
+@media (max-width: 600px) {
+  .dyl-thumb { width: 100px; height: 140px; margin: 10px; }
+  .dyl-content { padding: 10px 12px 10px 0px; gap: 6px; }
+  .dyl-title { font-size: 14px; }
+  .dyl-stats { gap: 10px; font-size: 11px; }
+  .dyl-action-btn { padding: 4px 10px; font-size: 11px; }
+}
 .empty-state { text-align: center; padding: 60px 20px; color: var(--text-3); }
 .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
 .content-count { font-size: 13px; color: var(--text-2); margin-bottom: 12px; }
@@ -2019,6 +2345,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
   .sm2-ratings { grid-template-columns: repeat(3, 1fr); }
   .sm2-rating-btn { flex-direction: row; justify-content: space-around; padding: 10px 8px; }
   .sm2-rating-btn .rating-num { margin-bottom: 0px; }
+  .dy-grid { grid-template-columns: 1fr; }
 }
 :root { --trae-layer-image-download: 89990; --trae-layer-browser-inspect-overlay: 90000; --trae-layer-browser-inspect-highlight: 90010; --trae-layer-browser-inspect-action: 90020; --trae-layer-text-selection-action: 90030; --trae-layer-edit-tooltip: 100095; }
 :root, [data-trae-theme="dark"] { --trae-bg-base-default: #171717; --trae-bg-menu: #222427; --trae-bg-overlay-l1: rgba(255, 255, 255, 0.04); --trae-bg-overlay-l2: rgba(255, 255, 255, 0.08); --trae-bg-overlay-l3: rgba(255, 255, 255, 0.12); --trae-bg-overlay-l4: rgba(255, 255, 255, 0.16); --trae-bg-invert: #f5f9fe; --trae-bg-invert-hover: #e8ecf0; --trae-bg-invert-active: #dce0e4; --trae-bg-invert-disabled: rgba(224, 226, 242, 0.12); --bg-bg-brand-disabled: rgba(75, 63, 227, 0.35); --bg-bg-brand-popup: rgba(106, 111, 255, 0.15); --trae-border-l1: #e0e2f217; --trae-border-l2: rgba(255, 255, 255, 0.12); --trae-border-l3: rgba(255, 255, 255, 0.08); --trae-border-neutral-l3: rgba(229, 229, 229, 0.20); --trae-border-brand: #6a6fff; --trae-text-default: #f5f9fe; --trae-text-default-hover: #f5f9fe; --trae-text-default-active: #f5f9fe; --trae-text-secondary: rgba(245, 249, 254, 0.5); --trae-text-tertiary: rgba(245, 249, 254, 0.4); --trae-text-disabled: #666b75; --trae-text-onaccent: #222427; --trae-icon-default: #f5f9fe; --trae-icon-secondary: rgba(245, 249, 254, 0.5); --trae-icon-brand: #6a6fff; --icon-icon-brand: var(--trae-icon-brand); --trae-icon-onaccent: #222427; --trae-status-success: #22c55e; --trae-status-primary: #3b82f6; --trae-status-primary-default: #387bff; --trae-status-primary-surface-l1: rgba(53, 121, 255, 0.18); --trae-status-success-default: #33c192; --trae-status-success-surface-l1: rgba(0, 165, 110, 0.18); --trae-status-error-default: #f65a5a; --trae-status-error-surface-l1: rgba(246, 70, 70, 0.18); --trae-annotation-marker-bg: #4b3fe3; --trae-annotation-marker-text: #ffffff; --trae-annotation-region-border: var(--trae-status-primary-default); --trae-region-outside-mask-bg: rgba(0, 0, 0, 0.32); --trae-panel-shadow: 0px 6px 24px -1px rgba(0, 0, 0, 0.16); --trae-floating-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2); --trae-shadow-elevation-50: 0 1px 2px -1px rgba(0, 0, 0, 0.45); --text-text-default: var(--trae-text-default); --text-text-onaccent: var(--trae-text-onaccent); --bg-bg-menu: var(--trae-bg-menu); --bg-bg-white: var(--trae-bg-menu); --bg-bg-invert: var(--trae-bg-invert); --bg-bg-invert-disabled: var(--trae-bg-invert-disabled); --bg-bg-overlay-l1: var(--trae-bg-overlay-l1); --bg-bg-overlay-l2: var(--trae-bg-overlay-l2); --bg-bg-overlay-l3: var(--trae-bg-overlay-l3); --border-border-neutral-l1: var(--trae-border-l1); --border-border-brand: var(--trae-border-brand); --border-border-brand-half: rgba(106, 111, 255, 0.4); --status-error-default: var(--trae-status-error-default); --status-error-surface-l1: var(--trae-status-error-surface-l1); --radius-radius-md-12: 12px; --spacers-spacer-0: 0; --spacers-spacer-6: 6px; }
@@ -2192,10 +2519,15 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 
     <div class="nav-group">
       <div class="nav-group-title">学习管理<span class="en-sub">Study</span></div>
-      <div class="nav-item active" data-section="words" onclick="switchSection('words')">
+      <div class="nav-item" data-section="words" onclick="switchSection('words')">
         <span class="nav-icon">📘</span>
         <div class="nav-label"><span>英语单词</span><span class="en-sub">Vocabulary</span></div>
         <span class="nav-badge" id="wordCountBadge">2</span>
+      </div>
+      <div class="nav-item active" data-section="douyin" onclick="switchSection('douyin')">
+        <span class="nav-icon">🎬</span>
+        <div class="nav-label"><span>抖音笔记</span><span class="en-sub">Video Notes</span></div>
+        <span class="nav-badge" id="dyCountBadge">1</span>
       </div>
     </div>
 
@@ -2226,7 +2558,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 00:13</span>
+        <span id="syncTime">已保存本地 00:58</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2256,7 +2588,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
   <main class="main">
 
     <!-- ===== Words Section ===== -->
-    <section id="wordsSection" class="section active">
+    <section id="wordsSection" class="section">
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
@@ -3932,6 +4264,105 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       </div>
     </section>
 
+    <!-- ===== Douyin Notes Section ===== -->
+    <section id="douyinSection" class="section active">
+      <div class="topbar">
+        <div class="topbar-title">抖音笔记<span class="en-sub">Video Notes</span></div>
+        <div class="topbar-spacer"></div>
+        <button class="topbar-btn primary" onclick="openDyModal()">+ 新增笔记<span class="en-sub-inline">Add</span></button>
+      </div>
+      <div class="top-tabs">
+        <div class="top-tab active" onclick="setDyTab('all', this)">全部<span class="en-sub-inline">All</span> <span class="tab-count" id="dyTabAll">1</span></div>
+        <div class="top-tab" onclick="setDyTab('unread', this)">未读<span class="en-sub-inline">Unread</span> <span class="tab-count" id="dyTabUnread">0</span></div>
+        <div class="top-tab" onclick="setDyTab('starred', this)">星标<span class="en-sub-inline">Starred</span> <span class="tab-count" id="dyTabStar">0</span></div>
+      </div>
+      <div class="content-area">
+        <div class="filter-bar">
+          <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="dySearch" placeholder="搜索标题、要点、标签... Search..." oninput="renderDyNotes()">
+          </div>
+        </div>
+        <div class="dy-grid" id="dyGrid">
+        <div class="dyl-card dyl-read" id="dyl-1789231310980">
+          <div class="dyl-card-body">
+            <!-- 左侧缩略图 -->
+            <div class="dyl-thumb" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
+              
+                <div class="dyl-play-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                </div>
+              
+              <div class="dyl-duration">10分21秒</div>
+            </div>
+            
+            <!-- 右侧内容区 -->
+            <div class="dyl-content">
+              <!-- 标题 -->
+              <div class="dyl-title" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
+                AI工作流 <span class="dyl-tags-inline">#AI</span>
+              </div>
+              
+              <!-- 元信息行 -->
+              <div class="dyl-meta">
+                <span class="dyl-meta-item">👤 姜dora</span>
+                <span class="dyl-meta-item">📅 2026-09-13</span>
+                
+              </div>
+              
+              <!-- 数据统计行（模拟抖音风格） -->
+              <div class="dyl-stats">
+                <span class="dyl-stat-item">👍 —</span>
+                <span class="dyl-stat-item">💬 —</span>
+                <span class="dyl-stat-item">⭐ —</span>
+                <span class="dyl-stat-item">🔗 —</span>
+              </div>
+              
+              <!-- 底部操作按钮 -->
+              <div class="dyl-actions">
+                <button class="dyl-action-btn" onclick="toggleDyStar(1789231310980)">
+                  <span class="dyl-btn-icon">☆</span>
+                  <span class="dyl-btn-text">收藏</span>
+                </button>
+                <button class="dyl-action-btn" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
+                  <span class="dyl-btn-icon">▶</span>
+                  <span class="dyl-btn-text">视频</span>
+                </button>
+                <button class="dyl-action-btn dyl-note-action" onclick="toggleDyNote(1789231310980)">
+                  <span class="dyl-btn-icon">+</span>
+                  <span class="dyl-btn-text">写笔记</span>
+                </button>
+                <div class="dyl-action-spacer"></div>
+                <button class="dyl-icon-btn-small" onclick="openDyModal(1789231310980)" title="编辑">✏️</button>
+                <button class="dyl-icon-btn-small" onclick="deleteDyNote(1789231310980)" title="删除">🗑</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 展开的笔记内容区 -->
+          <div class="dyl-note-panel" id="dyl-note-1789231310980" style="display:none;">
+            
+            
+            
+            
+            
+              <div class="dyl-note-empty">
+                <div class="dyl-note-empty-text">还没有笔记，点击下方按钮添加AI分析内容</div>
+              </div>
+            
+            <div class="dyl-note-edit-row">
+              <button class="dyl-edit-full-btn" onclick="openDyModal(1789231310980)">✏️ 编辑完整笔记</button>
+            </div>
+          </div>
+        </div></div>
+        <div class="empty-state" id="dyEmpty" style="display:none;">
+          <div style="font-size:48px; margin-bottom:12px;">🎬</div>
+          <div style="font-size:15px; color:var(--text-2); margin-bottom:6px;">还没有抖音笔记</div>
+          <div style="font-size:13px; color:var(--text-3);">把抖音链接发给我，AI 帮你提炼要点后存入这里</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </div>
 
@@ -4135,6 +4566,63 @@ The virtue of this approach is its simplicity.
   </div>
 </div>
 
+<!-- Douyin Note Modal -->
+<div class="modal-overlay" id="dyModal">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-head">
+      <span class="modal-title" id="dyModalTitle">编辑笔记<span class="en-sub">Edit Note</span></span>
+      <span class="modal-close" onclick="closeModal('dyModal')">×</span>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="dyId" value="1789231310980">
+      <div class="form-group">
+        <label class="form-label">视频标题 *<span class="en-sub">Title</span></label>
+        <input type="text" class="form-input" id="dyTitle" placeholder="如: 高效学习的三个方法">
+      </div>
+      <div class="form-group">
+        <label class="form-label">作者<span class="en-sub">Author</span></label>
+        <input type="text" class="form-input" id="dyAuthor" placeholder="如: 知识博主">
+      </div>
+      <div class="form-group">
+        <label class="form-label">视频链接<span class="en-sub">Link</span></label>
+        <input type="text" class="form-input" id="dyLink" placeholder="https://v.douyin.com/xxxxx/">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">标签<span class="en-sub">Tags</span></label>
+          <input type="text" class="form-input" id="dyTags" placeholder="用逗号分隔，如：学习,效率">
+        </div>
+        <div class="form-group">
+          <label class="form-label">时长<span class="en-sub">Duration</span></label>
+          <input type="text" class="form-input" id="dyDuration" placeholder="如: 3分20秒">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">核心观点<span class="en-sub">Core Idea</span></label>
+        <input type="text" class="form-input" id="dyCoreIdea" placeholder="一句话概括视频最核心的信息">
+      </div>
+      <div class="form-group">
+        <label class="form-label">内容要点<span class="en-sub">Key Points</span></label>
+        <textarea class="form-textarea" id="dyPoints" placeholder="每行一个要点，如：
+1. 要点标题：具体内容
+2. 要点标题：具体内容" style="min-height:120px; font-size:13px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">金句/亮点<span class="en-sub">Highlights</span></label>
+        <textarea class="form-textarea" id="dyHighlights" placeholder="印象深刻的一句话或观点" style="min-height:60px; font-size:13px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">一句话总结<span class="en-sub">Summary</span></label>
+        <input type="text" class="form-input" id="dySummary" placeholder="用最简洁的话总结整个视频的价值">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('dyModal')">取消<span class="en-sub-inline">Cancel</span></button>
+      <button class="btn primary" onclick="saveDyNote()">保存<span class="en-sub-inline">Save</span></button>
+    </div>
+  </div>
+</div>
+
 <!-- Data Transfer Modal -->
 <div class="modal-overlay" id="dataTransferModal">
   <div class="modal" style="max-width:520px;">
@@ -4260,7 +4748,7 @@ The virtue of this approach is its simplicity.
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">笔记已更新</div>
 
 <script>
 /* ============================================================
@@ -4271,6 +4759,7 @@ const DB = {
   session: 'workbench_session',
   wordsKey(u) { return `workbench_${u}_words`; },
   txsKey(u) { return `workbench_${u}_txs`; },
+  dyKey(u) { return `workbench_${u}_douyin`; },
   load(k, fb) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch { return fb; } },
   save(k, v) { localStorage.setItem(k, JSON.stringify(v)); },
   remove(k) { localStorage.removeItem(k); }
@@ -4315,10 +4804,11 @@ const STATUS_MAP = {
 /* ============================================================
    State
    ============================================================ */
-let words = [], txs = [], currentUser = null;
+let words = [], txs = [], dyNotes = [], currentUser = null;
 let filters = {
   wordCat: 'all', wordLevel: 'all', wordTab: 'all', wordSort: 'recent',
   txTab: 'all', txCat: 'all', txMonth: 'current',
+  dyTab: 'all',
 };
 let monthOffset = 0;
 let statsYear = new Date().getFullYear();
@@ -4804,7 +5294,7 @@ function doLogin(e) {
 function doLogout() {
   if (!confirm('确定退出登录？\nConfirm logout?')) return;
   DB.remove(DB.session); currentUser = null;
-  words = []; txs = [];
+  words = []; txs = []; dyNotes = [];
   document.getElementById('userPanel').style.display = 'none';
   document.getElementById('authOverlay').classList.remove('hidden');
   document.getElementById('loginUsername').value = '';
@@ -4819,6 +5309,7 @@ function enterApp() {
   document.getElementById('userAvatar').textContent = currentUser.charAt(0).toUpperCase();
   words = DB.load(DB.wordsKey(currentUser), null);
   txs = DB.load(DB.txsKey(currentUser), null);
+  dyNotes = DB.load(DB.dyKey(currentUser), null) || [];
   if (!words) { words = [...SEED_WORDS]; DB.save(DB.wordsKey(currentUser), words); }
   else { migrateWordsSm2(); migrateWordsStructured(); }
   if (!txs) { txs = [...SEED_TXS]; DB.save(DB.txsKey(currentUser), txs); }
@@ -4835,6 +5326,7 @@ function enterApp() {
     var count = 0;
     if (urlData.words) { words = urlData.words; DB.save(DB.wordsKey(currentUser), words); count += urlData.words.length; }
     if (urlData.txs) { txs = urlData.txs; DB.save(DB.txsKey(currentUser), txs); count += urlData.txs.length; }
+    if (urlData.dyNotes) { dyNotes = urlData.dyNotes; DB.save(DB.dyKey(currentUser), dyNotes); count += urlData.dyNotes.length; }
     renderAll();
     // Clear hash so refreshing doesn't re-import
     history.replaceState(null, '', window.location.pathname);
@@ -6233,8 +6725,300 @@ function renderWordCardExample(w) {
   return html;
 }
 
+/* ============================================================
+   Douyin Notes Module
+   ============================================================ */
+function openDyModal(id) {
+  const modal = document.getElementById('dyModal');
+  const titleEl = document.getElementById('dyModalTitle');
+  if (id) {
+    const n = dyNotes.find(x => x.id === id);
+    if (!n) return;
+    titleEl.innerHTML = '编辑笔记<span class="en-sub">Edit Note</span>';
+    document.getElementById('dyId').value = n.id;
+    document.getElementById('dyTitle').value = n.title || '';
+    document.getElementById('dyAuthor').value = n.author || '';
+    document.getElementById('dyLink').value = n.link || '';
+    document.getElementById('dyTags').value = (n.tags || []).join(', ');
+    document.getElementById('dyDuration').value = n.duration || '';
+    document.getElementById('dyCoreIdea').value = n.coreIdea || '';
+    document.getElementById('dyPoints').value = n.points || '';
+    document.getElementById('dyHighlights').value = n.highlights || '';
+    document.getElementById('dySummary').value = n.summary || '';
+  } else {
+    titleEl.innerHTML = '新增笔记<span class="en-sub">Add Note</span>';
+    document.getElementById('dyId').value = '';
+    document.getElementById('dyTitle').value = '';
+    document.getElementById('dyAuthor').value = '';
+    document.getElementById('dyLink').value = '';
+    document.getElementById('dyTags').value = '';
+    document.getElementById('dyDuration').value = '';
+    document.getElementById('dyCoreIdea').value = '';
+    document.getElementById('dyPoints').value = '';
+    document.getElementById('dyHighlights').value = '';
+    document.getElementById('dySummary').value = '';
+  }
+  modal.classList.add('show');
+}
+
+function saveDyNote() {
+  const title = document.getElementById('dyTitle').value.trim();
+  if (!title) { showToast('请填写视频标题'); return; }
+  const id = document.getElementById('dyId').value;
+  const tagsStr = document.getElementById('dyTags').value.trim();
+  const tags = tagsStr ? tagsStr.split(/[,，]/).map(s => s.trim()).filter(s => s) : [];
+  
+  const note = {
+    title,
+    author: document.getElementById('dyAuthor').value.trim(),
+    link: document.getElementById('dyLink').value.trim(),
+    tags,
+    duration: document.getElementById('dyDuration').value.trim(),
+    coreIdea: document.getElementById('dyCoreIdea').value.trim(),
+    points: document.getElementById('dyPoints').value.trim(),
+    highlights: document.getElementById('dyHighlights').value.trim(),
+    summary: document.getElementById('dySummary').value.trim(),
+  };
+  
+  if (id) {
+    const n = dyNotes.find(x => x.id === Number(id));
+    if (n) { Object.assign(n, note); }
+    showToast('笔记已更新');
+  } else {
+    dyNotes.unshift({
+      id: Date.now(),
+      ...note,
+      starred: false,
+      read: false,
+      createdAt: Date.now(),
+    });
+    showToast('笔记已添加');
+  }
+  DB.save(DB.dyKey(currentUser), dyNotes);
+  closeModal('dyModal');
+  renderDyNotes();
+  updateSyncTime();
+}
+
+function deleteDyNote(id) {
+  if (!confirm('确定删除这条笔记？')) return;
+  dyNotes = dyNotes.filter(n => n.id !== id);
+  DB.save(DB.dyKey(currentUser), dyNotes);
+  renderDyNotes();
+  updateSyncTime();
+  showToast('笔记已删除');
+}
+
+function toggleDyStar(id) {
+  const n = dyNotes.find(x => x.id === id);
+  if (n) {
+    n.starred = !n.starred;
+    DB.save(DB.dyKey(currentUser), dyNotes);
+    renderDyNotes();
+    updateSyncTime();
+  }
+}
+
+function toggleDyRead(id) {
+  const n = dyNotes.find(x => x.id === id);
+  if (n) {
+    n.read = !n.read;
+    DB.save(DB.dyKey(currentUser), dyNotes);
+    renderDyNotes();
+    updateSyncTime();
+  }
+}
+
+function setDyTab(tab, el) {
+  filters.dyTab = tab;
+  document.querySelectorAll('#douyinSection .top-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderDyNotes();
+}
+
+function renderDyNotes() {
+  const grid = document.getElementById('dyGrid');
+  const empty = document.getElementById('dyEmpty');
+  if (!grid || !empty) return;
+  
+  const search = (document.getElementById('dySearch')?.value || '').toLowerCase();
+  let list = dyNotes.filter(n => {
+    if (filters.dyTab === 'unread' && n.read) return false;
+    if (filters.dyTab === 'starred' && !n.starred) return false;
+    if (search) {
+      const hay = (n.title + ' ' + n.author + ' ' + n.coreIdea + ' ' + n.points + ' ' + n.summary + ' ' + (n.tags || []).join(' ')).toLowerCase();
+      if (!hay.includes(search)) return false;
+    }
+    return true;
+  });
+  
+  // 星标的排前面
+  list.sort((a, b) => {
+    if (a.starred !== b.starred) return a.starred ? -1 : 1;
+    return (b.createdAt || 0) - (a.createdAt || 0);
+  });
+  
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    grid.innerHTML = list.map(n => {
+      const tagsText = (n.tags || []).map(t => `#${esc(t)}`).join(' ');
+      const starIcon = n.starred ? '⭐' : '☆';
+      const readClass = n.read ? 'dyl-read' : '';
+      const hasNote = n.coreIdea || n.points || n.highlights || n.summary;
+      const noteText = hasNote ? '笔记' : '写笔记';
+      
+      // 生成渐变色（基于标题hash）
+      const colors = [
+        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+        'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+        'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+        'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+        'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+      ];
+      const colorIdx = Math.abs(hashCode(n.title || 'video')) % colors.length;
+      const coverGradient = colors[colorIdx];
+      
+      // 格式化日期
+      let dateStr = '';
+      if (n.createdAt) {
+        const d = new Date(n.createdAt);
+        dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      }
+      
+      return `
+        <div class="dyl-card ${readClass}" id="dyl-${n.id}">
+          <div class="dyl-card-body">
+            <!-- 左侧缩略图 -->
+            <div class="dyl-thumb" style="background: ${coverGradient};" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
+              ${n.link ? `
+                <div class="dyl-play-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              ` : ''}
+              ${n.duration ? `<div class="dyl-duration">${esc(n.duration)}</div>` : ''}
+            </div>
+            
+            <!-- 右侧内容区 -->
+            <div class="dyl-content">
+              <!-- 标题 -->
+              <div class="dyl-title" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
+                ${esc(n.title)}${tagsText ? ` <span class="dyl-tags-inline">${tagsText}</span>` : ''}
+              </div>
+              
+              <!-- 元信息行 -->
+              <div class="dyl-meta">
+                ${n.author ? `<span class="dyl-meta-item">👤 ${esc(n.author)}</span>` : ''}
+                ${dateStr ? `<span class="dyl-meta-item">📅 ${dateStr}</span>` : ''}
+                ${n.starred ? `<span class="dyl-meta-item dyl-star-meta">⭐ 已收藏</span>` : ''}
+              </div>
+              
+              <!-- 数据统计行（模拟抖音风格） -->
+              <div class="dyl-stats">
+                <span class="dyl-stat-item">👍 ${n.likes || '—'}</span>
+                <span class="dyl-stat-item">💬 ${n.comments || '—'}</span>
+                <span class="dyl-stat-item">⭐ ${n.collects || '—'}</span>
+                <span class="dyl-stat-item">🔗 ${n.shares || '—'}</span>
+              </div>
+              
+              <!-- 底部操作按钮 -->
+              <div class="dyl-actions">
+                <button class="dyl-action-btn" onclick="toggleDyStar(${n.id})">
+                  <span class="dyl-btn-icon">${n.starred ? '⭐' : '☆'}</span>
+                  <span class="dyl-btn-text">${n.starred ? '已收藏' : '收藏'}</span>
+                </button>
+                <button class="dyl-action-btn" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
+                  <span class="dyl-btn-icon">▶</span>
+                  <span class="dyl-btn-text">视频</span>
+                </button>
+                <button class="dyl-action-btn dyl-note-action" onclick="toggleDyNote(${n.id})">
+                  <span class="dyl-btn-icon">+</span>
+                  <span class="dyl-btn-text">${noteText}</span>
+                </button>
+                <div class="dyl-action-spacer"></div>
+                <button class="dyl-icon-btn-small" onclick="openDyModal(${n.id})" title="编辑">✏️</button>
+                <button class="dyl-icon-btn-small" onclick="deleteDyNote(${n.id})" title="删除">🗑</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 展开的笔记内容区 -->
+          <div class="dyl-note-panel" id="dyl-note-${n.id}" style="display:none;">
+            ${n.coreIdea ? `<div class="dyl-note-section"><div class="dyl-note-label">🎯 核心观点</div><div class="dyl-note-content">${esc(n.coreIdea)}</div></div>` : ''}
+            ${n.points ? `<div class="dyl-note-section"><div class="dyl-note-label">📋 内容要点</div><div class="dyl-note-content dyl-note-points">${esc(n.points).replace(/\n/g, '<br>')}</div></div>` : ''}
+            ${n.highlights ? `<div class="dyl-note-section"><div class="dyl-note-label">💡 金句/亮点</div><div class="dyl-note-content dyl-note-quote">"${esc(n.highlights)}"</div></div>` : ''}
+            ${n.summary ? `<div class="dyl-note-section"><div class="dyl-note-label">💬 一句话总结</div><div class="dyl-note-content">${esc(n.summary)}</div></div>` : ''}
+            ${!hasNote ? `
+              <div class="dyl-note-empty">
+                <div class="dyl-note-empty-text">还没有笔记，点击下方按钮添加AI分析内容</div>
+              </div>
+            ` : ''}
+            <div class="dyl-note-edit-row">
+              <button class="dyl-edit-full-btn" onclick="openDyModal(${n.id})">✏️ 编辑完整笔记</button>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+  
+  // 更新标签计数
+  document.getElementById('dyTabAll').textContent = dyNotes.length;
+  document.getElementById('dyTabUnread').textContent = dyNotes.filter(n => !n.read).length;
+  document.getElementById('dyTabStar').textContent = dyNotes.filter(n => n.starred).length;
+  const badge = document.getElementById('dyCountBadge');
+  if (badge) badge.textContent = dyNotes.length;
+}
+
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash);
+}
+
+function toggleDyNote(id) {
+  const panel = document.getElementById(`dyl-note-${id}`);
+  const card = document.getElementById(`dyl-${id}`);
+  if (!panel) return;
+  
+  if (panel.style.display === 'none') {
+    panel.style.display = 'block';
+    card.classList.add('dyl-expanded');
+    // 标记为已读
+    const n = dyNotes.find(x => x.id === id);
+    if (n && !n.read) {
+      n.read = true;
+      DB.save(DB.dyKey(currentUser), dyNotes);
+      renderDyNotes();
+      // 重新展开
+      setTimeout(() => {
+        const p = document.getElementById(`dyl-note-${id}`);
+        const c = document.getElementById(`dyl-${id}`);
+        if (p) p.style.display = 'block';
+        if (c) c.classList.add('dyl-expanded');
+      }, 50);
+    }
+  } else {
+    panel.style.display = 'none';
+    card.classList.remove('dyl-expanded');
+  }
+}
+
+function playDyVideo(link) {
+  // 在新标签页打开视频
+  window.open(link, '_blank');
+}
+
 function exportData() {
-  const data = { words, txs, exportedAt: new Date().toISOString() };
+  const data = { words, txs, dyNotes, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -6251,6 +7035,7 @@ function importData(event) {
       const data = JSON.parse(e.target.result);
       if (data.words) { words = data.words; DB.save(DB.wordsKey(currentUser), words); }
       if (data.txs) { txs = data.txs; DB.save(DB.txsKey(currentUser), txs); }
+      if (data.dyNotes) { dyNotes = data.dyNotes; DB.save(DB.dyKey(currentUser), dyNotes); }
       renderAll();
       showToast('数据已导入');
     } catch { showToast('导入失败：文件格式错误'); }
@@ -6283,7 +7068,7 @@ function switchDtTab(tab, el) {
 }
 
 function getAllDataJSON() {
-  return JSON.stringify({ words, txs, exportedAt: new Date().toISOString() });
+  return JSON.stringify({ words, txs, dyNotes, exportedAt: new Date().toISOString() });
 }
 
 function copyDataToClipboard() {
@@ -6399,7 +7184,7 @@ function checkUrlHashData() {
   }
   return null;
 }
-function renderAll() { renderWords(); renderTx(); if (document.getElementById('statsSection').classList.contains('active')) renderStats(); }
+function renderAll() { renderWords(); renderTx(); renderDyNotes(); if (document.getElementById('statsSection').classList.contains('active')) renderStats(); }
 
 // Modal overlay click close
 document.querySelectorAll('.modal-overlay').forEach(o => {
@@ -6488,6 +7273,7 @@ function cloudSyncPush(showMsg) {
   var payload = {
     words: words,
     txs: txs,
+    dyNotes: dyNotes,
     syncTime: new Date().toISOString(),
     user: currentUser
   };
@@ -6618,6 +7404,7 @@ function cloudSyncPull(showMsg) {
       var cloud = JSON.parse(file.content);
       if (cloud.words) { words = cloud.words; DB.save(DB.wordsKey(currentUser), words); }
       if (cloud.txs) { txs = cloud.txs; DB.save(DB.txsKey(currentUser), txs); }
+      if (cloud.dyNotes) { dyNotes = cloud.dyNotes; DB.save(DB.dyKey(currentUser), dyNotes); }
       renderAll();
       updateSyncTime();
       if (showMsg) showToast('已从云端同步');
