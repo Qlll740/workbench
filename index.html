@@ -655,148 +655,127 @@ body {
   color: var(--text-1);
 }
 
-/* Structured Word Detail */
+/* Structured Word Detail - Clean Style */
 .word-detail {
-  line-height: 1.7;
+  line-height: 1.75;
+  font-size: 14px;
+  color: var(--text-1);
 }
-.word-detail .wd-section {
+.word-detail .wd-word-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--text-1);
+}
+.word-detail .wd-phonetic {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 14px;
+}
+.word-detail .wd-block {
   margin-bottom: 14px;
 }
 .word-detail .wd-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
   margin-bottom: 4px;
-  letter-spacing: 0.3px;
 }
 .word-detail .wd-core {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.7;
-  padding: 10px 12px;
-  background: rgba(107, 142, 75, 0.06);
-  border-radius: 8px;
-  border-left: 3px solid var(--primary);
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.75;
 }
 .word-detail .wd-root {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text-2);
-  line-height: 1.7;
-  padding: 10px 12px;
-  background: var(--bg);
-  border-radius: 8px;
+  line-height: 1.75;
 }
 .word-detail .wd-meaning {
-  padding: 10px 0 4px 0;
-  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 12px;
 }
-.word-detail .wd-meaning:last-child {
-  border-bottom: none;
-}
-.word-detail .wd-meaning-head {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 6px;
+.word-detail .wd-meaning-line {
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 4px;
 }
 .word-detail .wd-meaning-num {
   font-weight: 700;
-  color: var(--primary);
-  font-size: 15px;
-  min-width: 20px;
+  color: var(--text-1);
+  margin-right: 2px;
 }
 .word-detail .wd-meaning-cat {
-  font-size: 11px;
-  padding: 2px 8px;
-  background: rgba(107, 142, 75, 0.1);
-  color: var(--primary);
-  border-radius: 20px;
-  font-weight: 600;
+  color: var(--text-3);
+  margin-right: 4px;
 }
 .word-detail .wd-meaning-text {
-  font-size: 14px;
   color: var(--text-1);
   font-weight: 500;
 }
 .word-detail .wd-phrase {
-  display: inline-block;
-  font-size: 12px;
-  background: var(--bg);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin: 4px 4px 0 0;
-  color: var(--text-2);
+  font-size: 13px;
+  color: var(--primary);
   font-weight: 600;
-}
-.word-detail .wd-example {
-  margin-top: 8px;
-  padding: 8px 10px;
-  background: var(--bg);
-  border-radius: 6px;
-  border-left: 2px solid var(--primary);
+  margin: 4px 0;
 }
 .word-detail .wd-example-en {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text-1);
-  margin-bottom: 3px;
+  margin: 6px 0 2px 0;
+  line-height: 1.6;
   font-style: italic;
 }
 .word-detail .wd-example-cn {
-  font-size: 12px;
-  color: var(--text-3);
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
 }
 .word-detail .wd-derivatives {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--text-2);
+  line-height: 1.75;
 }
 .word-detail .wd-derivatives strong {
   color: var(--text-1);
-}
-.word-detail .wd-example-block {
-  margin-top: 10px;
-  padding: 10px 12px;
-  background: linear-gradient(135deg, rgba(107,142,75,0.05) 0%, rgba(107,142,75,0.02) 100%);
-  border-radius: 8px;
-  border: 1px solid rgba(107,142,75,0.15);
-}
-.word-detail .wd-example-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  background: var(--primary);
-  color: #fff;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
-.word-detail .wd-example-source {
-  font-size: 11px;
-  color: var(--text-3);
-  margin-bottom: 6px;
   font-weight: 600;
 }
-.word-detail .wd-example-en-long {
+.word-detail .wd-long-example {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+.word-detail .wd-long-example:first-of-type {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+.word-detail .wd-example-title {
   font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+.word-detail .wd-example-text {
+  font-size: 13.5px;
   color: var(--text-1);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.word-detail .wd-example-text em {
+  font-style: normal;
+  color: var(--primary);
+  font-weight: 600;
+}
+.word-detail .wd-vocab {
+  font-size: 12px;
+  color: var(--text-3);
   margin-bottom: 6px;
   line-height: 1.6;
 }
-.word-detail .wd-vocab-list {
-  font-size: 11.5px;
-  color: var(--text-3);
-  margin: 6px 0;
-  line-height: 1.6;
-}
-.word-detail .wd-vocab-list span {
-  display: inline-block;
-  margin-right: 2px;
-}
-.word-detail .wd-example-cn-long {
-  font-size: 12px;
+.word-detail .wd-example-trans {
+  font-size: 13px;
   color: var(--text-2);
-  line-height: 1.6;
-  padding-top: 4px;
-  border-top: 1px dashed var(--border-light);
+  line-height: 1.7;
 }
 
 /* Card mode back side with structured layout */
@@ -1880,30 +1859,30 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .type-card .type-result.wrong .result-label { color: rgb(231, 76, 60); }
 .type-card .type-result .result-answer { font-size: 13px; color: var(--text-2); line-height: 1.6; }
 .type-card .type-result .result-answer strong { color: var(--text-1); }
-.word-detail { line-height: 1.7; }
-.word-detail .wd-section { margin-bottom: 14px; }
-.word-detail .wd-label { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 4px; letter-spacing: 0.3px; }
-.word-detail .wd-core { font-size: 13px; color: var(--text-2); line-height: 1.7; padding: 10px 12px; background: rgba(107, 142, 75, 0.06); border-radius: 8px; border-left: 3px solid var(--primary); }
-.word-detail .wd-root { font-size: 12.5px; color: var(--text-2); line-height: 1.7; padding: 10px 12px; background: var(--bg); border-radius: 8px; }
-.word-detail .wd-meaning { padding: 10px 0px 4px; border-bottom: 1px solid var(--border-light); }
-.word-detail .wd-meaning:last-child { border-bottom: none; }
-.word-detail .wd-meaning-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-.word-detail .wd-meaning-num { font-weight: 700; color: var(--primary); font-size: 15px; min-width: 20px; }
-.word-detail .wd-meaning-cat { font-size: 11px; padding: 2px 8px; background: rgba(107, 142, 75, 0.1); color: var(--primary); border-radius: 20px; font-weight: 600; }
-.word-detail .wd-meaning-text { font-size: 14px; color: var(--text-1); font-weight: 500; }
-.word-detail .wd-phrase { display: inline-block; font-size: 12px; background: var(--bg); padding: 2px 8px; border-radius: 4px; margin: 4px 4px 0px 0px; color: var(--text-2); font-weight: 600; }
-.word-detail .wd-example { margin-top: 8px; padding: 8px 10px; background: var(--bg); border-radius: 6px; border-left: 2px solid var(--primary); }
-.word-detail .wd-example-en { font-size: 12.5px; color: var(--text-1); margin-bottom: 3px; font-style: italic; }
-.word-detail .wd-example-cn { font-size: 12px; color: var(--text-3); }
-.word-detail .wd-derivatives { font-size: 12.5px; color: var(--text-2); }
-.word-detail .wd-derivatives strong { color: var(--text-1); }
-.word-detail .wd-example-block { margin-top: 10px; padding: 10px 12px; background: linear-gradient(135deg, rgba(107, 142, 75, 0.05) 0%, rgba(107, 142, 75, 0.02) 100%); border-radius: 8px; border: 1px solid rgba(107, 142, 75, 0.15); }
-.word-detail .wd-example-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; background: var(--primary); color: rgb(255, 255, 255); border-radius: 4px; margin-bottom: 6px; }
-.word-detail .wd-example-source { font-size: 11px; color: var(--text-3); margin-bottom: 6px; font-weight: 600; }
-.word-detail .wd-example-en-long { font-size: 12.5px; color: var(--text-1); margin-bottom: 6px; line-height: 1.6; }
-.word-detail .wd-vocab-list { font-size: 11.5px; color: var(--text-3); margin: 6px 0px; line-height: 1.6; }
-.word-detail .wd-vocab-list span { display: inline-block; margin-right: 2px; }
-.word-detail .wd-example-cn-long { font-size: 12px; color: var(--text-2); line-height: 1.6; padding-top: 4px; border-top: 1px dashed var(--border-light); }
+.word-detail { line-height: 1.75; font-size: 14px; color: var(--text-1); }
+.word-detail .wd-word-title { font-size: 24px; font-weight: 700; margin-bottom: 2px; color: var(--text-1); }
+.word-detail .wd-phonetic { font-size: 13px; color: var(--text-3); margin-bottom: 14px; }
+.word-detail .wd-block { margin-bottom: 14px; }
+.word-detail .wd-label { font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 4px; }
+.word-detail .wd-core { font-size: 14px; color: var(--text-1); line-height: 1.75; }
+.word-detail .wd-root { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+.word-detail .wd-meaning { margin-bottom: 12px; }
+.word-detail .wd-meaning-line { font-size: 14px; line-height: 1.75; margin-bottom: 4px; }
+.word-detail .wd-meaning-num { font-weight: 700; color: var(--text-1); margin-right: 2px; }
+.word-detail .wd-meaning-cat { color: var(--text-3); margin-right: 4px; }
+.word-detail .wd-meaning-text { color: var(--text-1); font-weight: 500; }
+.word-detail .wd-phrase { font-size: 13px; color: var(--primary); font-weight: 600; margin: 4px 0px; }
+.word-detail .wd-example-en { font-size: 13.5px; color: var(--text-1); margin: 6px 0px 2px; line-height: 1.6; font-style: italic; }
+.word-detail .wd-example-cn { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.word-detail .wd-derivatives { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+.word-detail .wd-derivatives strong { color: var(--text-1); font-weight: 600; }
+.word-detail .wd-long-example { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-light); }
+.word-detail .wd-long-example:first-of-type { border-top: none; margin-top: 0px; padding-top: 0px; }
+.word-detail .wd-example-title { font-size: 12.5px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
+.word-detail .wd-example-text { font-size: 13.5px; color: var(--text-1); line-height: 1.7; margin-bottom: 6px; }
+.word-detail .wd-example-text em { font-style: normal; color: var(--primary); font-weight: 600; }
+.word-detail .wd-vocab { font-size: 12px; color: var(--text-3); margin-bottom: 6px; line-height: 1.6; }
+.word-detail .wd-example-trans { font-size: 13px; color: var(--text-2); line-height: 1.7; }
 .flip-card-back .word-detail { width: 100%; text-align: left; max-height: 100%; overflow-y: auto; }
 .flip-card-back .card-meaning-structured { width: 100%; text-align: left; }
 @media (max-width: 768px) {
@@ -2120,11 +2099,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 12:52</span>
+        <span id="syncTime">已保存本地 13:06</span>
       </div>
-      <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
+      <div id="cloudStatus" class="cloud-status syncing" style="margin-top:4px;">
         <div class="cloud-dot"></div>
-        <span id="cloudStatusText">☁ 已连接云端 <span class="en-sub-inline">Cloud</span></span>
+        <span id="cloudStatusText">☁ 同步中... <span class="en-sub-inline">Syncing</span></span>
       </div>
       <div class="sync-ring">
         <svg width="40" height="40" viewBox="0 0 40 40">
@@ -2159,9 +2138,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       </div>
       <div class="top-tabs">
         <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">3</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">3</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">2</span></div>
         <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">0</span></div>
-        <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
+        <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">1</span></div>
       </div>
       <div class="content-area">
         <div class="stats-row">
@@ -2172,8 +2151,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">已掌握<span class="en-sub">Mastered</span></div>
-            <div class="stat-value" id="statMastered" style="color:var(--success)">0</div>
-            <div class="stat-sub" id="statMasteredSub">掌握率 0% · Mastery rate</div>
+            <div class="stat-value" id="statMastered" style="color:var(--success)">1</div>
+            <div class="stat-sub" id="statMasteredSub">掌握率 33% · Mastery rate</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
@@ -2182,7 +2161,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">3</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">2</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2237,12 +2216,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       
       <div class="word-card-footer">
         <div class="word-status">
-          <span class="status-dot new"></span>
-          <span>未学习<span class="en-sub-inline">New</span></span>
-          
+          <span class="status-dot mastered"></span>
+          <span>已掌握<span class="en-sub-inline">Mastered</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 1 个月后</span>
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
-          <button class="word-action-btn" onclick="cycleWordStatus(1789185498840)">✓ 标记</button>
+          <button class="word-action-btn" onclick="cycleWordStatus(1789185498840)">↺ 重学</button>
           <button class="word-action-btn danger" onclick="deleteWord(1789185498840)">删除<span class="en-sub-inline">Delete</span></button>
         </div>
       </div>
@@ -4096,17 +4075,95 @@ let expandedMonth = -1;
    Seed Data
    ============================================================ */
 const SEED_WORDS = [
-  { id: 1, word: 'abandon', phonetic: '/əˈbændən/', meaning: 'v. 放弃，抛弃', example: 'He abandoned his car in the snow.', category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 10, sm2: { ef: 2.5, interval: 30, repetition: 5, nextReview: Date.now() + 86400000 * 30, lastReview: Date.now() - 86400000 * 10 } },
-  { id: 2, word: 'abstract', phonetic: '/ˈæbstrækt/', meaning: 'adj. 抽象的；n. 摘要', example: 'Beauty is not something abstract.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 9, sm2: { ef: 2.5, interval: 6, repetition: 2, nextReview: Date.now() + 86400000 * 6, lastReview: Date.now() - 86400000 * 9 } },
-  { id: 3, word: 'acknowledge', phonetic: '/əkˈnɒlɪdʒ/', meaning: 'v. 承认，确认，感谢', example: 'She acknowledged her mistake.', category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 8, sm2: { ef: 2.6, interval: 18, repetition: 4, nextReview: Date.now() + 86400000 * 18, lastReview: Date.now() - 86400000 * 8 } },
-  { id: 4, word: 'adequate', phonetic: '/ˈædɪkwət/', meaning: 'adj. 充足的，足够的，胜任的', example: 'The supply is adequate for our needs.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 7, sm2: { ef: 2.4, interval: 1, repetition: 1, nextReview: Date.now(), lastReview: Date.now() - 86400000 * 7 } },
+  { id: 1, word: 'abandon', phonetic: '/əˈbændən/', 
+    meaning: 'v. 放弃，抛弃',
+    coreAction: '把控制权交出去 → 放弃自己掌控的东西 → 抛弃、遗弃',
+    root: '古法语 abandoner = 交出、投降，来自 a-（去）+ bandon（权力、控制）。字面意思是"把权力交出去"，即"放弃"。',
+    meanings: [
+      {
+        category: '实物/具体',
+        text: '抛弃、遗弃（人或物）',
+        exampleEn: 'He abandoned his car in the snow.',
+        exampleCn: '他把车扔在了雪地里。'
+      },
+      {
+        category: '抽象',
+        text: '放弃、中止（计划、想法、努力）',
+        exampleEn: 'They abandoned the plan due to lack of funding.',
+        exampleCn: '由于缺乏资金，他们放弃了这个计划。'
+      }
+    ],
+    derivatives: 'abandoned adj. 被抛弃的；abandonment n. 放弃、遗弃',
+    longExamples: [
+      {
+        source: '影视剧台词 · 《泰坦尼克号》',
+        text: '"Never abandon hope, no matter how hopeless things seem."',
+        translation: '永远不要放弃希望，无论事情看起来多么无望。'
+      },
+      {
+        source: '考研真题风格',
+        text: 'The research team was forced to abandon the original hypothesis when new evidence contradicted its core assumptions, prompting a complete reevaluation of the experimental design.',
+        vocab: '研究团队；最初的；假设；矛盾的；核心假设；促使；重新评估',
+        translation: '当新的证据与核心假设相矛盾时，研究团队被迫放弃最初的假设，这促使他们对实验设计进行了彻底的重新评估。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 10, sm2: { ef: 2.7, interval: 30, repetition: 5, nextReview: Date.now() + 86400000 * 30, lastReview: Date.now() - 86400000 * 10 } },
+  { id: 2, word: 'abstract', phonetic: '/ˈæbstrækt/',
+    meaning: 'adj. 抽象的；n. 摘要',
+    coreAction: '从具体事物中"抽离"出来 → 脱离具体形象的 → 抽象的',
+    root: '拉丁语 abstrahere = 拉走、抽出，来自 abs-（离开）+ trahere（拉、拖）。字面意思是"从...中拉出来"，即"抽象的、脱离具体的"。',
+    meanings: [
+      {
+        category: '抽象概念',
+        text: '抽象的（与具体相对）',
+        exampleEn: 'Beauty is not something abstract; it exists in everyday objects.',
+        exampleCn: '美不是什么抽象的东西，它存在于日常事物中。'
+      },
+      {
+        category: '学术/书面',
+        text: '摘要、梗概（论文或报告的）',
+        exampleEn: 'Please read the abstract before the full paper.',
+        exampleCn: '请先读摘要再看全文。'
+      }
+    ],
+    derivatives: 'abstraction n. 抽象；concrete adj. 具体的（反义）',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'The abstract of the paper summarizes the key findings and methodology, allowing readers to quickly assess whether the full text is relevant to their research interests.',
+        vocab: '摘要；总结；主要发现；方法论；评估；相关的；研究兴趣',
+        translation: '论文的摘要总结了主要发现和方法论，使读者能够快速评估全文是否与他们的研究兴趣相关。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 9, sm2: { ef: 2.5, interval: 5, repetition: 2, nextReview: Date.now() + 86400000 * 5, lastReview: Date.now() - 86400000 * 9 } },
+  { id: 3, word: 'acknowledge', phonetic: '/əkˈnɒlɪdʒ/',
+    meaning: 'v. 承认，确认，感谢',
+    coreAction: '承认/认可某件事是真的 → 确认收到 → 表达感谢',
+    root: '古法语 acknowlegge = 承认，来自 know（知道）+ 前缀 a- + -ledge（名词后缀）。字面意思是"让别人知道你知道了"，即"承认、确认"。',
+    meanings: [
+      {
+        category: '事实/观点',
+        text: '承认、认可（某事实或观点）',
+        exampleEn: 'She acknowledged that she had made a mistake.',
+        exampleCn: '她承认自己犯了一个错误。'
+      },
+      {
+        category: '社交/礼仪',
+        text: '感谢、致谢（某人的帮助或贡献）',
+        exampleEn: 'The author acknowledges the support of her research team.',
+        exampleCn: '作者感谢了她的研究团队的支持。'
+      }
+    ],
+    derivatives: 'acknowledgment n. 承认、致谢；acknowledged adj. 公认的',
+    category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 8, sm2: { ef: 2.6, interval: 30, repetition: 4, nextReview: Date.now() + 86400000 * 20, lastReview: Date.now() - 86400000 * 8 } },
+  { id: 4, word: 'adequate', phonetic: '/ˈædɪkwət/', meaning: 'adj. 充足的，足够的，胜任的', example: 'The supply is adequate for our needs.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 7, sm2: { ef: 2.4, interval: 2, repetition: 1, nextReview: Date.now(), lastReview: Date.now() - 86400000 * 7 } },
   { id: 5, word: 'advocate', phonetic: '/ˈædvəkeɪt/', meaning: 'v. 提倡，主张；n. 拥护者', example: 'They advocate for equal rights.', category: 'kaoyan', level: 'A', status: 'new', createdAt: Date.now() - 86400000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
   { id: 6, word: 'aesthetic', phonetic: '/iːsˈθetɪk/', meaning: 'adj. 审美的，美学的', example: 'The building has great aesthetic value.', category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 5, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
   { id: 7, word: 'allocate', phonetic: '/ˈæləkeɪt/', meaning: 'v. 分配，分派', example: 'We allocated funds for the project.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 4, sm2: { ef: 2.36, interval: 1, repetition: 1, nextReview: Date.now() + 86400000, lastReview: Date.now() - 86400000 * 4 } },
   { id: 8, word: 'ambiguous', phonetic: '/æmˈbɪɡjuəs/', meaning: 'adj. 模糊的，模棱两可的', example: 'His answer was ambiguous.', category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 3, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 9, word: 'anticipate', phonetic: '/ænˈtɪsɪpeɪt/', meaning: 'v. 预期，预料，期盼', example: 'We anticipate a successful outcome.', category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 2, sm2: { ef: 2.8, interval: 44, repetition: 5, nextReview: Date.now() + 86400000 * 44, lastReview: Date.now() - 86400000 * 2 } },
+  { id: 9, word: 'anticipate', phonetic: '/ænˈtɪsɪpeɪt/', meaning: 'v. 预期，预料，期盼', example: 'We anticipate a successful outcome.', category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 2, sm2: { ef: 2.8, interval: 30, repetition: 5, nextReview: Date.now() + 86400000 * 30, lastReview: Date.now() - 86400000 * 2 } },
   { id: 10, word: 'bizarre', phonetic: '/bɪˈzɑː/', meaning: 'adj. 奇异的，古怪的', example: 'A bizarre sequence of events.', category: 'ielts', level: 'B', status: 'new', createdAt: Date.now() - 86400000, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 11, word: 'compensate', phonetic: '/ˈkɒmpenseɪt/', meaning: 'v. 补偿，赔偿', example: 'The company compensated for the loss.', category: 'cet6', level: 'A', status: 'learning', createdAt: Date.now() - 3600000 * 12, sm2: { ef: 2.5, interval: 6, repetition: 2, nextReview: Date.now(), lastReview: Date.now() - 3600000 * 12 } },
+  { id: 11, word: 'compensate', phonetic: '/ˈkɒmpenseɪt/', meaning: 'v. 补偿，赔偿', example: 'The company compensated for the loss.', category: 'cet6', level: 'A', status: 'learning', createdAt: Date.now() - 3600000 * 12, sm2: { ef: 2.5, interval: 5, repetition: 2, nextReview: Date.now(), lastReview: Date.now() - 3600000 * 12 } },
   { id: 12, word: 'deteriorate', phonetic: '/dɪˈtɪəriəreɪt/', meaning: 'v. 恶化，变坏', example: 'His health deteriorated rapidly.', category: 'toefl', level: 'B', status: 'new', createdAt: Date.now() - 3600000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
 ];
 
@@ -4386,7 +4443,7 @@ function renderWords() {
         <div class="word-status">
           <span class="status-dot ${w.status}"></span>
           <span>${si.label}<span class="en-sub-inline">${si.en}</span></span>
-          ${w.sm2 ? `<span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 ${formatNextReview(w.sm2.nextReview)} · EF ${w.sm2.ef.toFixed(1)}</span>` : ''}
+          ${w.sm2 ? `<span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 ${formatNextReview(w.sm2.nextReview)}</span>` : ''}
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn" onclick="cycleWordStatus(${w.id})">${w.status === 'mastered' ? '↺ 重学' : '✓ 标记'}</button>
@@ -4538,39 +4595,57 @@ function migrateWordsSm2() {
 // q: 0-5 (0 = complete blackout, 5 = perfect recall)
 // Returns updated sm2 object
 function sm2Calc(sm2, q) {
-  let { ef, interval: oldInterval, repetition: n } = sm2;
+  let { interval: oldInterval, repetition: n } = sm2;
   const now = Date.now();
   const DAY = 86400000;
-
-  // Update EF
-  ef = ef + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
-  if (ef < 1.3) ef = 1.3; // minimum EF to prevent "review hell"
+  const MAX_INTERVAL = 30; // 最长间隔30天（已掌握）
 
   let newInterval;
   let newRepetition;
+  let isMastered = false;
 
-  if (q < 3) {
-    // Failed: reset repetition, but keep EF
-    newRepetition = 0;
-    newInterval = 1; // 1 day
-  } else {
-    // Passed
+  if (q >= 4) {
+    // 4-5分：答对了，间隔延长
     newRepetition = n + 1;
-    if (newRepetition === 1) {
-      newInterval = 1;
-    } else if (newRepetition === 2) {
-      newInterval = 6;
+    if (q === 5) {
+      // 满分：间隔翻倍
+      if (oldInterval === 0 || oldInterval === 1) {
+        newInterval = 3;
+      } else {
+        newInterval = Math.min(oldInterval * 2, MAX_INTERVAL);
+      }
+      // 连续满分且间隔达到30天 → 已掌握
+      if (newInterval >= MAX_INTERVAL && newRepetition >= 3) {
+        isMastered = true;
+      }
     } else {
-      newInterval = Math.ceil(oldInterval * ef);
+      // 4分：按固定步长增加
+      if (oldInterval <= 1) newInterval = 2;
+      else if (oldInterval <= 3) newInterval = 5;
+      else if (oldInterval <= 7) newInterval = 10;
+      else if (oldInterval <= 15) newInterval = 20;
+      else newInterval = Math.min(oldInterval + 5, MAX_INTERVAL);
     }
+  } else if (q === 3) {
+    // 3分：勉强答对，2天后再复习
+    newRepetition = Math.max(n, 1);
+    newInterval = 2;
+  } else {
+    // 0-2分：没记住，明天再来
+    newRepetition = 0;
+    newInterval = 1;
   }
 
+  // EF 保留但简化（主要用于显示参考，不决定间隔了）
+  const ef = 2.5 + (q - 3) * 0.1;
+
   return {
-    ef: Math.round(ef * 100) / 100,
+    ef: Math.max(1.3, Math.round(ef * 100) / 100),
     interval: newInterval,
     repetition: newRepetition,
     nextReview: now + newInterval * DAY,
-    lastReview: now
+    lastReview: now,
+    mastered: isMastered
   };
 }
 
@@ -4945,8 +5020,8 @@ function applyTypeRating(quality) {
   // Apply SM-2 algorithm
   w.sm2 = sm2Calc(w.sm2, quality);
 
-  // Update word status
-  if (w.sm2.repetition >= 5 && w.sm2.interval >= 21) {
+  // Update word status based on interval
+  if (w.sm2.mastered || w.sm2.interval >= 30) {
     w.status = 'mastered';
   } else if (w.sm2.repetition > 0) {
     w.status = 'learning';
@@ -4983,8 +5058,8 @@ function rateCard(q) {
   // Apply SM-2 algorithm
   w.sm2 = sm2Calc(w.sm2, q);
 
-  // Update word status based on SM-2 state
-  if (w.sm2.repetition >= 5 && w.sm2.interval >= 21) {
+  // Update word status based on interval
+  if (w.sm2.mastered || w.sm2.interval >= 30) {
     w.status = 'mastered';
   } else if (w.sm2.repetition > 0) {
     w.status = 'learning';
@@ -5291,49 +5366,51 @@ function renderWordDetail(w, compact) {
     // Fallback to simple format
     let html = `<div style="font-size:14px; line-height:1.7;">${esc(w.meaning)}</div>`;
     if (w.example) {
-      html += `<div style="margin-top:10px; font-size:12.5px; color:var(--text-2); background:var(--bg); padding:10px 12px; border-radius:8px; border-left:3px solid var(--primary); line-height:1.6;">${esc(w.example)}</div>`;
+      html += `<div style="margin-top:10px; font-size:12.5px; color:var(--text-2); line-height:1.6; font-style:italic;">${esc(w.example)}</div>`;
     }
     return html;
   }
   
   let html = '<div class="word-detail">';
   
+  // Word title + phonetic (only if not showing in the front already)
+  // Don't show word title here since it's usually shown above already
+  
   // 底层核心动作
   if (w.coreAction) {
-    html += `<div class="wd-section">
-      <div class="wd-label">💡 底层核心动作</div>
+    html += `<div class="wd-block">
+      <div class="wd-label">底层核心动作：</div>
       <div class="wd-core">${esc(w.coreAction)}</div>
     </div>`;
   }
   
   // 词根
   if (w.root) {
-    html += `<div class="wd-section">
-      <div class="wd-label">🌱 词根词源</div>
+    html += `<div class="wd-block">
+      <div class="wd-label">词根：</div>
       <div class="wd-root">${esc(w.root)}</div>
     </div>`;
   }
   
   // 分层释义
   if (w.meanings && w.meanings.length > 0) {
-    html += '<div class="wd-section">';
-    html += '<div class="wd-label">📖 分层释义</div>';
+    html += '<div class="wd-block">';
     for (let i = 0; i < w.meanings.length; i++) {
       const m = w.meanings[i];
       html += `<div class="wd-meaning">
-        <div class="wd-meaning-head">
+        <div class="wd-meaning-line">
           <span class="wd-meaning-num">${i + 1}.</span>
-          ${m.category ? `<span class="wd-meaning-cat">${esc(m.category)}</span>` : ''}
+          ${m.category ? `<span class="wd-meaning-cat">${esc(m.category)}：</span>` : ''}
           <span class="wd-meaning-text">${esc(m.text || m.meaning || '')}</span>
         </div>`;
       if (m.phrase) {
-        html += `<div><span class="wd-phrase">${esc(m.phrase)}</span></div>`;
+        html += `<div class="wd-phrase">${esc(m.phrase)}</div>`;
       }
       if (m.exampleEn) {
-        html += `<div class="wd-example">
-          <div class="wd-example-en">${esc(m.exampleEn)}</div>
-          ${m.exampleCn ? `<div class="wd-example-cn">${esc(m.exampleCn)}</div>` : ''}
-        </div>`;
+        html += `<div class="wd-example-en">${esc(m.exampleEn)}</div>`;
+        if (m.exampleCn) {
+          html += `<div class="wd-example-cn">${esc(m.exampleCn)}</div>`;
+        }
       }
       html += '</div>';
     }
@@ -5342,9 +5419,8 @@ function renderWordDetail(w, compact) {
   
   // 派生词
   if (w.derivatives) {
-    html += `<div class="wd-section">
-      <div class="wd-label">🔗 派生词</div>
-      <div class="wd-derivatives">${esc(w.derivatives)}</div>
+    html += `<div class="wd-block">
+      <div class="wd-derivatives">派生词：${esc(w.derivatives)}</div>
     </div>`;
   }
   
@@ -5352,24 +5428,21 @@ function renderWordDetail(w, compact) {
   if (w.longExamples && w.longExamples.length > 0) {
     for (let i = 0; i < w.longExamples.length; i++) {
       const ex = w.longExamples[i];
-      html += '<div class="wd-example-block">';
-      html += `<span class="wd-example-tag">例句${i + 1}</span>`;
+      html += '<div class="wd-long-example">';
+      html += '<div class="wd-example-title">';
+      html += `例句${i + 1}`;
       if (ex.source) {
-        html += `<div class="wd-example-source">${esc(ex.source)}</div>`;
+        html += `（${esc(ex.source)}）`;
       }
+      html += '：</div>';
       if (ex.text) {
-        html += `<div class="wd-example-en-long">${esc(ex.text)}</div>`;
+        html += `<div class="wd-example-text">${esc(ex.text)}</div>`;
       }
       if (ex.vocab) {
-        const words = ex.vocab.split(/[；;]/).filter(v => v.trim());
-        html += '<div class="wd-vocab-list">';
-        for (let j = 0; j < words.length; j++) {
-          html += `<span>${esc(words[j].trim())}${j < words.length - 1 ? '；' : ''}</span>`;
-        }
-        html += '</div>';
+        html += `<div class="wd-vocab">${esc(ex.vocab)}</div>`;
       }
       if (ex.translation) {
-        html += `<div class="wd-example-cn-long">${esc(ex.translation)}</div>`;
+        html += `<div class="wd-example-trans">（${esc(ex.translation)}）</div>`;
       }
       html += '</div>';
     }
