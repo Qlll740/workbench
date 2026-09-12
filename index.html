@@ -518,6 +518,143 @@ body {
   font-weight: 600;
 }
 
+/* Review Mode Tabs */
+.review-mode-tabs {
+  display: flex;
+  gap: 8px;
+}
+.review-mode-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--bg);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+}
+.review-mode-tab:hover {
+  background: var(--surface);
+  border-color: var(--border);
+}
+.review-mode-tab.active {
+  background: rgba(107, 142, 75, 0.1);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Typing Mode */
+.type-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.type-card .type-direction {
+  display: inline-block;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(107, 142, 75, 0.1);
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.type-card .type-question {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-1);
+}
+.type-card .type-phonetic {
+  font-size: 14px;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+.type-card .type-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+  background: var(--bg);
+  color: var(--text-1);
+}
+.type-card .type-input:focus {
+  border-color: var(--primary);
+}
+.type-card .type-submit-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.type-card .type-submit-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.type-card .type-submit-btn:hover {
+  background: var(--primary-dark);
+}
+.type-card .type-skip-btn {
+  padding: 12px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.type-card .type-skip-btn:hover {
+  border-color: var(--text-3);
+}
+.type-card .type-result {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  display: none;
+}
+.type-card .type-result.correct {
+  background: rgba(39, 174, 96, 0.1);
+  border: 1px solid rgba(39, 174, 96, 0.3);
+  display: block;
+}
+.type-card .type-result.wrong {
+  background: rgba(231, 76, 60, 0.08);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  display: block;
+}
+.type-card .type-result .result-label {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.type-card .type-result.correct .result-label { color: #27ae60; }
+.type-card .type-result.wrong .result-label { color: #e74c3c; }
+.type-card .type-result .result-answer {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.type-card .type-result .result-answer strong {
+  color: var(--text-1);
+}
+
 @media (max-width: 768px) {
   .flip-card { min-height: 220px; }
   .flip-card-front, .flip-card-back { min-height: 220px; }
@@ -1564,6 +1701,29 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .sm2-rating-btn[data-q="5"]:hover { border-color: rgb(46, 204, 113); background: rgba(46, 204, 113, 0.08); }
 .sm2-legend { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-3); margin-top: 8px; padding: 0px 4px; }
 .review-due-badge { display: inline-block; background: var(--alert); color: rgb(255, 255, 255); font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 600; }
+.review-mode-tabs { display: flex; gap: 8px; }
+.review-mode-tab { flex: 1 1 0%; text-align: center; padding: 10px 12px; border-radius: 10px; background: var(--bg); cursor: pointer; font-size: 13px; font-weight: 500; color: var(--text-2); border: 1.5px solid transparent; transition: 0.2s; }
+.review-mode-tab:hover { background: var(--surface); border-color: var(--border); }
+.review-mode-tab.active { background: rgba(107, 142, 75, 0.1); border-color: var(--primary); color: var(--primary); }
+.type-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 16px; }
+.type-card .type-direction { display: inline-block; font-size: 11px; padding: 4px 10px; border-radius: 20px; background: rgba(107, 142, 75, 0.1); color: var(--primary); font-weight: 600; margin-bottom: 16px; }
+.type-card .type-question { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: var(--text-1); }
+.type-card .type-phonetic { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+.type-card .type-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 16px; box-sizing: border-box; outline: none; transition: border-color 0.2s; background: var(--bg); color: var(--text-1); }
+.type-card .type-input:focus { border-color: var(--primary); }
+.type-card .type-submit-row { display: flex; gap: 10px; margin-top: 14px; }
+.type-card .type-submit-btn { flex: 1 1 0%; padding: 12px; border: none; border-radius: 10px; background: var(--primary); color: rgb(255, 255, 255); font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.type-card .type-submit-btn:hover { background: var(--primary-dark); }
+.type-card .type-skip-btn { padding: 12px 20px; border: 1.5px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text-2); font-size: 14px; cursor: pointer; transition: 0.2s; }
+.type-card .type-skip-btn:hover { border-color: var(--text-3); }
+.type-card .type-result { margin-top: 16px; padding: 14px 16px; border-radius: 10px; display: none; }
+.type-card .type-result.correct { background: rgba(39, 174, 96, 0.1); border: 1px solid rgba(39, 174, 96, 0.3); display: block; }
+.type-card .type-result.wrong { background: rgba(231, 76, 60, 0.08); border: 1px solid rgba(231, 76, 60, 0.3); display: block; }
+.type-card .type-result .result-label { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.type-card .type-result.correct .result-label { color: rgb(39, 174, 96); }
+.type-card .type-result.wrong .result-label { color: rgb(231, 76, 60); }
+.type-card .type-result .result-answer { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.type-card .type-result .result-answer strong { color: var(--text-1); }
 @media (max-width: 768px) {
   .flip-card { min-height: 220px; }
   .flip-card-front, .flip-card-back { min-height: 220px; }
@@ -1778,7 +1938,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 12:26</span>
+        <span id="syncTime">已保存本地 12:35</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -3514,6 +3674,14 @@ He was promoted by virtue of his outstanding performance.
       <span class="modal-close" onclick="closeModal('reviewModal')">×</span>
     </div>
     <div class="modal-body" id="reviewBody">
+      <div class="review-mode-tabs" style="display:flex; gap:8px; margin-bottom:16px;">
+        <div class="review-mode-tab active" id="modeTabCard" onclick="switchReviewMode('card')">
+          🃏 卡片模式<span class="en-sub-inline">Flashcard</span>
+        </div>
+        <div class="review-mode-tab" id="modeTabType" onclick="switchReviewMode('type')">
+          ⌨️ 答题模式<span class="en-sub-inline">Typing</span>
+        </div>
+      </div>
       <div id="reviewProgress" style="text-align:center; font-size:13px; color:var(--text-3); margin-bottom:16px;"></div>
       <div id="reviewCardContainer"></div>
       <div id="sm2Ratings" style="display:none;">
@@ -4252,6 +4420,20 @@ function formatNextReview(nextReviewTs) {
 let reviewQueue = [];
 let reviewIndex = 0;
 let reviewStats = { total: 0, correct: 0, q0: 0, q1: 0, q2: 0, q3: 0, q4: 0, q5: 0 };
+let reviewMode = 'card'; // 'card' or 'type'
+let typeDirection = 'en2cn'; // 'en2cn' (English question) or 'cn2en' (Chinese question)
+let typeSubmitted = false;
+
+function switchReviewMode(mode) {
+  reviewMode = mode;
+  const tabCard = document.getElementById('modeTabCard');
+  const tabType = document.getElementById('modeTabType');
+  if (tabCard) tabCard.classList.toggle('active', mode === 'card');
+  if (tabType) tabType.classList.toggle('active', mode === 'type');
+  const ratings = document.getElementById('sm2Ratings');
+  if (ratings && mode === 'type') ratings.style.display = 'none';
+  showReviewCard();
+}
 
 function startReview() {
   try {
@@ -4315,21 +4497,57 @@ function showReviewCard() {
   const w = reviewQueue[reviewIndex];
   document.getElementById('reviewProgress').textContent = `${reviewIndex + 1} / ${reviewQueue.length} · EF: ${w.sm2?.ef.toFixed(2) || '2.50'}`;
   ratings.style.display = 'none';
+  typeSubmitted = false;
 
-  container.innerHTML = `
-    <div class="flip-card" id="flipCard" onclick="flipCard()">
-      <div class="flip-card-front">
-        <div class="card-word">${esc(w.word)}</div>
-        <div class="card-phonetic">${esc(w.phonetic || '')}</div>
-        <div class="card-hint">👆 点击卡片查看释义 · Tap to reveal</div>
+  if (reviewMode === 'type') {
+    // Typing mode: random direction
+    typeDirection = Math.random() < 0.5 ? 'en2cn' : 'cn2en';
+    const directionLabel = typeDirection === 'en2cn' ? '英译中 · EN → CN' : '中译英 · CN → EN';
+    const questionText = typeDirection === 'en2cn' ? w.word : w.meaning;
+    const phoneticText = typeDirection === 'en2cn' ? (w.phonetic || '') : '';
+    const placeholder = typeDirection === 'en2cn' ? '输入中文释义...' : '输入英文单词...';
+
+    container.innerHTML = `
+      <div class="type-card">
+        <span class="type-direction">${directionLabel}</span>
+        <div class="type-question">${esc(questionText)}</div>
+        ${phoneticText ? `<div class="type-phonetic">${esc(phoneticText)}</div>` : ''}
+        <input type="text" class="type-input" id="typeAnswerInput" placeholder="${placeholder}" onkeydown="if(event.key==='Enter')submitTypeAnswer()">
+        <div class="type-submit-row">
+          <button class="type-submit-btn" onclick="submitTypeAnswer()">提交答案<span class="en-sub-inline">Submit</span></button>
+          <button class="type-skip-btn" onclick="skipTypeAnswer()">不会<span class="en-sub-inline">Skip</span></button>
+        </div>
+        <div class="type-result" id="typeResult">
+          <div class="result-label" id="typeResultLabel"></div>
+          <div class="result-answer" id="typeResultAnswer"></div>
+        </div>
+        <div id="typeNextRow" style="display:none; margin-top:16px;">
+          <button class="type-submit-btn" onclick="nextTypeCard()">下一个<span class="en-sub-inline">Next</span></button>
+        </div>
       </div>
-      <div class="flip-card-back">
-        <div class="card-meaning">${esc(w.meaning)}</div>
-        ${w.example ? `<div class="card-example">${esc(w.example)}</div>` : ''}
-        <div class="card-hint-back">👆 再次点击返回正面 · Tap to flip back</div>
+    `;
+    // Auto-focus input
+    setTimeout(() => {
+      const input = document.getElementById('typeAnswerInput');
+      if (input) input.focus();
+    }, 100);
+  } else {
+    // Card mode (original)
+    container.innerHTML = `
+      <div class="flip-card" id="flipCard" onclick="flipCard()">
+        <div class="flip-card-front">
+          <div class="card-word">${esc(w.word)}</div>
+          <div class="card-phonetic">${esc(w.phonetic || '')}</div>
+          <div class="card-hint">👆 点击卡片查看释义 · Tap to reveal</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-meaning">${esc(w.meaning)}</div>
+          ${w.example ? `<div class="card-example">${esc(w.example)}</div>` : ''}
+          <div class="card-hint-back">👆 再次点击返回正面 · Tap to flip back</div>
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  }
 }
 
 function flipCard() {
@@ -4343,6 +4561,230 @@ function flipCard() {
   } else {
     ratings.style.display = 'none';
   }
+}
+
+/* ============================================================
+   Typing Mode Functions
+   ============================================================ */
+
+// Check answer and return a quality score (0-5)
+function checkAnswer(userAnswer, correctAnswer, direction) {
+  const userAns = userAnswer.trim().toLowerCase();
+  if (!userAns) return 0;
+
+  if (direction === 'en2cn') {
+    // English to Chinese: check if user's Chinese meaning matches
+    // Since Chinese meanings can be expressed in many ways, we do a lenient check
+    const correct = correctAnswer.trim();
+    // Remove all spaces and punctuation for comparison
+    const normalize = (s) => s.replace(/[\s，。、；：""''（）【】\.\,\;\:\'\"\(\)\[\]]/g, '').toLowerCase();
+    const userNorm = normalize(userAns);
+    const correctNorm = normalize(correct);
+    
+    // Exact match = perfect (5)
+    if (userNorm === correctNorm) return 5;
+    
+    // Check if user's answer contains the core meaning
+    // Extract key words from correct answer (remove part-of-speech tags like "v.", "n.", etc.)
+    const meaningOnly = correct.replace(/^[a-z]+\.\s*/i, '').trim();
+    const meaningNorm = normalize(meaningOnly);
+    
+    if (userNorm === meaningNorm) return 5;
+    
+    // Check partial match: does user answer contain parts of the correct meaning?
+    // Split correct meaning by common separators
+    const parts = meaningOnly.split(/[，,；;]/).map(p => normalize(p)).filter(p => p.length > 0);
+    let matchCount = 0;
+    for (const part of parts) {
+      if (userNorm.includes(part) || part.includes(userNorm)) {
+        matchCount++;
+      }
+    }
+    
+    if (parts.length > 0) {
+      const matchRatio = matchCount / parts.length;
+      if (matchRatio >= 1) return 4; // all parts matched but not exact
+      if (matchRatio >= 0.5) return 3; // half matched
+      if (matchRatio > 0) return 2; // some partial match
+    }
+    
+    // Check if single character matches (for very short meanings)
+    if (meaningNorm.length <= 3 && userNorm.length <= 3) {
+      let charMatches = 0;
+      for (const c of userNorm) {
+        if (meaningNorm.includes(c)) charMatches++;
+      }
+      if (charMatches >= meaningNorm.length * 0.7) return 3;
+    }
+    
+    return 1; // wrong answer but maybe vaguely familiar
+  } else {
+    // Chinese to English: check English word spelling
+    const correct = correctAnswer.trim().toLowerCase();
+    // Remove spaces
+    const user = userAns.replace(/\s/g, '');
+    const target = correct.replace(/\s/g, '');
+    
+    // Exact match = perfect (5)
+    if (user === target) return 5;
+    
+    // Check Levenshtein distance for spelling errors
+    const dist = levenshteinDistance(user, target);
+    const maxLen = Math.max(user.length, target.length);
+    
+    if (maxLen === 0) return 5;
+    const similarity = 1 - dist / maxLen;
+    
+    if (similarity >= 0.9) return 4; // very close, one small typo
+    if (similarity >= 0.75) return 3; // somewhat close, a few errors
+    if (similarity >= 0.5) return 2; // recognizable but many errors
+    if (similarity >= 0.3) return 1; // barely recognizable
+    
+    return 0; // completely wrong
+  }
+}
+
+// Levenshtein distance for fuzzy matching
+function levenshteinDistance(a, b) {
+  const matrix = [];
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+function submitTypeAnswer() {
+  if (typeSubmitted) return;
+  const input = document.getElementById('typeAnswerInput');
+  const w = reviewQueue[reviewIndex];
+  if (!input || !w) return;
+  
+  const userAnswer = input.value;
+  if (!userAnswer.trim()) {
+    showToast('请输入答案');
+    return;
+  }
+  
+  const correctAnswer = typeDirection === 'en2cn' ? w.meaning : w.word;
+  const quality = checkAnswer(userAnswer, correctAnswer, typeDirection);
+  
+  typeSubmitted = true;
+  
+  // Show result
+  const result = document.getElementById('typeResult');
+  const resultLabel = document.getElementById('typeResultLabel');
+  const resultAnswer = document.getElementById('typeResultAnswer');
+  const nextRow = document.getElementById('typeNextRow');
+  
+  if (result && resultLabel && resultAnswer) {
+    const isCorrect = quality >= 3;
+    result.className = 'type-result ' + (isCorrect ? 'correct' : 'wrong');
+    resultLabel.textContent = isCorrect ? '✅ 回答正确！' : '❌ 回答错误';
+    
+    let answerDetail = '';
+    if (typeDirection === 'en2cn') {
+      answerDetail = `正确释义：<strong>${esc(w.meaning)}</strong>`;
+    } else {
+      answerDetail = `正确拼写：<strong>${esc(w.word)}</strong>${w.phonetic ? ` ${esc(w.phonetic)}` : ''}<br>释义：${esc(w.meaning)}`;
+    }
+    if (w.example) {
+      answerDetail += `<br><br>📖 例句：${esc(w.example)}`;
+    }
+    answerDetail += `<br><br>💡 评分：<strong>${quality}/5</strong> · ${quality >= 3 ? '间隔将延长' : '间隔将重置'}`;
+    resultAnswer.innerHTML = answerDetail;
+  }
+  
+  if (nextRow) nextRow.style.display = 'block';
+  
+  // Apply SM-2 rating
+  applyTypeRating(quality);
+}
+
+function skipTypeAnswer() {
+  if (typeSubmitted) return;
+  typeSubmitted = true;
+  
+  const w = reviewQueue[reviewIndex];
+  const result = document.getElementById('typeResult');
+  const resultLabel = document.getElementById('typeResultLabel');
+  const resultAnswer = document.getElementById('typeResultAnswer');
+  const nextRow = document.getElementById('typeNextRow');
+  
+  if (result && resultLabel && resultAnswer) {
+    result.className = 'type-result wrong';
+    resultLabel.textContent = '🤔 没关系，看看答案';
+    
+    let answerDetail = '';
+    if (typeDirection === 'en2cn') {
+      answerDetail = `释义：<strong>${esc(w.meaning)}</strong>`;
+    } else {
+      answerDetail = `单词：<strong>${esc(w.word)}</strong>${w.phonetic ? ` ${esc(w.phonetic)}` : ''}<br>释义：${esc(w.meaning)}`;
+    }
+    if (w.example) {
+      answerDetail += `<br><br>📖 例句：${esc(w.example)}`;
+    }
+    answerDetail += `<br><br>💡 评分：<strong>0/5</strong> · 明天再来复习`;
+    resultAnswer.innerHTML = answerDetail;
+  }
+  
+  if (nextRow) nextRow.style.display = 'block';
+  
+  // Skip = quality 0
+  applyTypeRating(0);
+}
+
+function applyTypeRating(quality) {
+  const w = reviewQueue[reviewIndex];
+  if (!w || !w.sm2) return;
+
+  // Update stats
+  if (quality >= 3) reviewStats.correct++;
+  if (quality === 0) reviewStats.q0++;
+  else if (quality === 1) reviewStats.q1++;
+  else if (quality === 2) reviewStats.q2++;
+  else if (quality === 3) reviewStats.q3++;
+  else if (quality === 4) reviewStats.q4++;
+  else if (quality === 5) reviewStats.q5++;
+
+  // Apply SM-2 algorithm
+  w.sm2 = sm2Calc(w.sm2, quality);
+
+  // Update word status
+  if (w.sm2.repetition >= 5 && w.sm2.interval >= 21) {
+    w.status = 'mastered';
+  } else if (w.sm2.repetition > 0) {
+    w.status = 'learning';
+  } else {
+    w.status = 'new';
+  }
+
+  // If failed, put card back in queue
+  if (quality < 3) {
+    reviewQueue.push(w);
+  }
+
+  DB.save(DB.wordsKey(currentUser), words);
+}
+
+function nextTypeCard() {
+  reviewIndex++;
+  showReviewCard();
 }
 
 function rateCard(q) {
