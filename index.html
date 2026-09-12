@@ -25,10 +25,12 @@
   --warning: #FAAD14;
   --border: #E8E8E8;
   --border-light: #F0F0F0;
+  --surface-soft: #F7F9F5;
   --shadow: 0 2px 8px rgba(0,0,0,0.06);
   --shadow-hover: 0 4px 16px rgba(0,0,0,0.10);
   --radius: 8px;
   --radius-sm: 4px;
+  --radius-md: 8px;
   --radius-pill: 20px;
   --sidebar-w: 220px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -176,7 +178,7 @@ body {
 .word-main { display: flex; flex-direction: column; gap: 2px; }
 .word-spelling { font-size: 20px; font-weight: 700; }
 .word-phonetic { font-size: 13px; color: var(--text-3); }
-.word-tags { display: flex; gap: 4px; }
+.word-tags { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 .word-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
 .word-tag.a-level { background: #FFF7E6; color: #D48806; }
 .word-tag.b-level { background: #E6F7FF; color: #1890ff; }
@@ -185,7 +187,17 @@ body {
 .word-tag.cat-ielts { background: #FFF0F6; color: #EB2F96; }
 .word-tag.cat-toefl { background: #F9F0FF; color: #722ED1; }
 .word-meaning { font-size: 14px; margin: 8px 0; line-height: 1.6; }
-.word-example { font-size: 12px; color: var(--text-2); background: var(--bg); padding: 8px 10px; border-radius: var(--radius-sm); border-left: 3px solid var(--primary); margin-bottom: 10px; line-height: 1.5; }
+.word-meaning-full {
+  margin: 12px 0;
+  text-align: left;
+}
+.word-meaning-full .wd-block {
+  margin-bottom: 10px;
+}
+.word-meaning-full .wd-meaning {
+  margin-bottom: 10px;
+}
+.word-example { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
 .word-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--border-light); }
 .word-status { display: flex; align-items: center; gap: 4px; font-size: 12px; }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -455,6 +467,32 @@ body {
   margin-top: 12px;
 }
 
+/* Structured review card back */
+.flip-card-back.structured {
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  padding: 20px 24px;
+  min-height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.flip-card-back.structured .review-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  width: 100%;
+}
+.flip-card-back.structured .review-card-phonetic {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  width: 100%;
+}
+.flip-card-back.structured .card-meaning-structured {
+  width: 100%;
+}
+
 /* SM-2 Rating Buttons */
 .sm2-ratings {
   display: grid;
@@ -681,64 +719,140 @@ body {
   color: var(--text-2);
   margin-bottom: 4px;
 }
+
+/* 底层核心动作：💡 绿色大字 */
 .word-detail .wd-core {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.word-detail .wd-core::before {
+  content: '💡 ';
+  font-weight: normal;
+}
+
+.word-detail .wd-root {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.7;
+  padding: 8px 10px;
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+}
+.word-detail .wd-meaning-simple {
   font-size: 14px;
   color: var(--text-1);
   line-height: 1.75;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
 }
-.word-detail .wd-root {
-  font-size: 13.5px;
+.word-detail .wd-meaning-simple .wd-meaning-num {
+  font-weight: 700;
   color: var(--text-2);
-  line-height: 1.75;
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 3px;
 }
+.word-detail .wd-meaning-simple .wd-meaning-text {
+  flex: 1;
+}
+
 .word-detail .wd-meaning {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .word-detail .wd-meaning-line {
-  font-size: 14px;
-  line-height: 1.75;
-  margin-bottom: 4px;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 .word-detail .wd-meaning-num {
   font-weight: 700;
-  color: var(--text-1);
-  margin-right: 2px;
+  color: var(--text-2);
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 3px;
 }
+/* 分类标签：绿色胶囊 */
 .word-detail .wd-meaning-cat {
-  color: var(--text-3);
-  margin-right: 4px;
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  background: rgba(107, 142, 75, 0.12);
+  color: var(--primary-dark);
+  border-radius: 999px;
+  margin-right: 0;
+  white-space: nowrap;
 }
 .word-detail .wd-meaning-text {
   color: var(--text-1);
   font-weight: 500;
+  flex: 1;
 }
 .word-detail .wd-phrase {
   font-size: 13px;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: 600;
-  margin: 4px 0;
+  margin: 4px 0 6px 0;
+  padding-left: 22px;
+}
+
+/* 例句：左边绿色竖线 + 浅绿背景框 */
+.word-detail .wd-example-box {
+  margin-left: 22px;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: rgba(107, 142, 75, 0.08);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 .word-detail .wd-example-en {
   font-size: 13.5px;
   color: var(--text-1);
-  margin: 6px 0 2px 0;
   line-height: 1.6;
   font-style: italic;
+  margin: 0 0 4px 0;
 }
 .word-detail .wd-example-cn {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--text-2);
   line-height: 1.6;
+  margin: 0;
 }
-.word-detail .wd-derivatives {
+
+/* 简单例句样式（区别于释义的绿色框） */
+.word-detail .wd-example-plain {
   font-size: 13.5px;
   color: var(--text-2);
-  line-height: 1.75;
+  line-height: 1.7;
+  font-style: italic;
+  padding: 6px 0 6px 12px;
+  border-left: 2px solid var(--border);
+}
+
+.word-detail .wd-derivatives {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding: 8px 10px;
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
 }
 .word-detail .wd-derivatives strong {
   color: var(--text-1);
   font-weight: 600;
 }
+
+/* 精选长例句 */
 .word-detail .wd-long-example {
   margin-top: 12px;
   padding-top: 12px;
@@ -763,7 +877,7 @@ body {
 }
 .word-detail .wd-example-text em {
   font-style: normal;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: 600;
 }
 .word-detail .wd-vocab {
@@ -1548,7 +1662,7 @@ body {
   color: var(--trae-text-default);
   user-select: none;
 }
-</style><style data-trae-pptx-captured-css="true">:root { --primary: #6B8E6B; --primary-dark: #4A7C4A; --primary-light: #E8F0E8; --primary-lighter: #F0F5F0; --bg: #F5F7F4; --surface: #FFFFFF; --text: #1A1A1A; --text-2: #666666; --text-3: #999999; --success: #52C41A; --alert: #FF4D4F; --warning: #FAAD14; --border: #E8E8E8; --border-light: #F0F0F0; --shadow: 0 2px 8px rgba(0,0,0,0.06); --shadow-hover: 0 4px 16px rgba(0,0,0,0.10); --radius: 8px; --radius-sm: 4px; --radius-pill: 20px; --sidebar-w: 220px; --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+</style><style data-trae-pptx-captured-css="true">:root { --primary: #6B8E6B; --primary-dark: #4A7C4A; --primary-light: #E8F0E8; --primary-lighter: #F0F5F0; --bg: #F5F7F4; --surface: #FFFFFF; --text: #1A1A1A; --text-2: #666666; --text-3: #999999; --success: #52C41A; --alert: #FF4D4F; --warning: #FAAD14; --border: #E8E8E8; --border-light: #F0F0F0; --surface-soft: #F7F9F5; --shadow: 0 2px 8px rgba(0,0,0,0.06); --shadow-hover: 0 4px 16px rgba(0,0,0,0.10); --radius: 8px; --radius-sm: 4px; --radius-md: 8px; --radius-pill: 20px; --sidebar-w: 220px; --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 * { margin: 0px; padding: 0px; box-sizing: border-box; }
 body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 .app { display: flex; min-height: 100vh; }
@@ -1630,7 +1744,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .word-main { display: flex; flex-direction: column; gap: 2px; }
 .word-spelling { font-size: 20px; font-weight: 700; }
 .word-phonetic { font-size: 13px; color: var(--text-3); }
-.word-tags { display: flex; gap: 4px; }
+.word-tags { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 .word-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
 .word-tag.a-level { background: rgb(255, 247, 230); color: rgb(212, 136, 6); }
 .word-tag.b-level { background: rgb(230, 247, 255); color: rgb(24, 144, 255); }
@@ -1639,7 +1753,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .word-tag.cat-ielts { background: rgb(255, 240, 246); color: rgb(235, 47, 150); }
 .word-tag.cat-toefl { background: rgb(249, 240, 255); color: rgb(114, 46, 209); }
 .word-meaning { font-size: 14px; margin: 8px 0px; line-height: 1.6; }
-.word-example { font-size: 12px; color: var(--text-2); background: var(--bg); padding: 8px 10px; border-radius: var(--radius-sm); border-left: 3px solid var(--primary); margin-bottom: 10px; line-height: 1.5; }
+.word-meaning-full { margin: 12px 0px; text-align: left; }
+.word-meaning-full .wd-block { margin-bottom: 10px; }
+.word-meaning-full .wd-meaning { margin-bottom: 10px; }
+.word-example { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
 .word-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--border-light); }
 .word-status { display: flex; align-items: center; gap: 4px; font-size: 12px; }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -1818,6 +1935,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .flip-card-back .card-meaning { font-size: 18px; line-height: 1.7; margin-bottom: 16px; font-weight: 500; }
 .flip-card-back .card-example { font-size: 13px; color: var(--text-2); background: var(--bg); padding: 12px 16px; border-radius: 8px; border-left: 3px solid var(--primary); text-align: left; width: 100%; box-sizing: border-box; }
 .flip-card-back .card-hint-back { font-size: 12px; color: var(--text-3); margin-top: 12px; }
+.flip-card-back.structured { justify-content: flex-start; align-items: flex-start; text-align: left; padding: 20px 24px; min-height: auto; max-height: 500px; overflow-y: auto; }
+.flip-card-back.structured .review-card-title { font-size: 22px; font-weight: 700; margin-bottom: 2px; width: 100%; }
+.flip-card-back.structured .review-card-phonetic { font-size: 13px; color: var(--text-3); margin-bottom: 14px; width: 100%; }
+.flip-card-back.structured .card-meaning-structured { width: 100%; }
 .sm2-ratings { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 20px; }
 .sm2-rating-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 4px; border: 1.5px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer; transition: 0.2s; font-size: 12px; color: var(--text-2); }
 .sm2-rating-btn:hover { transform: translateY(-2px); box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
@@ -1864,23 +1985,29 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .word-detail .wd-phonetic { font-size: 13px; color: var(--text-3); margin-bottom: 14px; }
 .word-detail .wd-block { margin-bottom: 14px; }
 .word-detail .wd-label { font-size: 13px; font-weight: 600; color: var(--text-2); margin-bottom: 4px; }
-.word-detail .wd-core { font-size: 14px; color: var(--text-1); line-height: 1.75; }
-.word-detail .wd-root { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
-.word-detail .wd-meaning { margin-bottom: 12px; }
-.word-detail .wd-meaning-line { font-size: 14px; line-height: 1.75; margin-bottom: 4px; }
-.word-detail .wd-meaning-num { font-weight: 700; color: var(--text-1); margin-right: 2px; }
-.word-detail .wd-meaning-cat { color: var(--text-3); margin-right: 4px; }
-.word-detail .wd-meaning-text { color: var(--text-1); font-weight: 500; }
-.word-detail .wd-phrase { font-size: 13px; color: var(--primary); font-weight: 600; margin: 4px 0px; }
-.word-detail .wd-example-en { font-size: 13.5px; color: var(--text-1); margin: 6px 0px 2px; line-height: 1.6; font-style: italic; }
-.word-detail .wd-example-cn { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-.word-detail .wd-derivatives { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+.word-detail .wd-core { font-size: 16px; font-weight: 700; color: var(--primary-dark); line-height: 1.6; margin-bottom: 4px; }
+.word-detail .wd-core::before { content: "💡 "; font-weight: normal; }
+.word-detail .wd-root { font-size: 13px; color: var(--text-3); line-height: 1.7; padding: 8px 10px; background: var(--surface-soft); border-radius: var(--radius-md); }
+.word-detail .wd-meaning-simple { font-size: 14px; color: var(--text-1); line-height: 1.75; font-weight: 500; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+.word-detail .wd-meaning-simple .wd-meaning-num { font-weight: 700; color: var(--text-2); flex-shrink: 0; font-size: 13px; margin-top: 3px; }
+.word-detail .wd-meaning-simple .wd-meaning-text { flex: 1 1 0%; }
+.word-detail .wd-meaning { margin-bottom: 14px; }
+.word-detail .wd-meaning-line { font-size: 15px; line-height: 1.6; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; }
+.word-detail .wd-meaning-num { font-weight: 700; color: var(--text-2); flex-shrink: 0; font-size: 13px; margin-top: 3px; }
+.word-detail .wd-meaning-cat { display: inline-block; flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 2px 10px; background: rgba(107, 142, 75, 0.12); color: var(--primary-dark); border-radius: 999px; margin-right: 0px; white-space: nowrap; }
+.word-detail .wd-meaning-text { color: var(--text-1); font-weight: 500; flex: 1 1 0%; }
+.word-detail .wd-phrase { font-size: 13px; color: var(--primary-dark); font-weight: 600; margin: 4px 0px 6px; padding-left: 22px; }
+.word-detail .wd-example-box { margin-left: 22px; margin-top: 6px; padding: 10px 14px; background: rgba(107, 142, 75, 0.08); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.word-detail .wd-example-en { font-size: 13.5px; color: var(--text-1); line-height: 1.6; font-style: italic; margin: 0px 0px 4px; }
+.word-detail .wd-example-cn { font-size: 12.5px; color: var(--text-2); line-height: 1.6; margin: 0px; }
+.word-detail .wd-example-plain { font-size: 13.5px; color: var(--text-2); line-height: 1.7; font-style: italic; padding: 6px 0px 6px 12px; border-left: 2px solid var(--border); }
+.word-detail .wd-derivatives { font-size: 13px; color: var(--text-2); line-height: 1.7; padding: 8px 10px; background: var(--surface-soft); border-radius: var(--radius-md); }
 .word-detail .wd-derivatives strong { color: var(--text-1); font-weight: 600; }
 .word-detail .wd-long-example { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-light); }
 .word-detail .wd-long-example:first-of-type { border-top: none; margin-top: 0px; padding-top: 0px; }
 .word-detail .wd-example-title { font-size: 12.5px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
 .word-detail .wd-example-text { font-size: 13.5px; color: var(--text-1); line-height: 1.7; margin-bottom: 6px; }
-.word-detail .wd-example-text em { font-style: normal; color: var(--primary); font-weight: 600; }
+.word-detail .wd-example-text em { font-style: normal; color: var(--primary-dark); font-weight: 600; }
 .word-detail .wd-vocab { font-size: 12px; color: var(--text-3); margin-bottom: 6px; line-height: 1.6; }
 .word-detail .wd-example-trans { font-size: 13px; color: var(--text-2); line-height: 1.7; }
 .flip-card-back .word-detail { width: 100%; text-align: left; max-height: 100%; overflow-y: auto; }
@@ -2068,7 +2195,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item active" data-section="words" onclick="switchSection('words')">
         <span class="nav-icon">📘</span>
         <div class="nav-label"><span>英语单词</span><span class="en-sub">Vocabulary</span></div>
-        <span class="nav-badge" id="wordCountBadge">3</span>
+        <span class="nav-badge" id="wordCountBadge">1</span>
       </div>
     </div>
 
@@ -2077,7 +2204,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item" data-section="accounting" onclick="switchSection('accounting')">
         <span class="nav-icon">💰</span>
         <div class="nav-label"><span>记账</span><span class="en-sub">Accounting</span></div>
-        <span class="nav-badge" id="txCountBadge">65</span>
+        <span class="nav-badge" id="txCountBadge">71</span>
       </div>
       <div class="nav-item" data-section="stats" onclick="switchSection('stats')">
         <span class="nav-icon">📊</span>
@@ -2099,11 +2226,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 13:06</span>
+        <span id="syncTime">已保存本地 23:00</span>
       </div>
-      <div id="cloudStatus" class="cloud-status syncing" style="margin-top:4px;">
+      <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
-        <span id="cloudStatusText">☁ 同步中... <span class="en-sub-inline">Syncing</span></span>
+        <span id="cloudStatusText">☁ 已连接云端 <span class="en-sub-inline">Cloud</span></span>
       </div>
       <div class="sync-ring">
         <svg width="40" height="40" viewBox="0 0 40 40">
@@ -2133,35 +2260,36 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
-        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">0</span></button>
+        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">1</span></button>
+        <button class="topbar-btn" onclick="loadDemoWords()">📚 示例单词<span class="en-sub-inline">Demo</span></button>
         <button class="topbar-btn primary" onclick="openWordModal()">+ 新增单词<span class="en-sub-inline">Add</span></button>
       </div>
       <div class="top-tabs">
-        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">3</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">2</span></div>
+        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">1</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">1</span></div>
         <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">0</span></div>
-        <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">1</span></div>
+        <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
       </div>
       <div class="content-area">
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">单词总量<span class="en-sub">Total Words</span></div>
-            <div class="stat-value green" id="statTotal">3</div>
+            <div class="stat-value green" id="statTotal">1</div>
             <div class="stat-sub" id="statTotalSub">收录单词</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">已掌握<span class="en-sub">Mastered</span></div>
-            <div class="stat-value" id="statMastered" style="color:var(--success)">1</div>
-            <div class="stat-sub" id="statMasteredSub">掌握率 33% · Mastery rate</div>
+            <div class="stat-value" id="statMastered" style="color:var(--success)">0</div>
+            <div class="stat-sub" id="statMasteredSub">掌握率 0% · Mastery rate</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
-            <div class="stat-value" id="statDueToday" style="color:var(--warning)">0</div>
+            <div class="stat-value" id="statDueToday" style="color:var(--warning)">1</div>
             <div class="stat-sub" id="statDueTodaySub">学习中 0 个 · 0 learning</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">2</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">1</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2196,80 +2324,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
             </div>
           </div>
         </div>
-        <div class="content-count">共 <strong id="wordResultCount">3</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
+        <div class="content-count">共 <strong id="wordResultCount">1</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
         <div class="cards-grid" id="wordGrid">
-    <div class="card word-card" onclick="openWordModal(1789185498840)">
-      <div class="word-card-head">
-        <div class="word-main">
-          <div class="word-spelling">exclusively</div>
-          
-        </div>
-        <div class="word-tags">
-          <span class="word-tag b-level">B</span>
-          <span class="word-tag cat-kaoyan">考研</span>
-        </div>
-      </div>
-      <div class="word-meaning">核心义：唯一地、独占地、排他地（不包含其他地）
-词性：副词
-
-词根拆解：ex-（向外）+ cludere（关闭）→ 排除在外 → exclusive（排他的）+ -ly（副词后缀）</div>
-      
-      <div class="word-card-footer">
-        <div class="word-status">
-          <span class="status-dot mastered"></span>
-          <span>已掌握<span class="en-sub-inline">Mastered</span></span>
-          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 1 个月后</span>
-        </div>
-        <div class="word-actions" onclick="event.stopPropagation()">
-          <button class="word-action-btn" onclick="cycleWordStatus(1789185498840)">↺ 重学</button>
-          <button class="word-action-btn danger" onclick="deleteWord(1789185498840)">删除<span class="en-sub-inline">Delete</span></button>
-        </div>
-      </div>
-    </div>
-    <div class="card word-card" onclick="openWordModal(1789185408759)">
-      <div class="word-card-head">
-        <div class="word-main">
-          <div class="word-spelling">manifest</div>
-          
-        </div>
-        <div class="word-tags">
-          <span class="word-tag a-level">A</span>
-          <span class="word-tag cat-kaoyan">考研</span>
-        </div>
-      </div>
-      <div class="word-meaning">底层核心动作：用手抓住、敲打使其显现 → 引申为清楚地显示、表明
-
-词根：拉丁语 manifestus = 用手抓住的、可触摸的，来自 manus（手）+ festus（敲击）。字面意思是"用手能摸到的"，即"明显的、显而易见的"。
-
-1.实物/具体：明显的、清楚的（adj. 看得见摸得着的）
-His surprise was manifest to everyone in the room.
-他的惊讶对屋里每个人来说都是显而易见的。
-
-2.生活/物资：表明、证明、显示（v. 使...显现出来）
-The symptoms manifested themselves within hours of exposure.
-症状在接触后几小时内就显现出来了。
-
-3.抽象：载货清单/旅客名单（n. 运输清单，"显现出来"的货物列表）
-The ship's manifest listed 200 containers of electronic goods.
-船舶载货清单列出了200个电子产品的集装箱。
-
-派生词：manifestation n. 表现、显示；manifesto n. 宣言</div>
-      <div class="word-example"><div style="font-style:italic;">例句1（影视剧台词）： 《神探夏洛克》 "His guilt was manifest in every nervous gesture he made." — 他的罪恶感在每一个紧张的举动中表露无遗。
-
-例句2（考研真题风格）： The study suggests that chronic stress can manifest as both physical symptoms and psychological disorders, making it difficult for clinicians to identify the root cause without comprehensive assessment. 慢性压力；身体症状；心理障碍；临床医生；根本原因；全面评估 （研究表明，慢性压力可表现为身体症状和心理障碍，这使得临床医生难以在不进行全面评估的情况下确定根本原因。）</div></div>
-      <div class="word-card-footer">
-        <div class="word-status">
-          <span class="status-dot new"></span>
-          <span>未学习<span class="en-sub-inline">New</span></span>
-          
-        </div>
-        <div class="word-actions" onclick="event.stopPropagation()">
-          <button class="word-action-btn" onclick="cycleWordStatus(1789185408759)">✓ 标记</button>
-          <button class="word-action-btn danger" onclick="deleteWord(1789185408759)">删除<span class="en-sub-inline">Delete</span></button>
-        </div>
-      </div>
-    </div>
-    <div class="card word-card" onclick="openWordModal(1789143184238)">
+    <div class="card word-card" onclick="openWordModal(1789224223969)">
       <div class="word-card-head">
         <div class="word-main">
           <div class="word-spelling">virtue</div>
@@ -2280,36 +2337,45 @@ The ship's manifest listed 200 containers of electronic goods.
           <span class="word-tag cat-kaoyan">考研</span>
         </div>
       </div>
-      <div class="word-meaning">底层核心动作：男人拥有的力量/勇武 → 引申为优秀的品质/美德 → 再引申为事物的优点/功效
-
-词根：拉丁语 virtus = 男子气概、勇武，来自 vir（男人）。古人认为"美德"本质是"男子力量"的体现，后泛化为一切优秀的品质。
-
-1.实物/具体：美德、品德（道德层面的优秀品质）
-Honesty is not a virtue that can be turned on and off at will.
-诚实不是一种可以随意开关的美德。
-
-2.生活/物资：优点、长处（某事物的优良特质）
-The virtue of this approach is its simplicity.
-这种方法的优点在于简单。
-
-3.抽象：效力、功效（凭借...的力量）
-by virtue of 凭借、由于
-He was promoted by virtue of his outstanding performance.
-他凭借出色的表现而获得晋升。
-
-派生词：virtuous adj. 有道德的；virtually adv. 几乎、实际上</div>
-      <div class="word-example"><div style="font-style:italic;">例句1（影视剧台词）： 《唐顿庄园》 "By virtue of his position as the eldest son, he inherited the entire estate." — 凭借长子的身份，他继承了整座庄园。
-
-例句2（考研真题风格）： The researcher argued that the chief virtue of the new methodology lay in its ability to eliminate confounding variables that had plagued earlier studies. 研究团队；最初的；方法论；消除；混淆变量；困扰 （研究者认为，新方法的主要优点在于它能消除困扰早期研究的混淆变量。）</div></div>
+      <div class="word-meaning-full"><div class="word-detail"><div class="wd-block">
+      <div class="wd-core">男人拥有的力量/勇武 → 引申为优秀的品质/美德 → 再引申为事物的优点/功效</div>
+    </div><div class="wd-block">
+      <div class="wd-label">词根</div>
+      <div class="wd-root">词根：拉丁语 virtus = 男子气概、勇武，来自 vir（男人）。古人认为"美德"本质是"男子力量"的体现，后泛化为一切优秀的品质。</div>
+    </div><div class="wd-block">
+        <div class="wd-label">释义</div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">1.</span>
+            <span class="wd-meaning-cat">实物/具体</span>
+            <span class="wd-meaning-text">美德、品德（道德层面的优秀品质）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">Honesty is not a virtue that can be turned on and off at will.</div><div class="wd-example-cn">诚实不是一种可以随意开关的美德。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">2.</span>
+            <span class="wd-meaning-cat">生活/物资</span>
+            <span class="wd-meaning-text">优点、长处（某事物的优良特质）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">The virtue of this approach is its simplicity.</div><div class="wd-example-cn">这种方法的优点在于简单。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">3.</span>
+            <span class="wd-meaning-cat">抽象</span>
+            <span class="wd-meaning-text">效力、功效（凭借...的力量）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">by virtue of 凭借、由于</div><div class="wd-example-cn">He was promoted by virtue of his outstanding performance.</div></div></div></div><div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">Honesty is not a virtue that can be turned on and off at will.</div>
+    </div><div class="wd-block">
+      <div class="wd-derivatives"><strong>派生词：</strong>virtuous adj. 有道德的；virtually adv. 几乎、实际上</div>
+    </div></div></div>
       <div class="word-card-footer">
         <div class="word-status">
           <span class="status-dot new"></span>
           <span>未学习<span class="en-sub-inline">New</span></span>
-          
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
-          <button class="word-action-btn" onclick="cycleWordStatus(1789143184238)">✓ 标记</button>
-          <button class="word-action-btn danger" onclick="deleteWord(1789143184238)">删除<span class="en-sub-inline">Delete</span></button>
+          <button class="word-action-btn" onclick="cycleWordStatus(1789224223969)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789224223969)">删除<span class="en-sub-inline">Delete</span></button>
         </div>
       </div>
     </div></div>
@@ -2332,22 +2398,22 @@ He was promoted by virtue of his outstanding performance.
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">本月支出<span class="en-sub">Monthly Expense</span></div>
-            <div class="stat-value red" id="statExpense">¥1243.71</div>
-            <div class="stat-sub" id="statExpenseSub">共 63 笔 · 63 entries</div>
+            <div class="stat-value red" id="statExpense">¥1382.31</div>
+            <div class="stat-sub" id="statExpenseSub">共 68 笔 · 68 entries</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">本月收入<span class="en-sub">Monthly Income</span></div>
-            <div class="stat-value green" id="statIncome">¥800.00</div>
-            <div class="stat-sub" id="statIncomeSub">共 2 笔 · 2 entries</div>
+            <div class="stat-value green" id="statIncome">¥830.00</div>
+            <div class="stat-sub" id="statIncomeSub">共 3 笔 · 3 entries</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">本月结余<span class="en-sub">Balance</span></div>
-            <div class="stat-value blue" id="statBalance">¥-443.71</div>
+            <div class="stat-value blue" id="statBalance">¥-552.31</div>
             <div class="stat-sub" id="statBalanceSub">收入 - 支出<span class="en-sub">Income - Expense</span></div>
           </div>
           <div class="stat-card">
             <div class="stat-label">日均支出<span class="en-sub">Daily Avg</span></div>
-            <div class="stat-value" id="statDaily">¥103.64</div>
+            <div class="stat-value" id="statDaily">¥115.19</div>
             <div class="stat-sub" id="statDailySub">本月平均<span class="en-sub">Monthly average</span></div>
           </div>
         </div>
@@ -2388,27 +2454,27 @@ He was promoted by virtue of his outstanding performance.
       <div class="bar-amount">¥373.40</div>
     </div><div class="bar-row">
       <div class="bar-label">🍽 餐饮</div>
-      <div class="bar-track"><div class="bar-fill" style="width:55.84213797389683%; background:#FFA07A;">¥216</div></div>
-      <div class="bar-amount">¥215.64</div>
+      <div class="bar-track"><div class="bar-fill" style="width:73.91754713072302%; background:#FFA07A;">¥285</div></div>
+      <div class="bar-amount">¥285.44</div>
     </div><div class="bar-row">
       <div class="bar-label">🚇 交通</div>
-      <div class="bar-track"><div class="bar-fill" style="width:43.14532836130102%; background:#B983FF;">¥167</div></div>
-      <div class="bar-amount">¥166.61</div>
-    </div><div class="bar-row">
-      <div class="bar-label">📋 其他</div>
-      <div class="bar-track"><div class="bar-fill" style="width:18.386161176714317%; background:#F0A500;">¥71</div></div>
-      <div class="bar-amount">¥71.00</div>
+      <div class="bar-track"><div class="bar-fill" style="width:45.47596851046199%; background:#B983FF;">¥176</div></div>
+      <div class="bar-amount">¥175.61</div>
     </div><div class="bar-row">
       <div class="bar-label">🎮 娱乐</div>
-      <div class="bar-track"><div class="bar-fill" style="width:4.661280298321939%; background:#5B8FF9;">¥18</div></div>
-      <div class="bar-amount">¥18.00</div>
+      <div class="bar-track"><div class="bar-fill" style="width:19.629169256266835%; background:#F0A500;">¥76</div></div>
+      <div class="bar-amount">¥75.80</div>
+    </div><div class="bar-row">
+      <div class="bar-label">📋 其他</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18.386161176714317%; background:#5B8FF9;">¥71</div></div>
+      <div class="bar-amount">¥71.00</div>
     </div><div class="bar-row">
       <div class="bar-label">🛒 购物</div>
-      <div class="bar-track"><div class="bar-fill" style="width:3.3405842137973902%; background:#95A5A6;">¥13</div></div>
-      <div class="bar-amount">¥12.90</div>
+      <div class="bar-track"><div class="bar-fill" style="width:3.858504246944272%; background:#95A5A6;">¥15</div></div>
+      <div class="bar-amount">¥14.90</div>
     </div></div>
         </div>
-        <div class="content-count">共 <strong id="txResultCount">65</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
+        <div class="content-count">共 <strong id="txResultCount">71</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
         <div class="cards-grid" id="txGrid">
     <div class="card tx-card" onclick="openTxModal(1789180493267.5444)">
       <div class="tx-card-head">
@@ -2426,6 +2492,120 @@ He was promoted by virtue of his outstanding performance.
         <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn danger" onclick="deleteTx(1789180493267.5444)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789196049255.7856)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥3.00</div>
+      </div>
+      <div class="tx-desc">约巴</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789196049255.7856)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789212643707.3123)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#B983FF22;">🎮</div>
+          <div>
+            <div class="tx-cat-name">娱乐<span class="en-sub-inline">Entertainment</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥57.80</div>
+      </div>
+      <div class="tx-desc">双人拼豆</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789212643707.3123)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789214105969.9956)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FFA07A22;">🛒</div>
+          <div>
+            <div class="tx-cat-name">购物<span class="en-sub-inline">Shopping</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥2.00</div>
+      </div>
+      <div class="tx-desc">拼豆扣</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789214105969.9956)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789217927837.9824)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥69.80</div>
+      </div>
+      <div class="tx-desc">晚饭-牛排</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789217927837.9824)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789220604893.1887)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥6.00</div>
+      </div>
+      <div class="tx-desc">骑了两次青桔</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789220604893.1887)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789222926968.1826)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#95A5A622;">📋</div>
+          <div>
+            <div class="tx-cat-name">其他<span class="en-sub-inline">Other</span></div>
+            <div class="tx-date">2026-09-12</div>
+          </div>
+        </div>
+        <div class="tx-amount income">+¥30.00</div>
+      </div>
+      <div class="tx-desc">刘美旗a拼豆</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge income">收入<span class="en-sub-inline">Income</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789222926968.1826)">删除<span class="en-sub-inline">Delete</span></button>
         </div>
       </div>
     </div>
@@ -3720,8 +3900,28 @@ He was promoted by virtue of his outstanding performance.
         <input type="text" class="form-input" id="wordPhonetic" placeholder="如: /əˈbændən/">
       </div>
       <div class="form-group">
+        <label class="form-label">底层逻辑含义<span class="en-sub">Core Logic</span></label>
+        <input type="text" class="form-input" id="wordCoreAction" placeholder="如: 把控制权交出去 → 放弃 → 抛弃">
+      </div>
+      <div class="form-group">
+        <label class="form-label">词根<span class="en-sub">Root</span></label>
+        <textarea class="form-textarea" id="wordRoot" placeholder="如: 拉丁语 abandonare = 放弃，来自 a-（去、远离）+ bannus（禁令）。字面意思是'被禁止、放逐'。" style="font-size:13px; min-height:60px;"></textarea>
+      </div>
+      <div class="form-group">
         <label class="form-label">释义 *<span class="en-sub">Meaning</span></label>
-        <textarea class="form-textarea" id="wordMeaning" placeholder="如: v. 放弃，抛弃"></textarea>
+        <textarea class="form-textarea" id="wordMeaning" placeholder="每点之间空一行，格式：
+分类：释义
+英文例句
+中文翻译
+
+如：
+实物/具体：美德、品德（道德层面的优秀品质）
+Honesty is not a virtue that can be turned on and off at will.
+诚实不是一种可以随意开关的美德。
+
+生活/物资：优点、长处（某事物的优良特质）
+The virtue of this approach is its simplicity.
+这种方法的优点在于简单。" style="min-height:120px; font-size:13px;"></textarea>
       </div>
       <div class="form-group">
         <label class="form-label">例句<span class="en-sub">Example</span></label>
@@ -4156,15 +4356,278 @@ const SEED_WORDS = [
     ],
     derivatives: 'acknowledgment n. 承认、致谢；acknowledged adj. 公认的',
     category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 8, sm2: { ef: 2.6, interval: 30, repetition: 4, nextReview: Date.now() + 86400000 * 20, lastReview: Date.now() - 86400000 * 8 } },
-  { id: 4, word: 'adequate', phonetic: '/ˈædɪkwət/', meaning: 'adj. 充足的，足够的，胜任的', example: 'The supply is adequate for our needs.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 7, sm2: { ef: 2.4, interval: 2, repetition: 1, nextReview: Date.now(), lastReview: Date.now() - 86400000 * 7 } },
-  { id: 5, word: 'advocate', phonetic: '/ˈædvəkeɪt/', meaning: 'v. 提倡，主张；n. 拥护者', example: 'They advocate for equal rights.', category: 'kaoyan', level: 'A', status: 'new', createdAt: Date.now() - 86400000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 6, word: 'aesthetic', phonetic: '/iːsˈθetɪk/', meaning: 'adj. 审美的，美学的', example: 'The building has great aesthetic value.', category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 5, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 7, word: 'allocate', phonetic: '/ˈæləkeɪt/', meaning: 'v. 分配，分派', example: 'We allocated funds for the project.', category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 4, sm2: { ef: 2.36, interval: 1, repetition: 1, nextReview: Date.now() + 86400000, lastReview: Date.now() - 86400000 * 4 } },
-  { id: 8, word: 'ambiguous', phonetic: '/æmˈbɪɡjuəs/', meaning: 'adj. 模糊的，模棱两可的', example: 'His answer was ambiguous.', category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 3, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 9, word: 'anticipate', phonetic: '/ænˈtɪsɪpeɪt/', meaning: 'v. 预期，预料，期盼', example: 'We anticipate a successful outcome.', category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 2, sm2: { ef: 2.8, interval: 30, repetition: 5, nextReview: Date.now() + 86400000 * 30, lastReview: Date.now() - 86400000 * 2 } },
-  { id: 10, word: 'bizarre', phonetic: '/bɪˈzɑː/', meaning: 'adj. 奇异的，古怪的', example: 'A bizarre sequence of events.', category: 'ielts', level: 'B', status: 'new', createdAt: Date.now() - 86400000, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
-  { id: 11, word: 'compensate', phonetic: '/ˈkɒmpenseɪt/', meaning: 'v. 补偿，赔偿', example: 'The company compensated for the loss.', category: 'cet6', level: 'A', status: 'learning', createdAt: Date.now() - 3600000 * 12, sm2: { ef: 2.5, interval: 5, repetition: 2, nextReview: Date.now(), lastReview: Date.now() - 3600000 * 12 } },
-  { id: 12, word: 'deteriorate', phonetic: '/dɪˈtɪəriəreɪt/', meaning: 'v. 恶化，变坏', example: 'His health deteriorated rapidly.', category: 'toefl', level: 'B', status: 'new', createdAt: Date.now() - 3600000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
+  { id: 4, word: 'adequate', phonetic: '/ˈædɪkwət/',
+    meaning: 'adj. 充足的，足够的，胜任的',
+    coreAction: '达到相等的水平 → 数量或质量刚好够用 → 充足的、胜任的',
+    root: '拉丁语 adaequare = 使相等，来自 ad-（去）+ aequare（使平等），aequus = 平等的。字面意思是"使...达到相等的程度"，即"足够的、充足的"。',
+    meanings: [
+      {
+        category: '数量/程度',
+        text: '足够的、充足的（数量上够用）',
+        exampleEn: 'The supply is adequate for our needs.',
+        exampleCn: '供应量足够满足我们的需求。'
+      },
+      {
+        category: '能力/质量',
+        text: '胜任的、合格的（质量上达标）',
+        exampleEn: 'She is adequate for the position of manager.',
+        exampleCn: '她胜任经理这个职位。'
+      }
+    ],
+    derivatives: 'adequacy n. 足够、胜任；adequately adv. 充分地；inadequate adj. 不足的（反义）',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'Although the resources allocated to the project were barely adequate, the research team managed to produce results that exceeded initial expectations.',
+        vocab: '分配；资源；几乎不；充足的；研究团队；设法；超出；最初的预期',
+        translation: '尽管分配给该项目的资源勉强够用，研究团队还是设法取得了超出最初预期的成果。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 7, sm2: { ef: 2.4, interval: 2, repetition: 1, nextReview: Date.now(), lastReview: Date.now() - 86400000 * 7 } },
+  { id: 5, word: 'advocate', phonetic: '/ˈædvəkeɪt/',
+    meaning: 'v. 提倡，主张；n. 拥护者',
+    coreAction: '把声音喊出来 → 公开支持某件事 → 提倡、主张',
+    root: '拉丁语 advocare = 召唤、为...说话，来自 ad-（向）+ vocare（喊叫、呼唤），vox = 声音。字面意思是"为...发声"，即"提倡、拥护"。',
+    meanings: [
+      {
+        category: '动作/行为',
+        text: '提倡、主张（公开支持某种观点或政策）',
+        exampleEn: 'They advocate for equal rights for all citizens.',
+        exampleCn: '他们主张所有公民享有平等权利。'
+      },
+      {
+        category: '人物身份',
+        text: '拥护者、倡导者（支持某事物的人）',
+        exampleEn: 'She is a strong advocate of environmental protection.',
+        exampleCn: '她是环保的坚定拥护者。'
+      }
+    ],
+    derivatives: 'advocacy n. 提倡、拥护；advocator n. 倡导者',
+    longExamples: [
+      {
+        source: '影视剧台词 · 《傲骨贤妻》',
+        text: '"I have always been an advocate for second chances — but not when they come at the expense of justice."',
+        translation: '我一直主张给人第二次机会——但不能以牺牲正义为代价。'
+      },
+      {
+        source: '考研真题风格',
+        text: 'Many scholars advocate for a more interdisciplinary approach to climate research, arguing that isolated disciplinary studies fail to capture the complexity of environmental systems.',
+        vocab: '学者；提倡；跨学科的；方法；气候研究；认为；孤立的；学科研究；未能；捕捉；复杂性；环境系统',
+        translation: '许多学者主张采用更跨学科的方法进行气候研究，认为孤立的学科研究无法捕捉环境系统的复杂性。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'new', createdAt: Date.now() - 86400000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
+  { id: 6, word: 'aesthetic', phonetic: '/iːsˈθetɪk/',
+    meaning: 'adj. 审美的，美学的',
+    coreAction: '通过感官去感知 → 对美的感知和判断 → 审美的、美学的',
+    root: '希腊语 aisthetikos = 感知的、感觉的，来自 aisthesthai（感知、感觉）。字面意思是"与感官感知相关的"，后专指"对美的感知"，即"审美的"。',
+    meanings: [
+      {
+        category: '艺术/设计',
+        text: '审美的、美学的（与美和艺术相关）',
+        exampleEn: 'The building has great aesthetic value.',
+        exampleCn: '这座建筑具有很高的美学价值。'
+      },
+      {
+        category: '外观/感受',
+        text: '有美感的、悦目的（外观上令人愉悦）',
+        exampleEn: 'The room was arranged with great aesthetic care.',
+        exampleCn: '房间的布置很有美感。'
+      }
+    ],
+    derivatives: 'aesthetics n. 美学；aesthetically adv. 在美学上；anaesthetic n. 麻醉剂（无感觉）',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'The design team argued that aesthetic considerations should not be separated from functional requirements, as both contribute to the overall user experience.',
+        vocab: '设计团队；认为；美学的；考虑；分开；功能的；需求；两者都；促成；整体的；用户体验',
+        translation: '设计团队认为，美学考虑不应与功能需求分开，因为两者都有助于整体用户体验。'
+      }
+    ],
+    category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 5, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
+  { id: 7, word: 'allocate', phonetic: '/ˈæləkeɪt/',
+    meaning: 'v. 分配，分派',
+    coreAction: '把东西按份额分出去 → 分配资源、资金、时间等 → 分派、分配',
+    root: '拉丁语 allocare = 分配、分派，来自 ad-（去）+ locare（放置、安置），locus = 地方。字面意思是"放到各自的位置上"，即"分配、分派"。',
+    meanings: [
+      {
+        category: '资源/资金',
+        text: '分配、划拨（资源、资金、时间等）',
+        exampleEn: 'We allocated funds for the new project.',
+        exampleCn: '我们为新项目划拨了资金。'
+      },
+      {
+        category: '任务/人员',
+        text: '分派、指派（任务或人员）',
+        exampleEn: 'The manager allocated each team member a specific task.',
+        exampleCn: '经理给每个团队成员分派了具体任务。'
+      }
+    ],
+    derivatives: 'allocation n. 分配、配额；allocator n. 分配器',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'The government allocated a substantial portion of its budget to renewable energy, a decision that was widely praised by environmental organizations.',
+        vocab: '政府；分配；大量的；部分；预算；可再生能源；决定；广泛地；赞扬；环保组织',
+        translation: '政府将其预算的很大一部分分配给了可再生能源，这一决定受到了环保组织的广泛赞扬。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'learning', createdAt: Date.now() - 86400000 * 4, sm2: { ef: 2.4, interval: 2, repetition: 1, nextReview: Date.now() + 86400000, lastReview: Date.now() - 86400000 * 4 } },
+  { id: 8, word: 'ambiguous', phonetic: '/æmˈbɪɡjuəs/',
+    meaning: 'adj. 模糊的，模棱两可的',
+    coreAction: '两边都走 → 不确定走哪一边 → 含糊不清的、模棱两可的',
+    root: '拉丁语 ambiguus = 可疑的、不确定的，来自 ambi-（两边、周围）+ agere（驱动、走）。字面意思是"两边都能走"，即"不确定的、模棱两可的"。',
+    meanings: [
+      {
+        category: '语言/表达',
+        text: '含糊的、模棱两可的（意思不明确）',
+        exampleEn: 'His answer was deliberately ambiguous.',
+        exampleCn: '他的回答故意模棱两可。'
+      },
+      {
+        category: '情况/信号',
+        text: '不明确的、有歧义的（有多种解释）',
+        exampleEn: 'The results of the experiment were ambiguous.',
+        exampleCn: '实验结果不明确。'
+      }
+    ],
+    derivatives: 'ambiguity n. 歧义、含糊；ambiguously adv. 含糊地；unambiguous adj. 明确的（反义）',
+    longExamples: [
+      {
+        source: '影视剧台词 · 《纸牌屋》',
+        text: '"Power is a lot like real estate. It\'s all about location, location, location. The closer you are to the source, the higher your property value." — 权力很像房地产，关键就是位置、位置、还是位置。离源头越近，你的价值就越高。',
+        translation: '权力很像房地产，关键就是位置、位置、还是位置。离源头越近，你的价值就越高。'
+      },
+      {
+        source: '考研真题风格',
+        text: 'The ambiguous wording of the policy document led to confusion among local officials, who struggled to determine how to implement the new regulations effectively.',
+        vocab: '模糊的；措辞；政策文件；导致；困惑；地方官员；努力；确定；实施；新规定；有效地',
+        translation: '政策文件中模糊的措辞导致了地方官员的困惑，他们难以确定如何有效实施新规定。'
+      }
+    ],
+    category: 'kaoyan', level: 'B', status: 'new', createdAt: Date.now() - 86400000 * 3, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
+  { id: 9, word: 'anticipate', phonetic: '/ænˈtɪsɪpeɪt/',
+    meaning: 'v. 预期，预料，期盼',
+    coreAction: '提前拿在手里 → 事先做好准备 → 预期、预料',
+    root: '拉丁语 anticipare = 提前行动，来自 ante-（之前）+ capere（拿、取）。字面意思是"提前拿到"，即"预期、预料"。',
+    meanings: [
+      {
+        category: '认知/判断',
+        text: '预期、预料（事先想到会发生）',
+        exampleEn: 'We anticipate a successful outcome to the negotiations.',
+        exampleCn: '我们预期谈判会取得成功。'
+      },
+      {
+        category: '情感/期待',
+        text: '期盼、期待（怀着希望等待）',
+        exampleEn: 'She eagerly anticipated his return home.',
+        exampleCn: '她热切地期盼着他回家。'
+      }
+    ],
+    derivatives: 'anticipation n. 预期、期待；anticipatory adj. 预期的；unanticipated adj. 意料之外的',
+    longExamples: [
+      {
+        source: '影视剧台词 · 《哈利·波特》',
+        text: '"It does not do to dwell on dreams and forget to live." — 沉湎于虚幻的梦想而忘记现实的生活，这是毫无益处的。',
+        translation: '沉湎于虚幻的梦想而忘记现实的生活，这是毫无益处的。'
+      },
+      {
+        source: '考研真题风格',
+        text: 'Researchers anticipated that the new drug would reduce symptoms significantly, but the actual results were even more promising than expected.',
+        vocab: '研究人员；预期；新药；减轻；症状；显著地；实际的；结果；甚至更；有希望的；预期的',
+        translation: '研究人员预期新药会显著减轻症状，但实际结果甚至比预期的更令人期待。'
+      }
+    ],
+    category: 'kaoyan', level: 'A', status: 'mastered', createdAt: Date.now() - 86400000 * 2, sm2: { ef: 2.7, interval: 30, repetition: 5, nextReview: Date.now() + 86400000 * 30, lastReview: Date.now() - 86400000 * 2 } },
+  { id: 10, word: 'bizarre', phonetic: '/bɪˈzɑː/',
+    meaning: 'adj. 奇异的，古怪的',
+    coreAction: '胡子长得很奇怪 → 外表异常奇特 → 古怪的、奇异的',
+    root: '法语 bizarre = 奇怪的、奇异的，来自意大利语 bizarro（勇敢的、暴躁的），bizza = 胡子。原意可能指"留着奇怪胡子的人"，后引申为"古怪的、奇异的"。',
+    meanings: [
+      {
+        category: '外观/行为',
+        text: '古怪的、奇异的（非常不寻常）',
+        exampleEn: 'A bizarre sequence of events unfolded that day.',
+        exampleCn: '那天发生了一连串奇异的事件。'
+      },
+      {
+        category: '风格/品味',
+        text: '怪诞的、离奇的（超出常理）',
+        exampleEn: 'He wore a bizarre outfit to the party.',
+        exampleCn: '他穿了一套怪诞的服装去参加派对。'
+      }
+    ],
+    derivatives: 'bizarrely adv. 古怪地；bizarreness n. 古怪、奇异',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'At first glance, the theory seemed bizarre and implausible, but further investigation revealed it was actually supported by substantial empirical evidence.',
+        vocab: '乍一看；理论；似乎；古怪的；难以置信的；进一步的；调查；揭示；实际上；支持；大量的；经验证据',
+        translation: '乍一看，这个理论似乎古怪且难以置信，但进一步的调查显示它实际上有大量经验证据支持。'
+      }
+    ],
+    category: 'ielts', level: 'B', status: 'new', createdAt: Date.now() - 86400000, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
+  { id: 11, word: 'compensate', phonetic: '/ˈkɒmpenseɪt/',
+    meaning: 'v. 补偿，赔偿',
+    coreAction: '把重量称平 → 抵消不平衡 → 补偿、赔偿',
+    root: '拉丁语 compensare = 称重、抵消，来自 com-（一起）+ pensare（称量、支付），pendere = 悬挂、称量。字面意思是"放在一起称量使平衡"，即"补偿、抵消"。',
+    meanings: [
+      {
+        category: '损失/伤害',
+        text: '补偿、赔偿（弥补损失或伤害）',
+        exampleEn: 'The company compensated the workers for their injuries.',
+        exampleCn: '公司对工人的受伤进行了赔偿。'
+      },
+      {
+        category: '不足/缺陷',
+        text: '弥补、抵消（用优势补不足）',
+        exampleEn: 'Her enthusiasm compensates for her lack of experience.',
+        exampleCn: '她的热情弥补了经验的不足。'
+      }
+    ],
+    derivatives: 'compensation n. 补偿、赔偿金；compensatory adj. 补偿性的；uncompensated adj. 无偿的',
+    longExamples: [
+      {
+        source: '影视剧台词 · 《绝命律师》',
+        text: '"You don\'t compensate for failure by pointing out someone else\'s failure." — 你不能通过指出别人的失败来弥补自己的失败。',
+        translation: '你不能通过指出别人的失败来弥补自己的失败。'
+      },
+      {
+        source: '考研真题风格',
+        text: 'Many argue that financial compensation alone cannot compensate for the psychological damage caused by workplace discrimination, calling for broader policy reforms.',
+        vocab: '许多人认为；经济补偿；仅仅；不能；弥补；心理伤害；导致；职场歧视；呼吁；更广泛的；政策改革',
+        translation: '许多人认为，仅仅经济补偿无法弥补职场歧视造成的心理伤害，他们呼吁进行更广泛的政策改革。'
+      }
+    ],
+    category: 'cet6', level: 'A', status: 'learning', createdAt: Date.now() - 3600000 * 12, sm2: { ef: 2.5, interval: 5, repetition: 2, nextReview: Date.now(), lastReview: Date.now() - 3600000 * 12 } },
+  { id: 12, word: 'deteriorate', phonetic: '/dɪˈtɪəriəreɪt/',
+    meaning: 'v. 恶化，变坏',
+    coreAction: '比原来更差 → 情况逐渐变坏 → 恶化、退化',
+    root: '拉丁语 deteriorare = 使更坏，来自 deterior = 更坏的，de-（向下、减少）+ 比较级后缀 -terior。字面意思是"变得比以前更差"，即"恶化、变坏"。',
+    meanings: [
+      {
+        category: '健康/身体',
+        text: '恶化、变坏（身体状况变差）',
+        exampleEn: 'His health deteriorated rapidly after the surgery.',
+        exampleCn: '手术后他的健康状况迅速恶化。'
+      },
+      {
+        category: '关系/局势',
+        text: '恶化、退化（情况或关系变坏）',
+        exampleEn: 'Relations between the two countries deteriorated significantly.',
+        exampleCn: '两国关系显著恶化。'
+      }
+    ],
+    derivatives: 'deterioration n. 恶化、退化；deteriorating adj. 不断恶化的；improve v. 改善（反义）',
+    longExamples: [
+      {
+        source: '考研真题风格',
+        text: 'Scientists warn that if carbon emissions continue to rise at the current rate, the global climate will deteriorate beyond the point of recovery within this century.',
+        vocab: '科学家；警告；如果；碳排放；继续；上升；目前的；速度；全球气候；恶化；超出；恢复的；临界点；本世纪内',
+        translation: '科学家警告说，如果碳排放继续以目前的速度增长，全球气候将在本世纪内恶化到无法恢复的地步。'
+      }
+    ],
+    category: 'toefl', level: 'B', status: 'new', createdAt: Date.now() - 3600000 * 6, sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } },
 ];
 
 function genSeedTxs() {
@@ -4304,7 +4767,7 @@ function enterApp() {
   words = DB.load(DB.wordsKey(currentUser), null);
   txs = DB.load(DB.txsKey(currentUser), null);
   if (!words) { words = [...SEED_WORDS]; DB.save(DB.wordsKey(currentUser), words); }
-  else { migrateWordsSm2(); }
+  else { migrateWordsSm2(); migrateWordsStructured(); }
   if (!txs) { txs = [...SEED_TXS]; DB.save(DB.txsKey(currentUser), txs); }
   document.getElementById('txDate').value = new Date().toISOString().slice(0,10);
   updateSyncTime();
@@ -4437,8 +4900,7 @@ function renderWords() {
           <span class="word-tag ${ci.cls}">${ci.label}</span>
         </div>
       </div>
-      <div class="word-meaning">${renderWordCardSummary(w)}</div>
-      ${renderWordCardExample(w)}
+      <div class="word-meaning-full">${renderWordDetail(w)}</div>
       <div class="word-card-footer">
         <div class="word-status">
           <span class="status-dot ${w.status}"></span>
@@ -4463,6 +4925,8 @@ function openWordModal(id) {
     document.getElementById('wordId').value = w.id;
     document.getElementById('wordSpelling').value = w.word;
     document.getElementById('wordPhonetic').value = w.phonetic || '';
+    document.getElementById('wordCoreAction').value = w.coreAction || '';
+    document.getElementById('wordRoot').value = w.root || '';
     document.getElementById('wordMeaning').value = w.meaning || '';
     document.getElementById('wordExample').value = w.example || '';
     document.getElementById('wordCategory').value = w.category;
@@ -4484,6 +4948,8 @@ function openWordModal(id) {
     document.getElementById('wordId').value = '';
     document.getElementById('wordSpelling').value = '';
     document.getElementById('wordPhonetic').value = '';
+    document.getElementById('wordCoreAction').value = '';
+    document.getElementById('wordRoot').value = '';
     document.getElementById('wordMeaning').value = '';
     document.getElementById('wordExample').value = '';
     document.getElementById('wordCategory').value = 'kaoyan';
@@ -4494,6 +4960,38 @@ function openWordModal(id) {
   }
   modal.classList.add('show');
 }
+
+// Load demo structured words (add if not already present)
+function loadDemoWords() {
+  if (!words || !Array.isArray(words)) return;
+  let added = 0;
+  const now = Date.now();
+  for (const seed of SEED_WORDS) {
+    // Only add structured seed words (those with meanings array)
+    if (!seed.meanings || seed.meanings.length === 0) continue;
+    // Check if already exists
+    const exists = words.some(w => w.word && w.word.toLowerCase() === seed.word.toLowerCase());
+    if (exists) continue;
+    // Deep copy and assign new id
+    const newWord = JSON.parse(JSON.stringify(seed));
+    newWord.id = Date.now() + added;
+    newWord.createdAt = now;
+    if (newWord.sm2) {
+      newWord.sm2.nextReview = now;
+      newWord.sm2.lastReview = 0;
+    }
+    words.unshift(newWord);
+    added++;
+  }
+  if (added > 0) {
+    DB.save(DB.wordsKey(currentUser), words);
+    renderWords();
+    showToast('已添加 ' + added + ' 个示例单词');
+  } else {
+    showToast('示例单词已经都在啦');
+  }
+}
+
 function saveWord() {
   const sp = document.getElementById('wordSpelling').value.trim();
   const mn = document.getElementById('wordMeaning').value.trim();
@@ -4503,6 +5001,8 @@ function saveWord() {
     const w = words.find(x => x.id === Number(id));
     if (w) {
       w.word = sp; w.phonetic = document.getElementById('wordPhonetic').value.trim();
+      w.coreAction = document.getElementById('wordCoreAction').value.trim();
+      w.root = document.getElementById('wordRoot').value.trim();
       w.meaning = mn; w.example = document.getElementById('wordExample').value.trim();
       w.category = document.getElementById('wordCategory').value;
       w.level = document.getElementById('wordLevel').value;
@@ -4524,7 +5024,7 @@ function saveWord() {
     }
     showToast('单词已更新');
   } else {
-    words.push({ id: Date.now(), word: sp, phonetic: document.getElementById('wordPhonetic').value.trim(), meaning: mn, example: document.getElementById('wordExample').value.trim(), category: document.getElementById('wordCategory').value, level: document.getElementById('wordLevel').value, status: document.getElementById('wordStatus').value, createdAt: Date.now(), sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } });
+    words.push({ id: Date.now(), word: sp, phonetic: document.getElementById('wordPhonetic').value.trim(), coreAction: document.getElementById('wordCoreAction').value.trim(), root: document.getElementById('wordRoot').value.trim(), meaning: mn, example: document.getElementById('wordExample').value.trim(), category: document.getElementById('wordCategory').value, level: document.getElementById('wordLevel').value, status: document.getElementById('wordStatus').value, createdAt: Date.now(), sm2: { ef: 2.5, interval: 0, repetition: 0, nextReview: Date.now(), lastReview: 0 } });
     showToast('单词已添加');
   }
   DB.save(DB.wordsKey(currentUser), words);
@@ -4578,13 +5078,46 @@ function migrateWordsSm2() {
       // Set initial status based on existing word status
       if (w.status === 'mastered') {
         w.sm2.repetition = 3;
-        w.sm2.interval = 15;
-        w.sm2.nextReview = now + 86400000 * 15;
+        w.sm2.interval = 30;
+        w.sm2.nextReview = now + 86400000 * 30;
       } else if (w.status === 'learning') {
         w.sm2.repetition = 1;
-        w.sm2.interval = 1;
-        w.sm2.nextReview = now;
+        w.sm2.interval = 2;
+        w.sm2.nextReview = now + 86400000 * 2;
       }
+      changed = true;
+    }
+    // Fix old intervals that exceed max
+    if (w.sm2.interval > 30) {
+      w.sm2.interval = 30;
+      changed = true;
+    }
+  }
+  if (changed) DB.save(DB.wordsKey(currentUser), words);
+}
+
+// Migrate existing words to structured format using SEED_WORDS data
+function migrateWordsStructured() {
+  let changed = false;
+  for (const w of words) {
+    // Skip if already has structured data
+    if (w.meanings && w.meanings.length > 0) continue;
+    if (w.coreAction) continue;
+    
+    // Find matching seed word
+    const seed = SEED_WORDS.find(s => s.word && s.word.toLowerCase() === w.word.toLowerCase());
+    if (!seed) continue;
+    
+    // Copy structured fields from seed
+    if (seed.coreAction && !w.coreAction) { w.coreAction = seed.coreAction; changed = true; }
+    if (seed.root && !w.root) { w.root = seed.root; changed = true; }
+    if (seed.meanings && seed.meanings.length > 0 && (!w.meanings || w.meanings.length === 0)) {
+      w.meanings = JSON.parse(JSON.stringify(seed.meanings));
+      changed = true;
+    }
+    if (seed.derivatives && !w.derivatives) { w.derivatives = seed.derivatives; changed = true; }
+    if (seed.longExamples && seed.longExamples.length > 0 && (!w.longExamples || w.longExamples.length === 0)) {
+      w.longExamples = JSON.parse(JSON.stringify(seed.longExamples));
       changed = true;
     }
   }
@@ -5355,6 +5888,51 @@ function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').repl
 /* ============================================================
    Structured Word Detail Renderer
    ============================================================ */
+// 自动识别释义的逻辑分类
+function detectCategory(meaningText) {
+  if (!meaningText) return '';
+  const text = meaningText.toLowerCase();
+  
+  // 事实/观点类
+  if (/(承认|认可|认为|声称|断言|表明|证明|发现|确认|相信|怀疑|否认|同意|反对|观点|事实|真相|意见|看法)/.test(meaningText)) {
+    return '事实/观点';
+  }
+  // 情感/态度类
+  if (/(喜欢|讨厌|爱|恨|高兴|悲伤|愤怒|害怕|惊讶|羡慕|嫉妒|感激|满意|失望|担忧|焦虑|平静|激动|热情|冷漠|态度|情感|情绪)/.test(meaningText)) {
+    return '情感/态度';
+  }
+  // 动作/行为类
+  if (/(做|进行|执行|完成|实现|达成|创造|建造|生产|制造|发展|提高|增加|减少|改变|转变|移动|推动|阻止|允许|禁止|要求|请求|建议|决定|行动|行为)/.test(meaningText)) {
+    return '动作/行为';
+  }
+  // 数量/程度类
+  if (/(足够|充足|大量|少量|许多|很少|非常|极其|相当|比较|几乎|完全|部分|全部|程度|数量|多少|大小|高低)/.test(meaningText)) {
+    return '数量/程度';
+  }
+  // 能力/质量类
+  if (/(能够|可以|能力|才能|技能|擅长|胜任|合格|优秀|糟糕|质量|品质|水平|标准)/.test(meaningText)) {
+    return '能力/质量';
+  }
+  // 关系/联系类
+  if (/(关系|联系|关联|涉及|关于|属于|包含|组成|结构|系统|网络|连接|结合|分离|独立)/.test(meaningText)) {
+    return '关系/联系';
+  }
+  // 时间/过程类
+  if (/(时间|时期|阶段|过程|进程|经历|持续|开始|结束|已经|正在|将要|以前|以后|同时|先后)/.test(meaningText)) {
+    return '时间/过程';
+  }
+  // 社交/礼仪类
+  if (/(感谢|道歉|欢迎|告别|祝贺|祝福|礼貌|礼仪|社交|交往|沟通|交流|表达|致意)/.test(meaningText)) {
+    return '社交/礼仪';
+  }
+  // 状态/属性类
+  if (/(是|为|具有|拥有|存在|状态|属性|特征|特点|性质|形式|样子|形状|颜色|大小)/.test(meaningText)) {
+    return '状态/属性';
+  }
+  
+  return '';
+}
+
 // Render structured word detail HTML
 // Word can have structured fields: coreAction, root, meanings[], derivatives, longExamples[]
 // Falls back to simple meaning/example if no structured data
@@ -5379,7 +5957,6 @@ function renderWordDetail(w, compact) {
   // 底层核心动作
   if (w.coreAction) {
     html += `<div class="wd-block">
-      <div class="wd-label">底层核心动作：</div>
       <div class="wd-core">${esc(w.coreAction)}</div>
     </div>`;
   }
@@ -5387,30 +5964,92 @@ function renderWordDetail(w, compact) {
   // 词根
   if (w.root) {
     html += `<div class="wd-block">
-      <div class="wd-label">词根：</div>
+      <div class="wd-label">词根</div>
       <div class="wd-root">${esc(w.root)}</div>
     </div>`;
   }
   
-  // 分层释义
+  // 简单释义（编辑表单填写的，按空行分段，每段为一点）
+  if (w.meaning && !(w.meanings && w.meanings.length > 0)) {
+    const points = w.meaning.split(/\n\s*\n/).map(s => s.trim()).filter(s => s);
+    let derivText = '';
+    const meaningPoints = [];
+    
+    for (const pt of points) {
+      const firstLine = pt.split(/\n/)[0].trim();
+      if (/^派生词[:：]/.test(firstLine)) {
+        derivText = firstLine.replace(/^派生词[:：]\s*/, '');
+      } else {
+        meaningPoints.push(pt);
+      }
+    }
+    
+    if (derivText && !w.derivatives) {
+      w.derivatives = derivText;
+    }
+    
+    if (meaningPoints.length > 0) {
+      html += `<div class="wd-block">
+        <div class="wd-label">释义</div>`;
+      for (let i = 0; i < meaningPoints.length; i++) {
+        const lines = meaningPoints[i].split(/\n/).map(s => s.trim()).filter(s => s);
+        let cat = '';
+        let text = lines[0] || '';
+        const colonMatch = text.match(/^(.+?)[:：](.+)/);
+        if (colonMatch) {
+          cat = colonMatch[1].trim();
+          text = colonMatch[2].trim();
+        }
+        html += `<div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">${i + 1}.</span>
+            ${cat ? `<span class="wd-meaning-cat">${esc(cat)}</span>` : ''}
+            <span class="wd-meaning-text">${esc(text)}</span>
+          </div>`;
+        if (lines[1]) {
+          html += `<div class="wd-example-box">
+            <div class="wd-example-en">${esc(lines[1])}</div>`;
+          if (lines[2]) {
+            html += `<div class="wd-example-cn">${esc(lines[2])}</div>`;
+          }
+          html += '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+  }
+  
+  // 简单例句（编辑表单填写的）
+  if (w.example && !(w.meanings && w.meanings.length > 0)) {
+    html += `<div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">${esc(w.example)}</div>
+    </div>`;
+  }
+  
+  // 分层释义（结构化数据）
   if (w.meanings && w.meanings.length > 0) {
     html += '<div class="wd-block">';
     for (let i = 0; i < w.meanings.length; i++) {
       const m = w.meanings[i];
+      const cat = m.category || detectCategory(m.text || m.meaning || '');
       html += `<div class="wd-meaning">
         <div class="wd-meaning-line">
           <span class="wd-meaning-num">${i + 1}.</span>
-          ${m.category ? `<span class="wd-meaning-cat">${esc(m.category)}：</span>` : ''}
+          ${cat ? `<span class="wd-meaning-cat">${esc(cat)}</span>` : ''}
           <span class="wd-meaning-text">${esc(m.text || m.meaning || '')}</span>
         </div>`;
       if (m.phrase) {
         html += `<div class="wd-phrase">${esc(m.phrase)}</div>`;
       }
       if (m.exampleEn) {
-        html += `<div class="wd-example-en">${esc(m.exampleEn)}</div>`;
+        html += `<div class="wd-example-box">
+          <div class="wd-example-en">${esc(m.exampleEn)}</div>`;
         if (m.exampleCn) {
           html += `<div class="wd-example-cn">${esc(m.exampleCn)}</div>`;
         }
+        html += '</div>';
       }
       html += '</div>';
     }
@@ -5420,7 +6059,7 @@ function renderWordDetail(w, compact) {
   // 派生词
   if (w.derivatives) {
     html += `<div class="wd-block">
-      <div class="wd-derivatives">派生词：${esc(w.derivatives)}</div>
+      <div class="wd-derivatives"><strong>派生词：</strong>${esc(w.derivatives)}</div>
     </div>`;
   }
   
