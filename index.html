@@ -2195,7 +2195,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item active" data-section="words" onclick="switchSection('words')">
         <span class="nav-icon">📘</span>
         <div class="nav-label"><span>英语单词</span><span class="en-sub">Vocabulary</span></div>
-        <span class="nav-badge" id="wordCountBadge">1</span>
+        <span class="nav-badge" id="wordCountBadge">2</span>
       </div>
     </div>
 
@@ -2226,7 +2226,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 23:13</span>
+        <span id="syncTime">已保存本地 00:13</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2260,13 +2260,13 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
-        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">0</span></button>
+        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">1</span></button>
         <button class="topbar-btn" onclick="loadDemoWords()">📚 示例单词<span class="en-sub-inline">Demo</span></button>
         <button class="topbar-btn primary" onclick="openWordModal()">+ 新增单词<span class="en-sub-inline">Add</span></button>
       </div>
       <div class="top-tabs">
-        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">1</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">0</span></div>
+        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">2</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">1</span></div>
         <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">1</span></div>
         <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
       </div>
@@ -2274,7 +2274,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">单词总量<span class="en-sub">Total Words</span></div>
-            <div class="stat-value green" id="statTotal">1</div>
+            <div class="stat-value green" id="statTotal">2</div>
             <div class="stat-sub" id="statTotalSub">收录单词</div>
           </div>
           <div class="stat-card">
@@ -2284,12 +2284,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
-            <div class="stat-value" id="statDueToday" style="color:var(--warning)">0</div>
+            <div class="stat-value" id="statDueToday" style="color:var(--warning)">1</div>
             <div class="stat-sub" id="statDueTodaySub">学习中 1 个 · 1 learning</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">0</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">1</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2324,8 +2324,61 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
             </div>
           </div>
         </div>
-        <div class="content-count">共 <strong id="wordResultCount">1</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
+        <div class="content-count">共 <strong id="wordResultCount">2</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
         <div class="cards-grid" id="wordGrid">
+    <div class="card word-card" onclick="openWordModal(1789226502338)">
+      <div class="word-card-head">
+        <div class="word-main">
+          <div class="word-spelling">manifest</div>
+          
+        </div>
+        <div class="word-tags">
+          <span class="word-tag a-level">A</span>
+          <span class="word-tag cat-kaoyan">考研</span>
+        </div>
+      </div>
+      <div class="word-meaning-full"><div class="word-detail"><div class="wd-block">
+      <div class="wd-core">用手抓住、敲打使其显现 → 引申为清楚地显示、表明</div>
+    </div><div class="wd-block">
+      <div class="wd-label">词根</div>
+      <div class="wd-root">词根：拉丁语 manifestus = 用手抓住的、可触摸的，来自 manus（手）+ festus（敲击）。字面意思是"用手能摸到的"，即"明显的、显而易见的"。</div>
+    </div><div class="wd-block">
+        <div class="wd-label">释义</div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">1.</span>
+            <span class="wd-meaning-cat">实物/具体</span>
+            <span class="wd-meaning-text">明显的、清楚的（adj. 看得见摸得着的）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">His surprise was manifest to everyone in the room.</div><div class="wd-example-cn">他的惊讶对屋里每个人来说都是显而易见的。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">2.</span>
+            <span class="wd-meaning-cat">生活/物资</span>
+            <span class="wd-meaning-text">表明、证明、显示（v. 使...显现出来）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">The symptoms manifested themselves within hours of exposure.</div><div class="wd-example-cn">症状在接触后几小时内就显现出来了。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">3.</span>
+            <span class="wd-meaning-cat">抽象</span>
+            <span class="wd-meaning-text">载货清单/旅客名单（n. 运输清单，"显现出来"的货物列表）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">The ship's manifest listed 200 containers of electronic goods.</div><div class="wd-example-cn">船舶载货清单列出了200个电子产品的集装箱。</div></div></div></div><div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">例句1（影视剧台词）：<br>《神探夏洛克》 "His guilt was manifest in every nervous gesture he made." <br>— 他的罪恶感在每一个紧张的举动中表露无遗。<br><br>例句2（考研真题风格）：<br> The study suggests that chronic stress can manifest as both physical symptoms and psychological disorders, making it difficult for clinicians to identify the root cause without comprehensive assessment. 慢性压力；身体症状；心理障碍；临床医生；根本原因；全面评估 <br>（研究表明，慢性压力可表现为身体症状和心理障碍，这使得临床医生难以在不进行全面评估的情况下确定根本原因。）</div>
+    </div><div class="wd-block">
+      <div class="wd-derivatives"><strong>派生词：</strong>manifestation n. 表现、显示；manifesto n. 宣言</div>
+    </div></div></div>
+      <div class="word-card-footer">
+        <div class="word-status">
+          <span class="status-dot new"></span>
+          <span>未学习<span class="en-sub-inline">New</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+        </div>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn" onclick="cycleWordStatus(1789226502338)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789226502338)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
     <div class="card word-card" onclick="openWordModal(1789224223969)">
       <div class="word-card-head">
         <div class="word-main">
@@ -2363,7 +2416,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div><div class="wd-example-box">
             <div class="wd-example-en">by virtue of 凭借、由于</div><div class="wd-example-cn">He was promoted by virtue of his outstanding performance.</div></div></div></div><div class="wd-block">
       <div class="wd-label">例句</div>
-      <div class="wd-example-plain">Honesty is not a virtue that can be turned on and off at will.</div>
+      <div class="wd-example-plain">例句1（影视剧台词）： 《唐顿庄园》 "By virtue of his position as the eldest son, he inherited the entire estate." — 凭借长子的身份，他继承了整座庄园。<br><br>例句2（考研真题风格）： The researcher argued that the chief virtue of the new methodology lay in its ability to eliminate confounding variables that had plagued earlier studies. 研究团队；最初的；方法论；消除；混淆变量；困扰 （研究者认为，新方法的主要优点在于它能消除困扰早期研究的混淆变量。）</div>
     </div><div class="wd-block">
       <div class="wd-derivatives"><strong>派生词：</strong>virtuous adj. 有道德的；virtually adv. 几乎、实际上</div>
     </div></div></div>
@@ -2413,7 +2466,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">日均支出<span class="en-sub">Daily Avg</span></div>
-            <div class="stat-value" id="statDaily">¥115.19</div>
+            <div class="stat-value" id="statDaily">¥106.33</div>
             <div class="stat-sub" id="statDailySub">本月平均<span class="en-sub">Monthly average</span></div>
           </div>
         </div>
@@ -4036,34 +4089,15 @@ The virtue of this approach is its simplicity.
     </div>
     <div class="modal-body" id="reviewBody">
       <div class="review-mode-tabs" style="display:flex; gap:8px; margin-bottom:16px;">
-        <div class="review-mode-tab" id="modeTabCard" onclick="switchReviewMode('card')">
+        <div class="review-mode-tab active" id="modeTabCard" onclick="switchReviewMode('card')">
           🃏 卡片模式<span class="en-sub-inline">Flashcard</span>
         </div>
-        <div class="review-mode-tab active" id="modeTabType" onclick="switchReviewMode('type')">
+        <div class="review-mode-tab" id="modeTabType" onclick="switchReviewMode('type')">
           ⌨️ 答题模式<span class="en-sub-inline">Typing</span>
         </div>
       </div>
       <div id="reviewProgress" style="text-align:center; font-size:13px; color:var(--text-3); margin-bottom:16px;"></div>
-      <div id="reviewCardContainer">
-      <div style="padding:30px 0; text-align:center;">
-        <div style="font-size:56px;">🎉</div>
-        <div style="font-size:20px; font-weight:700; margin:12px 0;">复习完成！<span class="en-sub-inline">Complete!</span></div>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0; max-width:360px; margin-left:auto; margin-right:auto;">
-          <div style="background:var(--bg); padding:12px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:700; color:var(--primary);">1</div>
-            <div style="font-size:11px; color:var(--text-3);">总数<span class="en-sub-inline">Total</span></div>
-          </div>
-          <div style="background:var(--bg); padding:12px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:700; color:var(--success);">100%</div>
-            <div style="font-size:11px; color:var(--text-3);">正确率<span class="en-sub-inline">Pass rate</span></div>
-          </div>
-          <div style="background:var(--bg); padding:12px; border-radius:8px;">
-            <div style="font-size:24px; font-weight:700; color:var(--warning);">0</div>
-            <div style="font-size:11px; color:var(--text-3);">需复习<span class="en-sub-inline">To re-review</span></div>
-          </div>
-        </div>
-        <button class="btn primary" onclick="closeModal('reviewModal')">完成<span class="en-sub-inline">Done</span></button>
-      </div></div>
+      <div id="reviewCardContainer"></div>
       <div id="sm2Ratings" style="display:none;">
         <div style="text-align:center; font-size:13px; color:var(--text-2); margin-bottom:8px; font-weight:500;">你记得这个单词吗？<span class="en-sub-inline">How well did you recall?</span></div>
         <div class="sm2-ratings">
@@ -6072,11 +6106,12 @@ function renderWordDetail(w, compact) {
     }
   }
   
-  // 简单例句（编辑表单填写的）
+  // 简单例句（编辑表单填写的，保留空格空行换行格式）
   if (w.example && !(w.meanings && w.meanings.length > 0)) {
+    const exampleHtml = esc(w.example).replace(/\n/g, '<br>').replace(/  /g, '&nbsp; ');
     html += `<div class="wd-block">
       <div class="wd-label">例句</div>
-      <div class="wd-example-plain">${esc(w.example)}</div>
+      <div class="wd-example-plain">${exampleHtml}</div>
     </div>`;
   }
   
