@@ -655,6 +655,162 @@ body {
   color: var(--text-1);
 }
 
+/* Structured Word Detail */
+.word-detail {
+  line-height: 1.7;
+}
+.word-detail .wd-section {
+  margin-bottom: 14px;
+}
+.word-detail .wd-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+}
+.word-detail .wd-core {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding: 10px 12px;
+  background: rgba(107, 142, 75, 0.06);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+.word-detail .wd-root {
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+.word-detail .wd-meaning {
+  padding: 10px 0 4px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.word-detail .wd-meaning:last-child {
+  border-bottom: none;
+}
+.word-detail .wd-meaning-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.word-detail .wd-meaning-num {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 15px;
+  min-width: 20px;
+}
+.word-detail .wd-meaning-cat {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: rgba(107, 142, 75, 0.1);
+  color: var(--primary);
+  border-radius: 20px;
+  font-weight: 600;
+}
+.word-detail .wd-meaning-text {
+  font-size: 14px;
+  color: var(--text-1);
+  font-weight: 500;
+}
+.word-detail .wd-phrase {
+  display: inline-block;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 4px 4px 0 0;
+  color: var(--text-2);
+  font-weight: 600;
+}
+.word-detail .wd-example {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 2px solid var(--primary);
+}
+.word-detail .wd-example-en {
+  font-size: 12.5px;
+  color: var(--text-1);
+  margin-bottom: 3px;
+  font-style: italic;
+}
+.word-detail .wd-example-cn {
+  font-size: 12px;
+  color: var(--text-3);
+}
+.word-detail .wd-derivatives {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+.word-detail .wd-derivatives strong {
+  color: var(--text-1);
+}
+.word-detail .wd-example-block {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, rgba(107,142,75,0.05) 0%, rgba(107,142,75,0.02) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(107,142,75,0.15);
+}
+.word-detail .wd-example-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.word-detail .wd-example-source {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.word-detail .wd-example-en-long {
+  font-size: 12.5px;
+  color: var(--text-1);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.word-detail .wd-vocab-list {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin: 6px 0;
+  line-height: 1.6;
+}
+.word-detail .wd-vocab-list span {
+  display: inline-block;
+  margin-right: 2px;
+}
+.word-detail .wd-example-cn-long {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding-top: 4px;
+  border-top: 1px dashed var(--border-light);
+}
+
+/* Card mode back side with structured layout */
+.flip-card-back .word-detail {
+  width: 100%;
+  text-align: left;
+  max-height: 100%;
+  overflow-y: auto;
+}
+.flip-card-back .card-meaning-structured {
+  width: 100%;
+  text-align: left;
+}
+
 @media (max-width: 768px) {
   .flip-card { min-height: 220px; }
   .flip-card-front, .flip-card-back { min-height: 220px; }
@@ -1724,6 +1880,32 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .type-card .type-result.wrong .result-label { color: rgb(231, 76, 60); }
 .type-card .type-result .result-answer { font-size: 13px; color: var(--text-2); line-height: 1.6; }
 .type-card .type-result .result-answer strong { color: var(--text-1); }
+.word-detail { line-height: 1.7; }
+.word-detail .wd-section { margin-bottom: 14px; }
+.word-detail .wd-label { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 4px; letter-spacing: 0.3px; }
+.word-detail .wd-core { font-size: 13px; color: var(--text-2); line-height: 1.7; padding: 10px 12px; background: rgba(107, 142, 75, 0.06); border-radius: 8px; border-left: 3px solid var(--primary); }
+.word-detail .wd-root { font-size: 12.5px; color: var(--text-2); line-height: 1.7; padding: 10px 12px; background: var(--bg); border-radius: 8px; }
+.word-detail .wd-meaning { padding: 10px 0px 4px; border-bottom: 1px solid var(--border-light); }
+.word-detail .wd-meaning:last-child { border-bottom: none; }
+.word-detail .wd-meaning-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.word-detail .wd-meaning-num { font-weight: 700; color: var(--primary); font-size: 15px; min-width: 20px; }
+.word-detail .wd-meaning-cat { font-size: 11px; padding: 2px 8px; background: rgba(107, 142, 75, 0.1); color: var(--primary); border-radius: 20px; font-weight: 600; }
+.word-detail .wd-meaning-text { font-size: 14px; color: var(--text-1); font-weight: 500; }
+.word-detail .wd-phrase { display: inline-block; font-size: 12px; background: var(--bg); padding: 2px 8px; border-radius: 4px; margin: 4px 4px 0px 0px; color: var(--text-2); font-weight: 600; }
+.word-detail .wd-example { margin-top: 8px; padding: 8px 10px; background: var(--bg); border-radius: 6px; border-left: 2px solid var(--primary); }
+.word-detail .wd-example-en { font-size: 12.5px; color: var(--text-1); margin-bottom: 3px; font-style: italic; }
+.word-detail .wd-example-cn { font-size: 12px; color: var(--text-3); }
+.word-detail .wd-derivatives { font-size: 12.5px; color: var(--text-2); }
+.word-detail .wd-derivatives strong { color: var(--text-1); }
+.word-detail .wd-example-block { margin-top: 10px; padding: 10px 12px; background: linear-gradient(135deg, rgba(107, 142, 75, 0.05) 0%, rgba(107, 142, 75, 0.02) 100%); border-radius: 8px; border: 1px solid rgba(107, 142, 75, 0.15); }
+.word-detail .wd-example-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; background: var(--primary); color: rgb(255, 255, 255); border-radius: 4px; margin-bottom: 6px; }
+.word-detail .wd-example-source { font-size: 11px; color: var(--text-3); margin-bottom: 6px; font-weight: 600; }
+.word-detail .wd-example-en-long { font-size: 12.5px; color: var(--text-1); margin-bottom: 6px; line-height: 1.6; }
+.word-detail .wd-vocab-list { font-size: 11.5px; color: var(--text-3); margin: 6px 0px; line-height: 1.6; }
+.word-detail .wd-vocab-list span { display: inline-block; margin-right: 2px; }
+.word-detail .wd-example-cn-long { font-size: 12px; color: var(--text-2); line-height: 1.6; padding-top: 4px; border-top: 1px dashed var(--border-light); }
+.flip-card-back .word-detail { width: 100%; text-align: left; max-height: 100%; overflow-y: auto; }
+.flip-card-back .card-meaning-structured { width: 100%; text-align: left; }
 @media (max-width: 768px) {
   .flip-card { min-height: 220px; }
   .flip-card-front, .flip-card-back { min-height: 220px; }
@@ -1938,7 +2120,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 12:35</span>
+        <span id="syncTime">已保存本地 12:48</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2093,9 +2275,9 @@ The ship's manifest listed 200 containers of electronic goods.
 船舶载货清单列出了200个电子产品的集装箱。
 
 派生词：manifestation n. 表现、显示；manifesto n. 宣言</div>
-      <div class="word-example">例句1（影视剧台词）： 《神探夏洛克》 "His guilt was manifest in every nervous gesture he made." — 他的罪恶感在每一个紧张的举动中表露无遗。
+      <div class="word-example"><div style="font-style:italic;">例句1（影视剧台词）： 《神探夏洛克》 "His guilt was manifest in every nervous gesture he made." — 他的罪恶感在每一个紧张的举动中表露无遗。
 
-例句2（考研真题风格）： The study suggests that chronic stress can manifest as both physical symptoms and psychological disorders, making it difficult for clinicians to identify the root cause without comprehensive assessment. 慢性压力；身体症状；心理障碍；临床医生；根本原因；全面评估 （研究表明，慢性压力可表现为身体症状和心理障碍，这使得临床医生难以在不进行全面评估的情况下确定根本原因。）</div>
+例句2（考研真题风格）： The study suggests that chronic stress can manifest as both physical symptoms and psychological disorders, making it difficult for clinicians to identify the root cause without comprehensive assessment. 慢性压力；身体症状；心理障碍；临床医生；根本原因；全面评估 （研究表明，慢性压力可表现为身体症状和心理障碍，这使得临床医生难以在不进行全面评估的情况下确定根本原因。）</div></div>
       <div class="word-card-footer">
         <div class="word-status">
           <span class="status-dot new"></span>
@@ -2137,9 +2319,9 @@ He was promoted by virtue of his outstanding performance.
 他凭借出色的表现而获得晋升。
 
 派生词：virtuous adj. 有道德的；virtually adv. 几乎、实际上</div>
-      <div class="word-example">例句1（影视剧台词）： 《唐顿庄园》 "By virtue of his position as the eldest son, he inherited the entire estate." — 凭借长子的身份，他继承了整座庄园。
+      <div class="word-example"><div style="font-style:italic;">例句1（影视剧台词）： 《唐顿庄园》 "By virtue of his position as the eldest son, he inherited the entire estate." — 凭借长子的身份，他继承了整座庄园。
 
-例句2（考研真题风格）： The researcher argued that the chief virtue of the new methodology lay in its ability to eliminate confounding variables that had plagued earlier studies. 研究团队；最初的；方法论；消除；混淆变量；困扰 （研究者认为，新方法的主要优点在于它能消除困扰早期研究的混淆变量。）</div>
+例句2（考研真题风格）： The researcher argued that the chief virtue of the new methodology lay in its ability to eliminate confounding variables that had plagued earlier studies. 研究团队；最初的；方法论；消除；混淆变量；困扰 （研究者认为，新方法的主要优点在于它能消除困扰早期研究的混淆变量。）</div></div>
       <div class="word-card-footer">
         <div class="word-status">
           <span class="status-dot new"></span>
@@ -4198,8 +4380,8 @@ function renderWords() {
           <span class="word-tag ${ci.cls}">${ci.label}</span>
         </div>
       </div>
-      <div class="word-meaning">${esc(w.meaning)}</div>
-      ${w.example ? `<div class="word-example">${esc(w.example)}</div>` : ''}
+      <div class="word-meaning">${renderWordCardSummary(w)}</div>
+      ${renderWordCardExample(w)}
       <div class="word-card-footer">
         <div class="word-status">
           <span class="status-dot ${w.status}"></span>
@@ -4541,8 +4723,7 @@ function showReviewCard() {
           <div class="card-hint">👆 点击卡片查看释义 · Tap to reveal</div>
         </div>
         <div class="flip-card-back">
-          <div class="card-meaning">${esc(w.meaning)}</div>
-          ${w.example ? `<div class="card-example">${esc(w.example)}</div>` : ''}
+          <div class="card-meaning-structured">${renderWordDetail(w)}</div>
           <div class="card-hint-back">👆 再次点击返回正面 · Tap to flip back</div>
         </div>
       </div>
@@ -4699,14 +4880,14 @@ function submitTypeAnswer() {
     
     let answerDetail = '';
     if (typeDirection === 'en2cn') {
-      answerDetail = `正确释义：<strong>${esc(w.meaning)}</strong>`;
+      // en2cn: show structured detail
+      answerDetail = `<div style="margin-bottom:8px;"><span style="font-size:12px; font-weight:600; color:var(--text-2);">单词：</span><strong style="font-size:16px;">${esc(w.word)}</strong>${w.phonetic ? ` <span style="color:var(--text-3);">${esc(w.phonetic)}</span>` : ''}</div>`;
+      answerDetail += renderWordDetail(w);
     } else {
-      answerDetail = `正确拼写：<strong>${esc(w.word)}</strong>${w.phonetic ? ` ${esc(w.phonetic)}` : ''}<br>释义：${esc(w.meaning)}`;
+      answerDetail = `<div style="margin-bottom:8px;"><span style="font-size:12px; font-weight:600; color:var(--text-2);">正确拼写：</span><strong style="font-size:16px;">${esc(w.word)}</strong>${w.phonetic ? ` <span style="color:var(--text-3);">${esc(w.phonetic)}</span>` : ''}</div>`;
+      answerDetail += renderWordDetail(w);
     }
-    if (w.example) {
-      answerDetail += `<br><br>📖 例句：${esc(w.example)}`;
-    }
-    answerDetail += `<br><br>💡 评分：<strong>${quality}/5</strong> · ${quality >= 3 ? '间隔将延长' : '间隔将重置'}`;
+    answerDetail += `<div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--border-light); font-size:13px;">💡 评分：<strong>${quality}/5</strong> · ${quality >= 3 ? '间隔将延长' : '间隔将重置，稍后再复习'}</div>`;
     resultAnswer.innerHTML = answerDetail;
   }
   
@@ -4732,14 +4913,13 @@ function skipTypeAnswer() {
     
     let answerDetail = '';
     if (typeDirection === 'en2cn') {
-      answerDetail = `释义：<strong>${esc(w.meaning)}</strong>`;
+      answerDetail = `<div style="margin-bottom:8px;"><span style="font-size:12px; font-weight:600; color:var(--text-2);">单词：</span><strong style="font-size:16px;">${esc(w.word)}</strong>${w.phonetic ? ` <span style="color:var(--text-3);">${esc(w.phonetic)}</span>` : ''}</div>`;
+      answerDetail += renderWordDetail(w);
     } else {
-      answerDetail = `单词：<strong>${esc(w.word)}</strong>${w.phonetic ? ` ${esc(w.phonetic)}` : ''}<br>释义：${esc(w.meaning)}`;
+      answerDetail = `<div style="margin-bottom:8px;"><span style="font-size:12px; font-weight:600; color:var(--text-2);">单词：</span><strong style="font-size:16px;">${esc(w.word)}</strong>${w.phonetic ? ` <span style="color:var(--text-3);">${esc(w.phonetic)}</span>` : ''}</div>`;
+      answerDetail += renderWordDetail(w);
     }
-    if (w.example) {
-      answerDetail += `<br><br>📖 例句：${esc(w.example)}`;
-    }
-    answerDetail += `<br><br>💡 评分：<strong>0/5</strong> · 明天再来复习`;
+    answerDetail += `<div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--border-light); font-size:13px;">💡 评分：<strong>0/5</strong> · 明天再来复习</div>`;
     resultAnswer.innerHTML = answerDetail;
   }
   
@@ -5096,6 +5276,164 @@ function showToast(msg) {
   t._timer = setTimeout(() => t.classList.remove('show'), 2000);
 }
 function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ============================================================
+   Structured Word Detail Renderer
+   ============================================================ */
+// Render structured word detail HTML
+// Word can have structured fields: coreAction, root, meanings[], derivatives, longExamples[]
+// Falls back to simple meaning/example if no structured data
+function renderWordDetail(w, compact) {
+  // Check if word has structured data
+  const hasStructured = w && (w.coreAction || w.root || (w.meanings && w.meanings.length > 0) || w.derivatives || (w.longExamples && w.longExamples.length > 0));
+  
+  if (!hasStructured) {
+    // Fallback to simple format
+    let html = `<div style="font-size:14px; line-height:1.7;">${esc(w.meaning)}</div>`;
+    if (w.example) {
+      html += `<div style="margin-top:10px; font-size:12.5px; color:var(--text-2); background:var(--bg); padding:10px 12px; border-radius:8px; border-left:3px solid var(--primary); line-height:1.6;">${esc(w.example)}</div>`;
+    }
+    return html;
+  }
+  
+  let html = '<div class="word-detail">';
+  
+  // 底层核心动作
+  if (w.coreAction) {
+    html += `<div class="wd-section">
+      <div class="wd-label">💡 底层核心动作</div>
+      <div class="wd-core">${esc(w.coreAction)}</div>
+    </div>`;
+  }
+  
+  // 词根
+  if (w.root) {
+    html += `<div class="wd-section">
+      <div class="wd-label">🌱 词根词源</div>
+      <div class="wd-root">${esc(w.root)}</div>
+    </div>`;
+  }
+  
+  // 分层释义
+  if (w.meanings && w.meanings.length > 0) {
+    html += '<div class="wd-section">';
+    html += '<div class="wd-label">📖 分层释义</div>';
+    for (let i = 0; i < w.meanings.length; i++) {
+      const m = w.meanings[i];
+      html += `<div class="wd-meaning">
+        <div class="wd-meaning-head">
+          <span class="wd-meaning-num">${i + 1}.</span>
+          ${m.category ? `<span class="wd-meaning-cat">${esc(m.category)}</span>` : ''}
+          <span class="wd-meaning-text">${esc(m.text || m.meaning || '')}</span>
+        </div>`;
+      if (m.phrase) {
+        html += `<div><span class="wd-phrase">${esc(m.phrase)}</span></div>`;
+      }
+      if (m.exampleEn) {
+        html += `<div class="wd-example">
+          <div class="wd-example-en">${esc(m.exampleEn)}</div>
+          ${m.exampleCn ? `<div class="wd-example-cn">${esc(m.exampleCn)}</div>` : ''}
+        </div>`;
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  
+  // 派生词
+  if (w.derivatives) {
+    html += `<div class="wd-section">
+      <div class="wd-label">🔗 派生词</div>
+      <div class="wd-derivatives">${esc(w.derivatives)}</div>
+    </div>`;
+  }
+  
+  // 精选长例句
+  if (w.longExamples && w.longExamples.length > 0) {
+    for (let i = 0; i < w.longExamples.length; i++) {
+      const ex = w.longExamples[i];
+      html += '<div class="wd-example-block">';
+      html += `<span class="wd-example-tag">例句${i + 1}</span>`;
+      if (ex.source) {
+        html += `<div class="wd-example-source">${esc(ex.source)}</div>`;
+      }
+      if (ex.text) {
+        html += `<div class="wd-example-en-long">${esc(ex.text)}</div>`;
+      }
+      if (ex.vocab) {
+        const words = ex.vocab.split(/[；;]/).filter(v => v.trim());
+        html += '<div class="wd-vocab-list">';
+        for (let j = 0; j < words.length; j++) {
+          html += `<span>${esc(words[j].trim())}${j < words.length - 1 ? '；' : ''}</span>`;
+        }
+        html += '</div>';
+      }
+      if (ex.translation) {
+        html += `<div class="wd-example-cn-long">${esc(ex.translation)}</div>`;
+      }
+      html += '</div>';
+    }
+  }
+  
+  html += '</div>';
+  return html;
+}
+
+// Render a compact summary for word cards on the list page
+function renderWordCardSummary(w) {
+  const hasStructured = w && (w.coreAction || w.root || (w.meanings && w.meanings.length > 0));
+  if (!hasStructured) {
+    return esc(w.meaning || '');
+  }
+  
+  let html = '';
+  // Show core action if available
+  if (w.coreAction) {
+    html += `<div style="font-size:12px; color:var(--primary); font-weight:600; margin-bottom:4px;">💡 ${esc(w.coreAction.split('→')[0].trim())}</div>`;
+  }
+  // Show first meaning
+  if (w.meanings && w.meanings.length > 0) {
+    const first = w.meanings[0];
+    html += `<div style="font-size:13px; line-height:1.6;">`;
+    if (first.category) {
+      html += `<span style="font-size:10px; padding:1px 6px; background:rgba(107,142,75,0.1); color:var(--primary); border-radius:8px; font-weight:600; margin-right:6px;">${esc(first.category)}</span>`;
+    }
+    html += esc(first.text || first.meaning || '');
+    html += '</div>';
+    // Show more count
+    if (w.meanings.length > 1) {
+      html += `<div style="font-size:11px; color:var(--text-3); margin-top:4px;">还有 ${w.meanings.length - 1} 层释义 →</div>`;
+    }
+  } else if (w.meaning) {
+    html += esc(w.meaning);
+  }
+  return html;
+}
+
+// Render example for word card (first meaning's example or word.example)
+function renderWordCardExample(w) {
+  if (!w) return '';
+  let exampleEn = '';
+  let exampleCn = '';
+  
+  if (w.meanings && w.meanings.length > 0 && w.meanings[0].exampleEn) {
+    exampleEn = w.meanings[0].exampleEn;
+    exampleCn = w.meanings[0].exampleCn || '';
+  } else if (w.example) {
+    exampleEn = w.example;
+  }
+  
+  if (!exampleEn) return '';
+  
+  let html = '<div class="word-example">';
+  html += `<div style="font-style:italic;">${esc(exampleEn)}</div>`;
+  if (exampleCn) {
+    html += `<div style="font-size:11px; color:var(--text-3); margin-top:3px;">${esc(exampleCn)}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
 function exportData() {
   const data = { words, txs, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
