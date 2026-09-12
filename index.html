@@ -2226,7 +2226,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 23:00</span>
+        <span id="syncTime">已保存本地 23:13</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2260,14 +2260,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
-        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">1</span></button>
+        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">0</span></button>
         <button class="topbar-btn" onclick="loadDemoWords()">📚 示例单词<span class="en-sub-inline">Demo</span></button>
         <button class="topbar-btn primary" onclick="openWordModal()">+ 新增单词<span class="en-sub-inline">Add</span></button>
       </div>
       <div class="top-tabs">
         <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">1</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">1</span></div>
-        <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">0</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">0</span></div>
+        <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">1</span></div>
         <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
       </div>
       <div class="content-area">
@@ -2284,12 +2284,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
-            <div class="stat-value" id="statDueToday" style="color:var(--warning)">1</div>
-            <div class="stat-sub" id="statDueTodaySub">学习中 0 个 · 0 learning</div>
+            <div class="stat-value" id="statDueToday" style="color:var(--warning)">0</div>
+            <div class="stat-sub" id="statDueTodaySub">学习中 1 个 · 1 learning</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">1</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">0</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2369,9 +2369,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     </div></div></div>
       <div class="word-card-footer">
         <div class="word-status">
-          <span class="status-dot new"></span>
-          <span>未学习<span class="en-sub-inline">New</span></span>
-          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+          <span class="status-dot learning"></span>
+          <span>学习中<span class="en-sub-inline">Learning</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 3 天后</span>
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn" onclick="cycleWordStatus(1789224223969)">✓ 标记</button>
@@ -4036,15 +4036,34 @@ The virtue of this approach is its simplicity.
     </div>
     <div class="modal-body" id="reviewBody">
       <div class="review-mode-tabs" style="display:flex; gap:8px; margin-bottom:16px;">
-        <div class="review-mode-tab active" id="modeTabCard" onclick="switchReviewMode('card')">
+        <div class="review-mode-tab" id="modeTabCard" onclick="switchReviewMode('card')">
           🃏 卡片模式<span class="en-sub-inline">Flashcard</span>
         </div>
-        <div class="review-mode-tab" id="modeTabType" onclick="switchReviewMode('type')">
+        <div class="review-mode-tab active" id="modeTabType" onclick="switchReviewMode('type')">
           ⌨️ 答题模式<span class="en-sub-inline">Typing</span>
         </div>
       </div>
       <div id="reviewProgress" style="text-align:center; font-size:13px; color:var(--text-3); margin-bottom:16px;"></div>
-      <div id="reviewCardContainer"></div>
+      <div id="reviewCardContainer">
+      <div style="padding:30px 0; text-align:center;">
+        <div style="font-size:56px;">🎉</div>
+        <div style="font-size:20px; font-weight:700; margin:12px 0;">复习完成！<span class="en-sub-inline">Complete!</span></div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0; max-width:360px; margin-left:auto; margin-right:auto;">
+          <div style="background:var(--bg); padding:12px; border-radius:8px;">
+            <div style="font-size:24px; font-weight:700; color:var(--primary);">1</div>
+            <div style="font-size:11px; color:var(--text-3);">总数<span class="en-sub-inline">Total</span></div>
+          </div>
+          <div style="background:var(--bg); padding:12px; border-radius:8px;">
+            <div style="font-size:24px; font-weight:700; color:var(--success);">100%</div>
+            <div style="font-size:11px; color:var(--text-3);">正确率<span class="en-sub-inline">Pass rate</span></div>
+          </div>
+          <div style="background:var(--bg); padding:12px; border-radius:8px;">
+            <div style="font-size:24px; font-weight:700; color:var(--warning);">0</div>
+            <div style="font-size:11px; color:var(--text-3);">需复习<span class="en-sub-inline">To re-review</span></div>
+          </div>
+        </div>
+        <button class="btn primary" onclick="closeModal('reviewModal')">完成<span class="en-sub-inline">Done</span></button>
+      </div></div>
       <div id="sm2Ratings" style="display:none;">
         <div style="text-align:center; font-size:13px; color:var(--text-2); margin-bottom:8px; font-weight:500;">你记得这个单词吗？<span class="en-sub-inline">How well did you recall?</span></div>
         <div class="sm2-ratings">
@@ -5293,9 +5312,31 @@ function showReviewCard() {
     // Typing mode: random direction
     typeDirection = Math.random() < 0.5 ? 'en2cn' : 'cn2en';
     const directionLabel = typeDirection === 'en2cn' ? '英译中 · EN → CN' : '中译英 · CN → EN';
-    const questionText = typeDirection === 'en2cn' ? w.word : w.meaning;
     const phoneticText = typeDirection === 'en2cn' ? (w.phonetic || '') : '';
     const placeholder = typeDirection === 'en2cn' ? '输入中文释义...' : '输入英文单词...';
+
+    // 中译英模式：生成精简中文提示，不搬出全部释义
+    let cnQuestion = '';
+    if (typeDirection === 'cn2en') {
+      if (w.coreAction) {
+        // 优先用核心动作链条作为提示
+        cnQuestion = w.coreAction;
+      } else if (w.meaning) {
+        // 没有核心动作，从释义中提取要点（每点第一行）
+        const points = w.meaning.split(/\n\s*\n/).map(s => s.trim()).filter(s => s);
+        const parts = [];
+        for (const pt of points) {
+          const firstLine = pt.split(/\n/)[0].trim();
+          if (/^派生词[:：]/.test(firstLine)) continue;
+          // 去掉分类标签前缀，只要释义内容
+          const colonMatch = firstLine.match(/^(.+?)[:：](.+)/);
+          parts.push(colonMatch ? colonMatch[2].trim() : firstLine);
+        }
+        cnQuestion = parts.join('；');
+      }
+      if (!cnQuestion) cnQuestion = w.meaning || '';
+    }
+    const questionText = typeDirection === 'en2cn' ? w.word : cnQuestion;
 
     container.innerHTML = `
       <div class="type-card">
@@ -5362,49 +5403,60 @@ function checkAnswer(userAnswer, correctAnswer, direction) {
   if (!userAns) return 0;
 
   if (direction === 'en2cn') {
-    // English to Chinese: check if user's Chinese meaning matches
-    // Since Chinese meanings can be expressed in many ways, we do a lenient check
-    const correct = correctAnswer.trim();
-    // Remove all spaces and punctuation for comparison
+    // English to Chinese: extract keywords from structured meaning, then compare
     const normalize = (s) => s.replace(/[\s，。、；：""''（）【】\.\,\;\:\'\"\(\)\[\]]/g, '').toLowerCase();
     const userNorm = normalize(userAns);
-    const correctNorm = normalize(correct);
     
-    // Exact match = perfect (5)
-    if (userNorm === correctNorm) return 5;
+    // 从多段释义中提取关键词
+    // correctAnswer 是 w.meaning，可能是多段格式（空行分隔，每段含分类、释义、例句）
+    const points = correctAnswer.split(/\n\s*\n/).map(s => s.trim()).filter(s => s);
+    const keywords = [];
     
-    // Check if user's answer contains the core meaning
-    // Extract key words from correct answer (remove part-of-speech tags like "v.", "n.", etc.)
-    const meaningOnly = correct.replace(/^[a-z]+\.\s*/i, '').trim();
-    const meaningNorm = normalize(meaningOnly);
+    for (const pt of points) {
+      const lines = pt.split(/\n/).map(s => s.trim()).filter(s => s);
+      const firstLine = lines[0] || '';
+      if (/^派生词[:：]/.test(firstLine)) continue; // 跳过派生词段
+      
+      // 去掉分类标签前缀，只取释义内容
+      let text = firstLine;
+      const colonMatch = firstLine.match(/^(.+?)[:：](.+)/);
+      if (colonMatch) {
+        text = colonMatch[2].trim();
+      }
+      // 去掉括号补充说明
+      text = text.replace(/（[^）]*）/g, '').replace(/\([^)]*\)/g, '');
+      // 按、，,；; 分割成关键词
+      const parts = text.split(/[，,、；;]/).map(p => p.trim()).filter(p => p);
+      keywords.push(...parts);
+    }
     
-    if (userNorm === meaningNorm) return 5;
+    // 如果没有提取到关键词（非多段格式），回退到旧逻辑
+    if (keywords.length === 0) {
+      const meaningOnly = correctAnswer.replace(/^[a-z]+\.\s*/i, '').trim();
+      const parts = meaningOnly.split(/[，,；;]/).map(p => normalize(p)).filter(p => p.length > 0);
+      keywords.push(...parts);
+    }
     
-    // Check partial match: does user answer contain parts of the correct meaning?
-    // Split correct meaning by common separators
-    const parts = meaningOnly.split(/[，,；;]/).map(p => normalize(p)).filter(p => p.length > 0);
+    const keywordNorms = keywords.map(k => normalize(k)).filter(k => k.length > 0);
+    if (keywordNorms.length === 0) return 1;
+    
+    // 完全匹配（用户答案去标点后包含所有关键词）
+    const allMatched = keywordNorms.every(k => userNorm.includes(k));
+    if (allMatched) return 5;
+    
+    // 统计匹配的关键词数量
     let matchCount = 0;
-    for (const part of parts) {
-      if (userNorm.includes(part) || part.includes(userNorm)) {
+    for (const kn of keywordNorms) {
+      if (userNorm.includes(kn) || kn.includes(userNorm)) {
         matchCount++;
       }
     }
     
-    if (parts.length > 0) {
-      const matchRatio = matchCount / parts.length;
-      if (matchRatio >= 1) return 4; // all parts matched but not exact
-      if (matchRatio >= 0.5) return 3; // half matched
-      if (matchRatio > 0) return 2; // some partial match
-    }
-    
-    // Check if single character matches (for very short meanings)
-    if (meaningNorm.length <= 3 && userNorm.length <= 3) {
-      let charMatches = 0;
-      for (const c of userNorm) {
-        if (meaningNorm.includes(c)) charMatches++;
-      }
-      if (charMatches >= meaningNorm.length * 0.7) return 3;
-    }
+    const matchRatio = matchCount / keywordNorms.length;
+    if (matchRatio >= 1) return 5;
+    if (matchRatio >= 0.6) return 4;
+    if (matchRatio >= 0.3) return 3;
+    if (matchRatio > 0) return 2;
     
     return 1; // wrong answer but maybe vaguely familiar
   } else {
