@@ -169,8 +169,8 @@ body {
 .sort-opt:hover { background: var(--primary-lighter); color: var(--text); }
 .sort-opt.active { background: var(--primary-light); color: var(--primary-dark); font-weight: 600; }
 
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; }
+.cards-grid { columns: 320px; column-gap: 16px; }
+.card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; break-inside: avoid; margin-bottom: 16px; }
 .card:hover { box-shadow: var(--shadow-hover); border-color: var(--primary-light); transform: translateY(-1px); }
 
 .word-card { padding: 16px; }
@@ -254,12 +254,16 @@ body {
   margin: 12px;
   border-radius: 8px;
   position: relative;
-  cursor: pointer;
   overflow: hidden;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.dyl-thumb-link {
+  display: block;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.dyl-thumb-link:hover .dyl-thumb {
+  filter: brightness(1.05);
 }
 
 .dyl-content {
@@ -271,23 +275,6 @@ body {
   min-width: 0;
 }
 
-/* 缩略图 */
-.dyl-play-icon {
-  width: 36px;
-  height: 36px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.dyl-play-icon svg {
-  width: 18px;
-  height: 18px;
-  margin-left: 2px;
-}
 .dyl-duration {
   position: absolute;
   bottom: 6px;
@@ -306,13 +293,16 @@ body {
   font-weight: 600;
   color: var(--text);
   line-height: 1.5;
-  cursor: pointer;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.dyl-title:hover {
+.dyl-title-link {
+  text-decoration: none;
+  display: block;
+}
+.dyl-title-link:hover .dyl-title {
   color: var(--primary-dark);
 }
 .dyl-tags-inline {
@@ -374,10 +364,15 @@ body {
   font-weight: 500;
   color: var(--text-2);
   transition: all 0.15s;
+  text-decoration: none;
 }
 .dyl-action-btn:hover {
   background: var(--border-light);
   color: var(--text-1);
+}
+.dyl-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .dyl-btn-icon {
   font-size: 13px;
@@ -2012,8 +2007,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .sort-opt { padding: 3px 8px; font-size: 12px; color: var(--text-3); cursor: pointer; border-radius: var(--radius-sm); transition: 0.15s; }
 .sort-opt:hover { background: var(--primary-lighter); color: var(--text); }
 .sort-opt.active { background: var(--primary-light); color: var(--primary-dark); font-weight: 600; }
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: 0.2s; border: 1px solid transparent; cursor: pointer; }
+.cards-grid { columns: 320px; column-gap: 16px; }
+.card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: 0.2s; border: 1px solid transparent; cursor: pointer; break-inside: avoid; margin-bottom: 16px; }
 .card:hover { box-shadow: var(--shadow-hover); border-color: var(--primary-light); transform: translateY(-1px); }
 .word-card { padding: 16px; }
 .word-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
@@ -2063,13 +2058,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .dyl-card.dyl-read { opacity: 0.7; }
 .dyl-card.dyl-expanded { box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 20px; }
 .dyl-card-body { display: flex; flex-direction: row; }
-.dyl-thumb { width: 120px; height: 160px; margin: 12px; border-radius: 8px; position: relative; cursor: pointer; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.dyl-thumb { width: 120px; height: 160px; margin: 12px; border-radius: 8px; position: relative; overflow: hidden; flex-shrink: 0; }
+.dyl-thumb-link { display: block; text-decoration: none; flex-shrink: 0; }
+.dyl-thumb-link:hover .dyl-thumb { filter: brightness(1.05); }
 .dyl-content { flex: 1 1 0%; padding: 12px 14px 12px 0px; display: flex; flex-direction: column; gap: 8px; min-width: 0px; }
-.dyl-play-icon { width: 36px; height: 36px; background: rgba(255, 255, 255, 0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgb(51, 51, 51); box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; }
-.dyl-play-icon svg { width: 18px; height: 18px; margin-left: 2px; }
 .dyl-duration { position: absolute; bottom: 6px; right: 6px; background: rgba(0, 0, 0, 0.65); color: rgb(255, 255, 255); font-size: 10px; padding: 2px 6px; border-radius: 8px; font-weight: 500; }
-.dyl-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; cursor: pointer; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.dyl-title:hover { color: var(--primary-dark); }
+.dyl-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dyl-title-link { text-decoration: none; display: block; }
+.dyl-title-link:hover .dyl-title { color: var(--primary-dark); }
 .dyl-tags-inline { color: rgb(78, 110, 242); font-weight: 500; }
 .dyl-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-3); }
 .dyl-meta-item { display: inline-flex; align-items: center; gap: 2px; }
@@ -2077,8 +2073,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .dyl-stats { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--text-2); }
 .dyl-stat-item { display: inline-flex; align-items: center; gap: 3px; font-weight: 500; }
 .dyl-actions { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 4px; }
-.dyl-action-btn { display: flex; align-items: center; gap: 4px; background: var(--bg); border: none; cursor: pointer; padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 500; color: var(--text-2); transition: 0.15s; }
+.dyl-action-btn { display: flex; align-items: center; gap: 4px; background: var(--bg); border: none; cursor: pointer; padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 500; color: var(--text-2); transition: 0.15s; text-decoration: none; }
 .dyl-action-btn:hover { background: var(--border-light); color: var(--text-1); }
+.dyl-action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .dyl-btn-icon { font-size: 13px; line-height: 1; }
 .dyl-note-action { background: rgba(107, 142, 75, 0.1); color: var(--primary-dark); }
 .dyl-note-action:hover { background: rgba(107, 142, 75, 0.18); }
@@ -2519,12 +2516,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 
     <div class="nav-group">
       <div class="nav-group-title">学习管理<span class="en-sub">Study</span></div>
-      <div class="nav-item" data-section="words" onclick="switchSection('words')">
+      <div class="nav-item active" data-section="words" onclick="switchSection('words')">
         <span class="nav-icon">📘</span>
         <div class="nav-label"><span>英语单词</span><span class="en-sub">Vocabulary</span></div>
-        <span class="nav-badge" id="wordCountBadge">2</span>
+        <span class="nav-badge" id="wordCountBadge">3</span>
       </div>
-      <div class="nav-item active" data-section="douyin" onclick="switchSection('douyin')">
+      <div class="nav-item" data-section="douyin" onclick="switchSection('douyin')">
         <span class="nav-icon">🎬</span>
         <div class="nav-label"><span>抖音笔记</span><span class="en-sub">Video Notes</span></div>
         <span class="nav-badge" id="dyCountBadge">1</span>
@@ -2536,7 +2533,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item" data-section="accounting" onclick="switchSection('accounting')">
         <span class="nav-icon">💰</span>
         <div class="nav-label"><span>记账</span><span class="en-sub">Accounting</span></div>
-        <span class="nav-badge" id="txCountBadge">71</span>
+        <span class="nav-badge" id="txCountBadge">74</span>
       </div>
       <div class="nav-item" data-section="stats" onclick="switchSection('stats')">
         <span class="nav-icon">📊</span>
@@ -2558,7 +2555,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 00:58</span>
+        <span id="syncTime">已保存本地 16:50</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2588,17 +2585,17 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
   <main class="main">
 
     <!-- ===== Words Section ===== -->
-    <section id="wordsSection" class="section">
+    <section id="wordsSection" class="section active">
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
-        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">1</span></button>
+        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">2</span></button>
         <button class="topbar-btn" onclick="loadDemoWords()">📚 示例单词<span class="en-sub-inline">Demo</span></button>
         <button class="topbar-btn primary" onclick="openWordModal()">+ 新增单词<span class="en-sub-inline">Add</span></button>
       </div>
       <div class="top-tabs">
-        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">2</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">1</span></div>
+        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">3</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">2</span></div>
         <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">1</span></div>
         <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
       </div>
@@ -2606,7 +2603,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">单词总量<span class="en-sub">Total Words</span></div>
-            <div class="stat-value green" id="statTotal">2</div>
+            <div class="stat-value green" id="statTotal">3</div>
             <div class="stat-sub" id="statTotalSub">收录单词</div>
           </div>
           <div class="stat-card">
@@ -2616,12 +2613,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
-            <div class="stat-value" id="statDueToday" style="color:var(--warning)">1</div>
+            <div class="stat-value" id="statDueToday" style="color:var(--warning)">2</div>
             <div class="stat-sub" id="statDueTodaySub">学习中 1 个 · 1 learning</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">1</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">2</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2656,8 +2653,45 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
             </div>
           </div>
         </div>
-        <div class="content-count">共 <strong id="wordResultCount">2</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
+        <div class="content-count">共 <strong id="wordResultCount">3</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
         <div class="cards-grid" id="wordGrid">
+    <div class="card word-card" onclick="openWordModal(1789268848422)">
+      <div class="word-card-head">
+        <div class="word-main">
+          <div class="word-spelling">bitterly</div>
+          
+        </div>
+        <div class="word-tags">
+          <span class="word-tag b-level">B</span>
+          <span class="word-tag cat-kaoyan">考研</span>
+        </div>
+      </div>
+      <div class="word-meaning-full"><div style="font-size:14px; line-height:1.7;">核心义：痛苦地；愤恨地；严寒地；强烈地
+词性：副词 (adverb)
+
+常见搭配：
+- bitterly cold 严寒
+- bitterly disappointed 极度失望
+- bitterly regret 悔恨不已
+- bitterly complain 愤愤不平地抱怨</div><div style="margin-top:10px; font-size:12.5px; color:var(--text-2); line-height:1.6; font-style:italic;">例句1（影视剧风格）：
+He was bitterly disappointed when he didn't get the promotion.
+他没有得到晋升，感到极度失望。
+
+例句2（考研真题风格）：
+The villagers suffered bitterly from the prolonged drought and rising food prices.
+村民们因持续的干旱和不断上涨的粮价而饱受苦难。</div></div>
+      <div class="word-card-footer">
+        <div class="word-status">
+          <span class="status-dot new"></span>
+          <span>未学习<span class="en-sub-inline">New</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+        </div>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn" onclick="cycleWordStatus(1789268848422)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789268848422)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
     <div class="card word-card" onclick="openWordModal(1789226502338)">
       <div class="word-card-head">
         <div class="word-main">
@@ -2783,8 +2817,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">本月支出<span class="en-sub">Monthly Expense</span></div>
-            <div class="stat-value red" id="statExpense">¥1382.31</div>
-            <div class="stat-sub" id="statExpenseSub">共 68 笔 · 68 entries</div>
+            <div class="stat-value red" id="statExpense">¥1392.91</div>
+            <div class="stat-sub" id="statExpenseSub">共 71 笔 · 71 entries</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">本月收入<span class="en-sub">Monthly Income</span></div>
@@ -2793,12 +2827,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">本月结余<span class="en-sub">Balance</span></div>
-            <div class="stat-value blue" id="statBalance">¥-552.31</div>
+            <div class="stat-value blue" id="statBalance">¥-562.91</div>
             <div class="stat-sub" id="statBalanceSub">收入 - 支出<span class="en-sub">Income - Expense</span></div>
           </div>
           <div class="stat-card">
             <div class="stat-label">日均支出<span class="en-sub">Daily Avg</span></div>
-            <div class="stat-value" id="statDaily">¥106.33</div>
+            <div class="stat-value" id="statDaily">¥107.15</div>
             <div class="stat-sub" id="statDailySub">本月平均<span class="en-sub">Monthly average</span></div>
           </div>
         </div>
@@ -2843,8 +2877,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="bar-amount">¥285.44</div>
     </div><div class="bar-row">
       <div class="bar-label">🚇 交通</div>
-      <div class="bar-track"><div class="bar-fill" style="width:45.47596851046199%; background:#B983FF;">¥176</div></div>
-      <div class="bar-amount">¥175.61</div>
+      <div class="bar-track"><div class="bar-fill" style="width:48.22094468614047%; background:#B983FF;">¥186</div></div>
+      <div class="bar-amount">¥186.21</div>
     </div><div class="bar-row">
       <div class="bar-label">🎮 娱乐</div>
       <div class="bar-track"><div class="bar-fill" style="width:19.629169256266835%; background:#F0A500;">¥76</div></div>
@@ -2859,8 +2893,65 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="bar-amount">¥14.90</div>
     </div></div>
         </div>
-        <div class="content-count">共 <strong id="txResultCount">71</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
+        <div class="content-count">共 <strong id="txResultCount">74</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
         <div class="cards-grid" id="txGrid">
+    <div class="card tx-card" onclick="openTxModal(1789280997780.8354)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-13</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥8.80</div>
+      </div>
+      <div class="tx-desc">打车</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789280997780.8354)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789286236570.853)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-13</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥0.90</div>
+      </div>
+      <div class="tx-desc">公交</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789286236570.853)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789287503446.5288)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-13</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥0.90</div>
+      </div>
+      <div class="tx-desc">公交</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789287503446.5288)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
     <div class="card tx-card" onclick="openTxModal(1789180493267.5444)">
       <div class="tx-card-head">
         <div class="tx-category">
@@ -4265,7 +4356,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     </section>
 
     <!-- ===== Douyin Notes Section ===== -->
-    <section id="douyinSection" class="section active">
+    <section id="douyinSection" class="section">
       <div class="topbar">
         <div class="topbar-title">抖音笔记<span class="en-sub">Video Notes</span></div>
         <div class="topbar-spacer"></div>
@@ -4287,21 +4378,20 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
         <div class="dyl-card dyl-read" id="dyl-1789231310980">
           <div class="dyl-card-body">
             <!-- 左侧缩略图 -->
-            <div class="dyl-thumb" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
-              
-                <div class="dyl-play-icon">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
-                </div>
-              
+            <a href="https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/" target="_blank" class="dyl-thumb-link">
+            <div class="dyl-thumb" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
               <div class="dyl-duration">10分21秒</div>
             </div>
+            </a>
             
             <!-- 右侧内容区 -->
             <div class="dyl-content">
               <!-- 标题 -->
-              <div class="dyl-title" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
+              <a href="https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/" target="_blank" class="dyl-title-link">
+              <div class="dyl-title">
                 AI工作流 <span class="dyl-tags-inline">#AI</span>
               </div>
+              </a>
               
               <!-- 元信息行 -->
               <div class="dyl-meta">
@@ -4310,7 +4400,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
                 
               </div>
               
-              <!-- 数据统计行（模拟抖音风格） -->
+              <!-- 数据统计行 -->
               <div class="dyl-stats">
                 <span class="dyl-stat-item">👍 —</span>
                 <span class="dyl-stat-item">💬 —</span>
@@ -4324,10 +4414,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
                   <span class="dyl-btn-icon">☆</span>
                   <span class="dyl-btn-text">收藏</span>
                 </button>
-                <button class="dyl-action-btn" onclick="playDyVideo('https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/')">
-                  <span class="dyl-btn-icon">▶</span>
-                  <span class="dyl-btn-text">视频</span>
-                </button>
+                <a href="https://v.douyin.com/AMKIxRUqG_E/ T@Y.zt :5pm 10/09 XzG:/" target="_blank" class="dyl-action-btn dyl-video-btn">
+                    <span class="dyl-btn-icon">▶</span>
+                    <span class="dyl-btn-text">视频</span>
+                  </a>
                 <button class="dyl-action-btn dyl-note-action" onclick="toggleDyNote(1789231310980)">
                   <span class="dyl-btn-icon">+</span>
                   <span class="dyl-btn-text">写笔记</span>
@@ -4570,11 +4660,11 @@ The virtue of this approach is its simplicity.
 <div class="modal-overlay" id="dyModal">
   <div class="modal" style="max-width:640px;">
     <div class="modal-head">
-      <span class="modal-title" id="dyModalTitle">编辑笔记<span class="en-sub">Edit Note</span></span>
+      <span class="modal-title" id="dyModalTitle">新增笔记<span class="en-sub">Add Note</span></span>
       <span class="modal-close" onclick="closeModal('dyModal')">×</span>
     </div>
     <div class="modal-body">
-      <input type="hidden" id="dyId" value="1789231310980">
+      <input type="hidden" id="dyId">
       <div class="form-group">
         <label class="form-label">视频标题 *<span class="en-sub">Title</span></label>
         <input type="text" class="form-input" id="dyTitle" placeholder="如: 高效学习的三个方法">
@@ -4748,7 +4838,7 @@ The virtue of this approach is its simplicity.
   </div>
 </div>
 
-<div class="toast" id="toast">笔记已更新</div>
+<div class="toast" id="toast"></div>
 
 <script>
 /* ============================================================
@@ -6895,21 +6985,20 @@ function renderDyNotes() {
         <div class="dyl-card ${readClass}" id="dyl-${n.id}">
           <div class="dyl-card-body">
             <!-- 左侧缩略图 -->
-            <div class="dyl-thumb" style="background: ${coverGradient};" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
-              ${n.link ? `
-                <div class="dyl-play-icon">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-              ` : ''}
+            ${n.link ? `<a href="${esc(n.link)}" target="_blank" class="dyl-thumb-link">` : ''}
+            <div class="dyl-thumb" style="background: ${coverGradient};">
               ${n.duration ? `<div class="dyl-duration">${esc(n.duration)}</div>` : ''}
             </div>
+            ${n.link ? `</a>` : ''}
             
             <!-- 右侧内容区 -->
             <div class="dyl-content">
               <!-- 标题 -->
-              <div class="dyl-title" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
+              ${n.link ? `<a href="${esc(n.link)}" target="_blank" class="dyl-title-link">` : ''}
+              <div class="dyl-title">
                 ${esc(n.title)}${tagsText ? ` <span class="dyl-tags-inline">${tagsText}</span>` : ''}
               </div>
+              ${n.link ? `</a>` : ''}
               
               <!-- 元信息行 -->
               <div class="dyl-meta">
@@ -6918,7 +7007,7 @@ function renderDyNotes() {
                 ${n.starred ? `<span class="dyl-meta-item dyl-star-meta">⭐ 已收藏</span>` : ''}
               </div>
               
-              <!-- 数据统计行（模拟抖音风格） -->
+              <!-- 数据统计行 -->
               <div class="dyl-stats">
                 <span class="dyl-stat-item">👍 ${n.likes || '—'}</span>
                 <span class="dyl-stat-item">💬 ${n.comments || '—'}</span>
@@ -6932,10 +7021,16 @@ function renderDyNotes() {
                   <span class="dyl-btn-icon">${n.starred ? '⭐' : '☆'}</span>
                   <span class="dyl-btn-text">${n.starred ? '已收藏' : '收藏'}</span>
                 </button>
-                <button class="dyl-action-btn" onclick="${n.link ? `playDyVideo('${esc(n.link)}')` : ''}">
-                  <span class="dyl-btn-icon">▶</span>
-                  <span class="dyl-btn-text">视频</span>
-                </button>
+                ${n.link ? 
+                  `<a href="${esc(n.link)}" target="_blank" class="dyl-action-btn dyl-video-btn">
+                    <span class="dyl-btn-icon">▶</span>
+                    <span class="dyl-btn-text">视频</span>
+                  </a>` : 
+                  `<button class="dyl-action-btn" disabled>
+                    <span class="dyl-btn-icon">▶</span>
+                    <span class="dyl-btn-text">视频</span>
+                  </button>`
+                }
                 <button class="dyl-action-btn dyl-note-action" onclick="toggleDyNote(${n.id})">
                   <span class="dyl-btn-icon">+</span>
                   <span class="dyl-btn-text">${noteText}</span>
