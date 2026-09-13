@@ -2533,7 +2533,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item" data-section="accounting" onclick="switchSection('accounting')">
         <span class="nav-icon">💰</span>
         <div class="nav-label"><span>记账</span><span class="en-sub">Accounting</span></div>
-        <span class="nav-badge" id="txCountBadge">74</span>
+        <span class="nav-badge" id="txCountBadge">76</span>
       </div>
       <div class="nav-item" data-section="stats" onclick="switchSection('stats')">
         <span class="nav-icon">📊</span>
@@ -2555,7 +2555,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 16:50</span>
+        <span id="syncTime">已保存本地 21:52</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2817,8 +2817,8 @@ The villagers suffered bitterly from the prolonged drought and rising food price
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">本月支出<span class="en-sub">Monthly Expense</span></div>
-            <div class="stat-value red" id="statExpense">¥1392.91</div>
-            <div class="stat-sub" id="statExpenseSub">共 71 笔 · 71 entries</div>
+            <div class="stat-value red" id="statExpense">¥1415.81</div>
+            <div class="stat-sub" id="statExpenseSub">共 73 笔 · 73 entries</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">本月收入<span class="en-sub">Monthly Income</span></div>
@@ -2827,12 +2827,12 @@ The villagers suffered bitterly from the prolonged drought and rising food price
           </div>
           <div class="stat-card">
             <div class="stat-label">本月结余<span class="en-sub">Balance</span></div>
-            <div class="stat-value blue" id="statBalance">¥-562.91</div>
+            <div class="stat-value blue" id="statBalance">¥-585.81</div>
             <div class="stat-sub" id="statBalanceSub">收入 - 支出<span class="en-sub">Income - Expense</span></div>
           </div>
           <div class="stat-card">
             <div class="stat-label">日均支出<span class="en-sub">Daily Avg</span></div>
-            <div class="stat-value" id="statDaily">¥107.15</div>
+            <div class="stat-value" id="statDaily">¥108.91</div>
             <div class="stat-sub" id="statDailySub">本月平均<span class="en-sub">Monthly average</span></div>
           </div>
         </div>
@@ -2873,8 +2873,8 @@ The villagers suffered bitterly from the prolonged drought and rising food price
       <div class="bar-amount">¥373.40</div>
     </div><div class="bar-row">
       <div class="bar-label">🍽 餐饮</div>
-      <div class="bar-track"><div class="bar-fill" style="width:73.91754713072302%; background:#FFA07A;">¥285</div></div>
-      <div class="bar-amount">¥285.44</div>
+      <div class="bar-track"><div class="bar-fill" style="width:79.84773151025482%; background:#FFA07A;">¥308</div></div>
+      <div class="bar-amount">¥308.34</div>
     </div><div class="bar-row">
       <div class="bar-label">🚇 交通</div>
       <div class="bar-track"><div class="bar-fill" style="width:48.22094468614047%; background:#B983FF;">¥186</div></div>
@@ -2893,7 +2893,7 @@ The villagers suffered bitterly from the prolonged drought and rising food price
       <div class="bar-amount">¥14.90</div>
     </div></div>
         </div>
-        <div class="content-count">共 <strong id="txResultCount">74</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
+        <div class="content-count">共 <strong id="txResultCount">76</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
         <div class="cards-grid" id="txGrid">
     <div class="card tx-card" onclick="openTxModal(1789280997780.8354)">
       <div class="tx-card-head">
@@ -2949,6 +2949,44 @@ The villagers suffered bitterly from the prolonged drought and rising food price
         <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn danger" onclick="deleteTx(1789287503446.5288)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789297881359.657)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-13</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥6.00</div>
+      </div>
+      <div class="tx-desc">晚饭（非正式版）</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789297881359.657)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789303284232.791)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-13</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥16.90</div>
+      </div>
+      <div class="tx-desc">晚饭（正式版）</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789303284232.791)">删除<span class="en-sub-inline">Delete</span></button>
         </div>
       </div>
     </div>
