@@ -513,6 +513,44 @@ body {
 .modal-body { padding: 20px; }
 .modal-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border-light); }
 .form-group { margin-bottom: 16px; }
+
+/* 智能粘贴区样式 */
+.smart-paste-area {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.smart-paste-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.smart-paste-head:hover { background: var(--border-light); }
+.smart-paste-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  white-space: nowrap;
+}
+.smart-paste-hint {
+  font-size: 11px;
+  color: var(--text-3);
+  flex: 1;
+}
+.smart-paste-arrow {
+  font-size: 12px;
+  color: var(--text-3);
+  transition: transform 0.2s;
+}
+.smart-paste-body {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border-light);
+}
 .form-label { display: flex; flex-direction: column; font-size: 13px; color: var(--text-2); margin-bottom: 6px; font-weight: 600; }
 .form-label .en-sub { font-size: 10px; font-weight: 400; }
 .form-input, .form-select, .form-textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; outline: none; transition: border-color 0.15s; font-family: var(--font); }
@@ -2127,6 +2165,13 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
 .modal-body { padding: 20px; }
 .modal-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border-light); }
 .form-group { margin-bottom: 16px; }
+.smart-paste-area { background: var(--bg); border: 1px solid var(--border-light); border-radius: var(--radius); margin-bottom: 16px; overflow: hidden; }
+.smart-paste-head { display: flex; align-items: center; gap: 8px; padding: 10px 14px; cursor: pointer; transition: background 0.15s; }
+.smart-paste-head:hover { background: var(--border-light); }
+.smart-paste-title { font-size: 13px; font-weight: 600; color: var(--primary-dark); white-space: nowrap; }
+.smart-paste-hint { font-size: 11px; color: var(--text-3); flex: 1 1 0%; }
+.smart-paste-arrow { font-size: 12px; color: var(--text-3); transition: transform 0.2s; }
+.smart-paste-body { padding: 12px 14px; border-top: 1px solid var(--border-light); }
 .form-label { display: flex; flex-direction: column; font-size: 13px; color: var(--text-2); margin-bottom: 6px; font-weight: 600; }
 .form-label .en-sub { font-size: 10px; font-weight: 400; }
 .form-input, .form-select, .form-textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; outline: none; transition: border-color 0.15s; font-family: var(--font); }
@@ -2519,7 +2564,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item active" data-section="words" onclick="switchSection('words')">
         <span class="nav-icon">📘</span>
         <div class="nav-label"><span>英语单词</span><span class="en-sub">Vocabulary</span></div>
-        <span class="nav-badge" id="wordCountBadge">3</span>
+        <span class="nav-badge" id="wordCountBadge">6</span>
       </div>
       <div class="nav-item" data-section="douyin" onclick="switchSection('douyin')">
         <span class="nav-icon">🎬</span>
@@ -2533,7 +2578,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="nav-item" data-section="accounting" onclick="switchSection('accounting')">
         <span class="nav-icon">💰</span>
         <div class="nav-label"><span>记账</span><span class="en-sub">Accounting</span></div>
-        <span class="nav-badge" id="txCountBadge">76</span>
+        <span class="nav-badge" id="txCountBadge">90</span>
       </div>
       <div class="nav-item" data-section="stats" onclick="switchSection('stats')">
         <span class="nav-icon">📊</span>
@@ -2555,7 +2600,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
     <div class="sync-panel">
       <div class="sync-status">
         <div class="sync-dot"></div>
-        <span id="syncTime">已保存本地 21:52</span>
+        <span id="syncTime">已保存本地 22:53</span>
       </div>
       <div id="cloudStatus" class="cloud-status connected" style="margin-top:4px;">
         <div class="cloud-dot"></div>
@@ -2589,21 +2634,21 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
       <div class="topbar">
         <div class="topbar-title">英语单词<span class="en-sub">English Vocabulary</span></div>
         <div class="topbar-spacer"></div>
-        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">2</span></button>
+        <button class="topbar-btn" onclick="startReview()">📖 开始复习<span class="en-sub-inline">Review</span><span class="review-due-badge" id="reviewDueBadge">5</span></button>
         <button class="topbar-btn" onclick="loadDemoWords()">📚 示例单词<span class="en-sub-inline">Demo</span></button>
         <button class="topbar-btn primary" onclick="openWordModal()">+ 新增单词<span class="en-sub-inline">Add</span></button>
       </div>
       <div class="top-tabs">
-        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">3</span></div>
-        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">2</span></div>
-        <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">1</span></div>
+        <div class="top-tab active" onclick="setWordTab('all', this)">全部单词<span class="en-sub-inline">All</span> <span class="tab-count" id="tabAllCount">6</span></div>
+        <div class="top-tab" onclick="setWordTab('new', this)">未学<span class="en-sub-inline">New</span> <span class="tab-count" id="tabNewCount">4</span></div>
+        <div class="top-tab" onclick="setWordTab('learning', this)">学习中<span class="en-sub-inline">Learning</span> <span class="tab-count" id="tabLearningCount">2</span></div>
         <div class="top-tab" onclick="setWordTab('mastered', this)">已掌握<span class="en-sub-inline">Mastered</span> <span class="tab-count" id="tabMasteredCount">0</span></div>
       </div>
       <div class="content-area">
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">单词总量<span class="en-sub">Total Words</span></div>
-            <div class="stat-value green" id="statTotal">3</div>
+            <div class="stat-value green" id="statTotal">6</div>
             <div class="stat-sub" id="statTotalSub">收录单词</div>
           </div>
           <div class="stat-card">
@@ -2613,12 +2658,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
           </div>
           <div class="stat-card">
             <div class="stat-label">今日待复习<span class="en-sub">Due Today</span></div>
-            <div class="stat-value" id="statDueToday" style="color:var(--warning)">2</div>
-            <div class="stat-sub" id="statDueTodaySub">学习中 1 个 · 1 learning</div>
+            <div class="stat-value" id="statDueToday" style="color:var(--warning)">5</div>
+            <div class="stat-sub" id="statDueTodaySub">学习中 2 个 · 2 learning</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">未学习<span class="en-sub">New</span></div>
-            <div class="stat-value" id="statNew" style="color:var(--text-3)">2</div>
+            <div class="stat-value" id="statNew" style="color:var(--text-3)">4</div>
             <div class="stat-sub" id="statNewSub">新单词<span class="en-sub">New words</span></div>
           </div>
         </div>
@@ -2653,8 +2698,197 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); font
             </div>
           </div>
         </div>
-        <div class="content-count">共 <strong id="wordResultCount">3</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
+        <div class="content-count">共 <strong id="wordResultCount">6</strong> 个单词 · <span class="en-sub-inline">words total</span></div>
         <div class="cards-grid" id="wordGrid">
+    <div class="card word-card" onclick="openWordModal(1789541918587)">
+      <div class="word-card-head">
+        <div class="word-main">
+          <div class="word-spelling">curse   底层核心动作：</div>
+          
+        </div>
+        <div class="word-tags">
+          <span class="word-tag a-level">A</span>
+          <span class="word-tag cat-kaoyan">考研</span>
+        </div>
+      </div>
+      <div class="word-meaning-full"><div class="word-detail"><div class="wd-block">
+      <div class="wd-core">念咒语降祸 → 引申为诅咒、咒骂、祸害</div>
+    </div><div class="wd-block">
+        <div class="wd-label">释义</div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">1.</span>
+            <span class="wd-meaning-cat">实物/动作</span>
+            <span class="wd-meaning-text">to invoke evil or misfortune upon someone by uttering a curse 中文大意：诅咒；咒骂</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">She cursed him under her breath as he walked away.</div><div class="wd-example-cn">他走开时，她低声咒骂他。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">2.</span>
+            <span class="wd-meaning-cat">生活/物资</span>
+            <span class="wd-meaning-text">a cause of great harm or misfortune 中文大意：祸根；祸水</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">Gambling was the curse of his life.</div><div class="wd-example-cn">赌博是他一生的祸根。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">3.</span>
+            <span class="wd-meaning-cat">抽象</span>
+            <span class="wd-meaning-text">an offensive word or phrase used to express anger 中文大意：脏话；骂人话</span>
+          </div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">4.</span>
+            <span class="wd-meaning-cat">相关搭配</span>
+            <span class="wd-meaning-text">be cursed with 因……而遭殃；lay a curse on 对……下诅咒</span>
+          </div></div></div><div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">例句1：&nbsp; <br>"May you be cursed with a conscience!" <br>"愿你饱受良心的谴责！"&nbsp;  <br><br>例句2：The study revealed that poverty remains the greatest curse hindering social mobility in developing nations. <br>研究表明，贫困仍然是阻碍发展中国家社会流动性的最大祸害。 <br>关键词：social mobility（社会流动性）、hindering（阻碍）</div>
+    </div><div class="wd-block">
+      <div class="wd-derivatives"><strong>派生词：</strong>cursed adj. 被诅咒的；可憎的</div>
+    </div></div></div>
+      <div class="word-card-footer">
+        <div class="word-status">
+          <span class="status-dot new"></span>
+          <span>未学习<span class="en-sub-inline">New</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+        </div>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn" onclick="cycleWordStatus(1789541918587)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789541918587)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card word-card" onclick="openWordModal(1789376300749)">
+      <div class="word-card-head">
+        <div class="word-main">
+          <div class="word-spelling">other than</div>
+          
+        </div>
+        <div class="word-tags">
+          <span class="word-tag a-level">A</span>
+          <span class="word-tag cat-kaoyan">考研</span>
+        </div>
+      </div>
+      <div class="word-meaning-full"><div class="word-detail"><div class="wd-block">
+      <div class="wd-core">other（另外的）+than（比较），本义“除了…之外”</div>
+    </div><div class="wd-block">
+        <div class="wd-label">释义</div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">1.</span>
+            
+            <span class="wd-meaning-text">基础释义</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">除了……之外（= except）</div><div class="wd-example-cn">Nobody other than him knows the secret.</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">2.</span>
+            
+            <span class="wd-meaning-text">不同于；并非（= different from）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">The result is other than what we expected.</div><div class="wd-example-cn">结果和我们预想的不一样。</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">3.</span>
+            
+            <span class="wd-meaning-text">考研引申义</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">① 除了…以外（不包含该对象），考研完形、阅读高频短语</div><div class="wd-example-cn">区分：other than / rather than</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">4.</span>
+            
+            <span class="wd-meaning-text">小提醒</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">other than 两种含义，做题看语境：</div><div class="wd-example-cn">否定句里大多翻译：除了…之外</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">5.</span>
+            
+            <span class="wd-meaning-text">辨析</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">other than = except 排除后面的对象</div><div class="wd-example-cn">There is no way other than hard work.</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">6.</span>
+            
+            <span class="wd-meaning-text">极简手写索引：</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">other than 除了…之外；不同于</div><div class="wd-example-cn">⚠️区分 rather than（而不是）</div></div></div></div><div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">《神探夏洛克》无原句<br>考研例句：<br>No evidence other than experimental data can support this theory.<br>翻译：除了实验数据之外，没有其他证据可以支撑该理论。</div>
+    </div></div></div>
+      <div class="word-card-footer">
+        <div class="word-status">
+          <span class="status-dot new"></span>
+          <span>未学习<span class="en-sub-inline">New</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+        </div>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn" onclick="cycleWordStatus(1789376300749)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789376300749)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card word-card" onclick="openWordModal(1789375029537)">
+      <div class="word-card-head">
+        <div class="word-main">
+          <div class="word-spelling">right</div>
+          <div class="word-phonetic">/raɪt/</div>
+        </div>
+        <div class="word-tags">
+          <span class="word-tag a-level">A</span>
+          <span class="word-tag cat-kaoyan">考研</span>
+        </div>
+      </div>
+      <div class="word-meaning-full"><div class="word-detail"><div class="wd-block">
+      <div class="wd-core">合乎规范、符合准则→正确的；右边；权利</div>
+    </div><div class="wd-block">
+      <div class="wd-label">词根</div>
+      <div class="wd-root">日耳曼语</div>
+    </div><div class="wd-block">
+        <div class="wd-label">释义</div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">1.</span>
+            
+            <span class="wd-meaning-text">adj. 正确的；恰当的</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">the right answer 正确答案</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">2.</span>
+            
+            <span class="wd-meaning-text">adj. 右边的</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">right hand 右手</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">3.</span>
+            
+            <span class="wd-meaning-text">adv. 正好；立刻</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">right now 此刻</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">4.</span>
+            
+            <span class="wd-meaning-text">n. 权利（本句考研核心义，human rights 人权）</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">human rights 人权</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">5.</span>
+            
+            <span class="wd-meaning-text">考研引申义</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">① n. 正当，正义</div><div class="wd-example-cn">the rights and wrongs 是非曲直</div></div></div><div class="wd-meaning">
+          <div class="wd-meaning-line">
+            <span class="wd-meaning-num">6.</span>
+            
+            <span class="wd-meaning-text">派生词</span>
+          </div><div class="wd-example-box">
+            <div class="wd-example-en">‑ rightful adj.合法的，正当的</div><div class="wd-example-cn">‑ rightly adv.正确地；理应</div></div></div></div><div class="wd-block">
+      <div class="wd-label">例句</div>
+      <div class="wd-example-plain">《神探夏洛克》原句：<br>You have no right to interfere in my business.<br>翻译：你无权干涉我的事。<br><br>考研例句：Every citizen possesses the right to receive education.<br>翻译：每位公民都享有受教育的权利。</div>
+    </div></div></div>
+      <div class="word-card-footer">
+        <div class="word-status">
+          <span class="status-dot new"></span>
+          <span>未学习<span class="en-sub-inline">New</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+        </div>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn" onclick="cycleWordStatus(1789375029537)">✓ 标记</button>
+          <button class="word-action-btn danger" onclick="deleteWord(1789375029537)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
     <div class="card word-card" onclick="openWordModal(1789268848422)">
       <div class="word-card-head">
         <div class="word-main">
@@ -2735,9 +2969,9 @@ The villagers suffered bitterly from the prolonged drought and rising food price
     </div></div></div>
       <div class="word-card-footer">
         <div class="word-status">
-          <span class="status-dot new"></span>
-          <span>未学习<span class="en-sub-inline">New</span></span>
-          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
+          <span class="status-dot learning"></span>
+          <span>学习中<span class="en-sub-inline">Learning</span></span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 明天复习</span>
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn" onclick="cycleWordStatus(1789226502338)">✓ 标记</button>
@@ -2790,7 +3024,7 @@ The villagers suffered bitterly from the prolonged drought and rising food price
         <div class="word-status">
           <span class="status-dot learning"></span>
           <span>学习中<span class="en-sub-inline">Learning</span></span>
-          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 3 天后</span>
+          <span style="margin-left:8px; font-size:11px; color:var(--text-3);">📅 今日复习</span>
         </div>
         <div class="word-actions" onclick="event.stopPropagation()">
           <button class="word-action-btn" onclick="cycleWordStatus(1789224223969)">✓ 标记</button>
@@ -2817,8 +3051,8 @@ The villagers suffered bitterly from the prolonged drought and rising food price
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-label">本月支出<span class="en-sub">Monthly Expense</span></div>
-            <div class="stat-value red" id="statExpense">¥1415.81</div>
-            <div class="stat-sub" id="statExpenseSub">共 73 笔 · 73 entries</div>
+            <div class="stat-value red" id="statExpense">¥1717.60</div>
+            <div class="stat-sub" id="statExpenseSub">共 87 笔 · 87 entries</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">本月收入<span class="en-sub">Monthly Income</span></div>
@@ -2827,12 +3061,12 @@ The villagers suffered bitterly from the prolonged drought and rising food price
           </div>
           <div class="stat-card">
             <div class="stat-label">本月结余<span class="en-sub">Balance</span></div>
-            <div class="stat-value blue" id="statBalance">¥-585.81</div>
+            <div class="stat-value blue" id="statBalance">¥-887.60</div>
             <div class="stat-sub" id="statBalanceSub">收入 - 支出<span class="en-sub">Income - Expense</span></div>
           </div>
           <div class="stat-card">
             <div class="stat-label">日均支出<span class="en-sub">Daily Avg</span></div>
-            <div class="stat-value" id="statDaily">¥108.91</div>
+            <div class="stat-value" id="statDaily">¥107.35</div>
             <div class="stat-sub" id="statDailySub">本月平均<span class="en-sub">Monthly average</span></div>
           </div>
         </div>
@@ -2864,37 +3098,303 @@ The villagers suffered bitterly from the prolonged drought and rising food price
         <div class="chart-container" id="catChartContainer">
           <div class="chart-title">📊 分类支出分布<span class="en-sub-inline">Category Breakdown</span></div>
           <div class="bar-chart" id="catChart"><div class="bar-row">
+      <div class="bar-label">🍽 餐饮</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background:#FF6B6B;">¥390</div></div>
+      <div class="bar-amount">¥389.82</div>
+    </div><div class="bar-row">
       <div class="bar-label">🏠 居住</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%; background:#FF6B6B;">¥386</div></div>
+      <div class="bar-track"><div class="bar-fill" style="width:99.06110512544251%; background:#4ECDC4;">¥386</div></div>
       <div class="bar-amount">¥386.16</div>
     </div><div class="bar-row">
       <div class="bar-label">💼 工作</div>
-      <div class="bar-track"><div class="bar-fill" style="width:96.69567018852291%; background:#4ECDC4;">¥373</div></div>
-      <div class="bar-amount">¥373.40</div>
-    </div><div class="bar-row">
-      <div class="bar-label">🍽 餐饮</div>
-      <div class="bar-track"><div class="bar-fill" style="width:79.84773151025482%; background:#FFA07A;">¥308</div></div>
-      <div class="bar-amount">¥308.34</div>
+      <div class="bar-track"><div class="bar-fill" style="width:96.76260838335644%; background:#FFA07A;">¥377</div></div>
+      <div class="bar-amount">¥377.20</div>
     </div><div class="bar-row">
       <div class="bar-label">🚇 交通</div>
-      <div class="bar-track"><div class="bar-fill" style="width:48.22094468614047%; background:#B983FF;">¥186</div></div>
-      <div class="bar-amount">¥186.21</div>
-    </div><div class="bar-row">
-      <div class="bar-label">🎮 娱乐</div>
-      <div class="bar-track"><div class="bar-fill" style="width:19.629169256266835%; background:#F0A500;">¥76</div></div>
-      <div class="bar-amount">¥75.80</div>
-    </div><div class="bar-row">
-      <div class="bar-label">📋 其他</div>
-      <div class="bar-track"><div class="bar-fill" style="width:18.386161176714317%; background:#5B8FF9;">¥71</div></div>
-      <div class="bar-amount">¥71.00</div>
+      <div class="bar-track"><div class="bar-fill" style="width:54.594428197629675%; background:#B983FF;">¥213</div></div>
+      <div class="bar-amount">¥212.82</div>
     </div><div class="bar-row">
       <div class="bar-label">🛒 购物</div>
-      <div class="bar-track"><div class="bar-fill" style="width:3.858504246944272%; background:#95A5A6;">¥15</div></div>
-      <div class="bar-amount">¥14.90</div>
+      <div class="bar-track"><div class="bar-fill" style="width:49.997434713457494%; background:#F0A500;">¥195</div></div>
+      <div class="bar-amount">¥194.90</div>
+    </div><div class="bar-row">
+      <div class="bar-label">📋 其他</div>
+      <div class="bar-track"><div class="bar-fill" style="width:20.75316812888%; background:#5B8FF9;">¥81</div></div>
+      <div class="bar-amount">¥80.90</div>
+    </div><div class="bar-row">
+      <div class="bar-label">🎮 娱乐</div>
+      <div class="bar-track"><div class="bar-fill" style="width:19.444871992201527%; background:#95A5A6;">¥76</div></div>
+      <div class="bar-amount">¥75.80</div>
     </div></div>
         </div>
-        <div class="content-count">共 <strong id="txResultCount">76</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
+        <div class="content-count">共 <strong id="txResultCount">90</strong> 笔记录 · <span class="en-sub-inline">records</span></div>
         <div class="cards-grid" id="txGrid">
+    <div class="card tx-card" onclick="openTxModal(1789516072865.556)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-16</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥6.50</div>
+      </div>
+      <div class="tx-desc">早饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789516072865.556)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789530373832.6614)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-16</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥11.00</div>
+      </div>
+      <div class="tx-desc">午饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789530373832.6614)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789436916429.2727)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FFA07A22;">🛒</div>
+          <div>
+            <div class="tx-cat-name">购物<span class="en-sub-inline">Shopping</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥180.00</div>
+      </div>
+      <div class="tx-desc">耳机</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789436916429.2727)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789446440849.2266)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥15.90</div>
+      </div>
+      <div class="tx-desc">午饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789446440849.2266)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789464141526.9995)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥15.90</div>
+      </div>
+      <div class="tx-desc">晚饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789464141526.9995)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789464185119.2087)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#95A5A622;">📋</div>
+          <div>
+            <div class="tx-cat-name">其他<span class="en-sub-inline">Other</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥9.90</div>
+      </div>
+      <div class="tx-desc">请刘美旗喝羽衣轻体果蔬茶</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789464185119.2087)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789468062609.187)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥10.30</div>
+      </div>
+      <div class="tx-desc">打车</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789468062609.187)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789478890582.9426)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-15</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥4.50</div>
+      </div>
+      <div class="tx-desc">骑共享</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789478890582.9426)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789342914411.0044)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥7.00</div>
+      </div>
+      <div class="tx-desc">早饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789342914411.0044)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789360551970.5808)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥16.50</div>
+      </div>
+      <div class="tx-desc">午饭</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789360551970.5808)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789376477457.7334)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#5B8FF922;">💼</div>
+          <div>
+            <div class="tx-cat-name">工作<span class="en-sub-inline">Work</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥3.80</div>
+      </div>
+      <div class="tx-desc">WPS会员</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789376477457.7334)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789382533815.1914)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥10.81</div>
+      </div>
+      <div class="tx-desc">打车</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789382533815.1914)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789391567248.9382)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#FF6B6B22;">🍽</div>
+          <div>
+            <div class="tx-cat-name">餐饮<span class="en-sub-inline">Food</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥8.68</div>
+      </div>
+      <div class="tx-desc">打车</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789391567248.9382)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="card tx-card" onclick="openTxModal(1789391999318.3462)">
+      <div class="tx-card-head">
+        <div class="tx-category">
+          <div class="tx-cat-icon" style="background:#4ECDC422;">🚇</div>
+          <div>
+            <div class="tx-cat-name">交通<span class="en-sub-inline">Transport</span></div>
+            <div class="tx-date">2026-09-14</div>
+          </div>
+        </div>
+        <div class="tx-amount expense">-¥1.00</div>
+      </div>
+      <div class="tx-desc">坐小白</div>
+      <div class="tx-card-footer">
+        <span class="tx-type-badge expense">支出<span class="en-sub-inline">Expense</span></span>
+        <div class="word-actions" onclick="event.stopPropagation()">
+          <button class="word-action-btn danger" onclick="deleteTx(1789391999318.3462)">删除<span class="en-sub-inline">Delete</span></button>
+        </div>
+      </div>
+    </div>
     <div class="card tx-card" onclick="openTxModal(1789280997780.8354)">
       <div class="tx-card-head">
         <div class="tx-category">
@@ -4503,6 +5003,29 @@ The villagers suffered bitterly from the prolonged drought and rising food price
     </div>
     <div class="modal-body">
       <input type="hidden" id="wordId">
+      <!-- 智能粘贴区 -->
+      <div class="smart-paste-area">
+        <div class="smart-paste-head" onclick="toggleSmartPaste()">
+          <span class="smart-paste-title">📋 智能粘贴 <span class="en-sub-inline">Smart Paste</span></span>
+          <span class="smart-paste-hint">粘贴AI分析内容，自动填充各字段</span>
+          <span class="smart-paste-arrow" id="smartPasteArrow">▸</span>
+        </div>
+        <div class="smart-paste-body" id="smartPasteBody" style="display:none;">
+          <textarea class="form-textarea" id="smartPasteInput" placeholder="在此粘贴完整的单词分析内容（Ctrl+V），系统会自动识别并填充下方各字段。
+
+支持的格式标签：
+单词 / Word
+音标 / Phonetic
+底层逻辑 / Core Action
+词根 / Root
+释义 / Meaning
+例句 / Example" style="min-height:120px; font-size:13px;"></textarea>
+          <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="btn primary" onclick="parseSmartPaste(this)" type="button">解析并填充<span class="en-sub-inline">Parse</span></button>
+            <button class="btn" onclick="document.getElementById('smartPasteInput').value=''" type="button">清空<span class="en-sub-inline">Clear</span></button>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label class="form-label">单词 *<span class="en-sub">Word</span></label>
         <input type="text" class="form-input" id="wordSpelling" placeholder="如: abandon">
@@ -5588,6 +6111,140 @@ function renderWords() {
     </div>`;
   }).join('');
 }
+
+// 智能粘贴：展开/收起
+function toggleSmartPaste() {
+  const body = document.getElementById('smartPasteBody');
+  const arrow = document.getElementById('smartPasteArrow');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    arrow.style.transform = 'rotate(90deg)';
+    arrow.textContent = '▾';
+    setTimeout(() => document.getElementById('smartPasteInput')?.focus(), 100);
+  } else {
+    body.style.display = 'none';
+    arrow.style.transform = '';
+    arrow.textContent = '▸';
+  }
+}
+
+// 智能粘贴：解析并填充
+function parseSmartPaste(btn) {
+  const raw = document.getElementById('smartPasteInput').value.trim();
+  if (!raw) return;
+
+  // 定义字段标签映射
+  const fieldMap = [
+    { labels: ['单词', 'word', 'spelling'], field: 'wordSpelling', type: 'input' },
+    { labels: ['音标', 'phonetic'], field: 'wordPhonetic', type: 'input' },
+    { labels: ['底层逻辑', 'core action', 'core logic', 'coreaction', '底层逻辑含义'], field: 'wordCoreAction', type: 'input' },
+    { labels: ['词根', 'root', '词源'], field: 'wordRoot', type: 'textarea' },
+    { labels: ['释义', 'meaning', '含义', '释义与例句'], field: 'wordMeaning', type: 'textarea' },
+    { labels: ['例句', 'example', '句子'], field: 'wordExample', type: 'textarea' },
+  ];
+
+  // 尝试按标签分割
+  let parsed = {};
+  let matchedAny = false;
+
+  // 构建正则：匹配 标签: 或 标签： 或 标签【】 或 【标签】 等
+  for (const fm of fieldMap) {
+    for (const label of fm.labels) {
+      // 匹配 "标签：内容" 或 "标签: 内容" 或 "【标签】内容" 或 "标签】内容"
+      const patterns = [
+        new RegExp(`(?:^|\\n)\\s*【?${label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}】?\\s*[:：]\\s*([\\s\\S]*?)(?=\\n\\s*(?:【?(?:${fieldMap.flatMap(f=>f.labels).join('|')})】?\\s*[:：])|$)`, 'i'),
+      ];
+      for (const p of patterns) {
+        const m = raw.match(p);
+        if (m && m[1] && m[1].trim()) {
+          if (!parsed[fm.field] || m[1].trim().length > parsed[fm.field].length) {
+            parsed[fm.field] = m[1].trim();
+            matchedAny = true;
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  // 如果没有匹配到任何标签，尝试另一种格式：用空行分隔的段落
+  if (!matchedAny) {
+    const paragraphs = raw.split(/\n\s*\n/).map(s => s.trim()).filter(s => s);
+    if (paragraphs.length >= 2) {
+      // 第一个段落是单词
+      const firstLine = paragraphs[0].split('\n')[0].trim();
+      if (firstLine && firstLine.length <= 50 && !firstLine.includes('。')) {
+        parsed['wordSpelling'] = firstLine;
+        // 如果第一段还有音标
+        if (paragraphs[0].includes('/') || paragraphs[0].includes('ˈ')) {
+          const phoMatch = paragraphs[0].match(/\/[^/]+\//);
+          if (phoMatch) parsed['wordPhonetic'] = phoMatch[0];
+        }
+        // 剩余段落按顺序填入
+        const rest = paragraphs.slice(1);
+        if (rest.length >= 1) parsed['wordCoreAction'] = rest[0];
+        if (rest.length >= 2) parsed['wordRoot'] = rest[1];
+        if (rest.length >= 3) parsed['wordMeaning'] = rest[2];
+        if (rest.length >= 4) parsed['wordExample'] = rest.slice(3).join('\n\n');
+        matchedAny = true;
+      }
+    }
+  }
+
+  // 如果还是没匹配到，把全部内容放进释义
+  if (!matchedAny) {
+    parsed['wordMeaning'] = raw;
+  }
+
+  // 特殊处理：如果音标在单词行
+  if (parsed['wordSpelling'] && !parsed['wordPhonetic']) {
+    const phoMatch = parsed['wordSpelling'].match(/\/[^/]+\//);
+    if (phoMatch) {
+      parsed['wordPhonetic'] = phoMatch[0];
+      parsed['wordSpelling'] = parsed['wordSpelling'].replace(/\/[^/]+\//, '').trim();
+    }
+  }
+
+  // 清理单词字段：去掉可能的序号、标点
+  if (parsed['wordSpelling']) {
+    parsed['wordSpelling'] = parsed['wordSpelling']
+      .replace(/^\d+[.、）)]\s*/, '')
+      .replace(/^[-·•]\s*/, '')
+      .replace(/[*_`]/g, '')
+      .trim();
+  }
+
+  // 填充到表单
+  let filled = 0;
+  for (const fm of fieldMap) {
+    if (parsed[fm.field]) {
+      const el = document.getElementById(fm.field);
+      if (el) {
+        el.value = parsed[fm.field];
+        el.style.transition = 'background 0.3s';
+        el.style.background = 'rgba(107, 142, 75, 0.12)';
+        setTimeout(() => { el.style.background = ''; }, 1500);
+        filled++;
+      }
+    }
+  }
+
+  // 反馈
+  if (btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = `✅ 已填充${filled}个字段<span class="en-sub-inline">Done</span>`;
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  }
+
+  // 收起粘贴区
+  setTimeout(() => {
+    const body = document.getElementById('smartPasteBody');
+    const arrow = document.getElementById('smartPasteArrow');
+    if (body) body.style.display = 'none';
+    if (arrow) { arrow.style.transform = ''; arrow.textContent = '▸'; }
+  }, 800);
+}
+
 function openWordModal(id) {
   const modal = document.getElementById('wordModal');
   const titleEl = document.getElementById('wordModalTitle');
